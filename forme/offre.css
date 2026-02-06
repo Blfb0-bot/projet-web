@@ -1,19 +1,72 @@
+/*side bar*/
 #navigation #offre{
     background: rgb(50, 50, 50);
     border: 3px solid rgb(50, 50, 50);
 }
-#nos-offres{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+/*offre de stage*/
+.nos-offres{
     padding: 5px 10px;
-    margin: 10px;
+    margin: 15px;
     border: 3px solid rgb(73, 20, 109);
+    background-color: rgb(255, 255, 255);
     border-radius: 20px;
     cursor: pointer;
     max-width: 700px;
 }
-#contenus-offre{
+.debut-contenu{
     display: flex;
-
+    align-items: center;
+}
+.debut-contenu .type{
+    padding: 5px 10px;
+    margin: 10px;
+    border: 3px solid rgb(73, 20, 109);
+    border-radius: 20px;
+}
+.debut-contenu .title{
+    margin: 10px;
+}
+.debut-contenu .employeur{
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+}
+.contenu{
+    display: flex;
+    align-items: center;
+}
+.contenu .description{
+    padding:5px 5px;
+    margin: 10px;
+    border: 3px solid rgb(73, 20, 109);
+    border-radius: 20px;
+}
+.contenu .description h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contenu .competences{
+    padding:5px 5px;
+    margin: 10px;
+    border: 3px solid rgb(73, 20, 109);
+    border-radius: 20px;
+}
+.contenu .competences h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contenu .detail article{
+    display: flex;
+    align-items: center;
+    padding: 1px 1px;
+    border: 3px solid rgb(73, 20, 109);
+    margin: 5px;
+    border-radius: 20px;
+}
+.fin-contenu{
+    display: flex;
+    align-items: center;
+    margin: 10px;
 }

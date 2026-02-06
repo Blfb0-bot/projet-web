@@ -2,7 +2,7 @@
 #en-tete{
     position: fixed; /*reste même quand on scroll*/
     top: 0;
-    left: 156px;
+    left: 180px;
     right: 0;
     background: rgb(190, 175, 190);
     display: flex;
@@ -47,22 +47,22 @@ button:hover {
     top: 0px;
     left: 0;
     gap: 30px;
-    width: 156px;
+    width: 180px;
     height: 100vh;
     background: rgb(89, 42, 128);
     overflow-y: auto;
 }
 #logo img{
     position: fixed;
+    border-radius: 20px;
     width: 130px;
     height: 130px;
-    margin: 10px;
+    margin: 25px;
 }
 #navigation{
     position: fixed;
     top: 180px;
-    left: 10px;
-    gap: 10px;
+    left: 25px;
 }
 #navigation #entreprise, #offre, #etudiant, #pilote{
     padding: 5px 10px;
@@ -84,7 +84,7 @@ button:hover {
 #pied-de-page{
     position: fixed;    
     bottom: 10px;
-    left: 4px;
+    left: 10px;
     
 }
 #pied-de-page a{
@@ -94,9 +94,10 @@ button:hover {
 /*page principale*/
 #page{
     position: relative;
-    max-width: 744px;
-    top: 90px;
-    left: 156px;
+    max-width: 799px;
+    top: 67px;
+    left: 172px;
+    bottom: 0px;
 }
 #grand-titre{
     display: flex;
