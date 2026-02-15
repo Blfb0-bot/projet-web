@@ -4,60 +4,94 @@
     border: 3px solid rgb(50, 50, 50);
 }
 /*offre de stage*/
-.nos-offres{
+#presentation-offre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#outils-offre{
+    display: flex;
+    justify-content: space-around;
+    gap: 400px;
+    max-width: 750px;
+}
+#outils-offre #filtre{
+    background-color: black;
+    color: white;
+}
+#outils-offre #creation-offre{
+    background-color: rgb(73, 20, 109);
+    color: white;
+}
+.offres{
     padding: 5px 10px;
-    margin: 15px;
+    margin: 45px;
     border: 3px solid rgb(73, 20, 109);
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
     cursor: pointer;
     max-width: 700px;
 }
-.debut-contenu{
+.debut-contenu-offre{
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
-.debut-contenu .type{
+.debut-contenu-offre .type{
     padding: 5px 10px;
     margin: 10px;
     border: 3px solid rgb(73, 20, 109);
     border-radius: 20px;
 }
-.debut-contenu .title{
+.debut-contenu-offre .title{
     margin: 10px;
 }
-.debut-contenu .employeur{
+.debut-contenu-offre .employeur{
     margin: 10px;
     text-decoration: none;
     color: black;
 }
-.contenu{
+.debut-contenu-offre .modification-offre{
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+}
+.debut-contenu-offre .modification-offre button{
+    padding:5px 5px;
+    margin: 15px;
+    border: 3px solid rgb(73, 20, 109);
+    background-color: rgb(73, 20, 109);
+    border-radius: 20px;
+    color: white;
+}
+.contenu-offre{
     display: flex;
     align-items: center;
+    gap: 30px;
 }
-.contenu .description{
+.contenu-offre .description{
     padding:5px 5px;
-    margin: 10px;
+    margin: 15px;
     border: 3px solid rgb(73, 20, 109);
     border-radius: 20px;
 }
-.contenu .description h2{
+.contenu-offre .description h2{
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.contenu .competences{
+.contenu-offre .competences{
     padding:5px 5px;
-    margin: 10px;
+    margin: 15px;
     border: 3px solid rgb(73, 20, 109);
     border-radius: 20px;
 }
-.contenu .competences h2{
+.contenu-offre .competences h2{
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.contenu .detail article{
+.contenu-offre .detail article{
     display: flex;
     align-items: center;
     padding: 1px 1px;
@@ -65,7 +99,7 @@
     margin: 5px;
     border-radius: 20px;
 }
-.fin-contenu{
+.fin-contenu-offre{
     display: flex;
     align-items: center;
     margin: 10px;

@@ -2,3 +2,54 @@
     background: rgb(50, 50, 50);
     border: 3px solid rgb(50, 50, 50);
 }
+#presentation-pilote{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#outils-pilote{
+    display: flex;
+    justify-content: right;
+    max-width: 750px;
+}
+#outils-pilote #filtre{
+    background-color: black;
+    color: white;
+}
+#outils-pilote #creation-offre{
+    background-color: rgb(73, 20, 109);
+    color: white;
+}
+.table-pilote{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.table-pilote table{
+    table-layout: fixed;
+    width: 750px;
+    margin: 15px;
+    border-collapse: collapse;
+    border: 3px solid black;
+}
+.table-pilote th{
+    background-color: rgb(73, 20, 109);
+    color:white;
+    padding: 10px 10px;
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+.table-pilote td{
+    background-color: rgb(204, 198, 211);
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+.table-pilote button{
+    padding:5px 5px;
+    margin: 15px;
+    border: 3px solid rgb(73, 20, 109);
+    background-color: rgb(73, 20, 109);
+    border-radius: 20px;
+    color: white;
+}
