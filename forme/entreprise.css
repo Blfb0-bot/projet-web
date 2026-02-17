@@ -1,12 +1,15 @@
+/*Sidebar*/
 #navigation #entreprise{
     background: rgb(50, 50, 50);
     border: 3px solid rgb(50, 50, 50);
 }
+/*page*/
 #presentation-entreprise{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+/*filtre et création de l'entreprise/*/
 #outils-entreprise{
     display: flex;
     justify-content: space-around;
@@ -21,10 +24,12 @@
     background-color: rgb(73, 20, 109);
     color: white;
 }
+/*presentation de nos entreprise*/
 #nos-entreprises{
     display: grid;
     grid-template-columns: repeat(2,1fr);
 }
+/*mise en forme des entreprise*/
 .entreprises{
     padding: 5px 10px;
     margin: 15px;
