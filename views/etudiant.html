@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>WEB FOR ALL</title>
-    <link rel="stylesheet" href="forme/acceuil.css">
-        <link rel="stylesheet" href="forme/pilote.css">
+    <link rel="stylesheet" href="../styles/acceuil.css">
+        <link rel="stylesheet" href="../styles/etudiant.css">
 
 </head>
 <body>
@@ -14,58 +14,60 @@
         <div id="recherche">
             <form action="/recherche" methode="post">
                 <input type="search" name="q" placeholder="recherche..." aria-label="recherche sur le site">
-                <button type="sumit">OK</button> <!--peut être faire un bouton filtre a la place-->
+                <button type="sumit">OK</button>
             </form>
         </div>
         <div id="profil">
-            <a href="acceuil.html">
-                <img src="images/PROFIL.png" alt="PROFIL.png">
+            <a href="../views/acceuil.html">
+                <img src="../images/PROFIL.png" alt="PROFIL.png">
             </a>
         </div>
     </header>
     <aside id="sidebar">
         <div id="logo">
-            <a href="acceuil.html">
-                <img src="images/LOGO.png" alt="LOGO.png">
+            <a href="../views/acceuil.html">
+                <img src="../images/LOGO.png" alt="LOGO.png">
             </a>
         </div> 
         <div id="navigation">
-            <a id="offre" href="offre.html">offres</a>
+            <a id="offre" href="../views/offre.html">offres</a>
             <br/><br/><br/>
-            <a id="entreprise" href="entreprise.html">entreprises</a>
+            <a id="entreprise" href="../views/entreprise.html">entreprises</a>
             <br/><br/><br/>
-            <a id="etudiant" href="etudiant.html">Etudiants</a>
+            <a id="etudiant" href="../views/etudiant.html">Etudiants</a>
             <br/><br/><br/>
-            <a id="pilote" href="pilote.html">Pilotes</a>
+            <a id="pilote" href="../views/pilote.html">Pilotes</a>
         </div>
         <footer id="pied-de-page">
-            <a id="mention-legale" href="acceuil.html">@2026-mentions legales</a>
+            <a id="mention-legale" href="../views/acceuil.html">@2026-mentions legales</a>
             <br/><br/>
-            <a id="contact" href="acceuil.html">Nous contacter</a>
+            <a id="contact" href="../views/acceuil.html">Nous contacter</a>
         </footer>
     </aside>
     <main id="page">
-        <section id="presentation-pilote">
-            <h1>Nos entreprises</h1>
+        <section id="presentation-etudiant">
+            <h1>Nos Etudiants</h1>
         </section>
-        <section id="outils-pilote">
-            <button id="creation-offre" onclick="">créer un pilote</button>
+        <section id="outils-etudiant">
+            <button id="creation-offre" onclick="">créer un etudiant</button>
         </section>
-        <section id="nos-pilote">
-            <div class="pilote">
-                <div class="table-pilote">
+        <section id="nos-etudiant">
+            <div class="etudiants">
+                <div class="table-etudiant">
                     <table>
                         <thead>
-                             <tr>
-                            <th>Prenom</td>
-                            <th>Nom</td>
-                            <th>outils</td>
-                        </tr>
+                            <tr>
+                            <th>Prenom</th>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>outils</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr>
-                            <td>Aurélien</td>
+                            <td>Benjamin</td>
                             <td>Lefebvre</td>
+                            <td>benjaminlefevre@gmail.com</td>
                             <td><button onclick="">modifier</button>
                         <button onclick="">supprimer</button></td>
                         </tr>
@@ -74,13 +76,6 @@
                             <tr>
                             <td>.....</td>
                             <td>.....</td>
-                            <td><button onclick="">modifier</button>
-                        <button onclick="">supprimer</button></td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                            <tr>
-                            <td>.....</td>
                             <td>.....</td>
                             <td><button onclick="">modifier</button>
                         <button onclick="">supprimer</button></td>
@@ -90,12 +85,23 @@
                             <tr>
                             <td>.....</td>
                             <td>.....</td>
+                            <td>.....</td>
                             <td><button onclick="">modifier</button>
                         <button onclick="">supprimer</button></td>
                         </tr>
                         </tbody>
                         <tbody>
                             <tr>
+                            <td>.....</td>
+                            <td>.....</td>
+                            <td>.....</td>
+                            <td><button onclick="">modifier</button>
+                        <button onclick="">supprimer</button></td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                            <td>.....</td>
                             <td>.....</td>
                             <td>.....</td>
                             <td><button onclick="">modifier</button>

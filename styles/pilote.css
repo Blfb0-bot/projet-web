@@ -1,7 +1,9 @@
+/*sidebar*/
 #navigation #pilote{
     background: rgb(50, 50, 50);
     border: 3px solid rgb(50, 50, 50);
 }
+/*page*/
 #presentation-pilote{
     display: flex;
     justify-content: center;
@@ -11,10 +13,6 @@
     display: flex;
     justify-content: right;
     max-width: 750px;
-}
-#outils-pilote #filtre{
-    background-color: black;
-    color: white;
 }
 #outils-pilote #creation-offre{
     background-color: rgb(73, 20, 109);
