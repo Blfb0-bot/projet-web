@@ -4,8 +4,32 @@
     <meta charset="utf-8">
     <title>WEB FOR ALL</title>
     <link rel="stylesheet" href="../styles/acceuil.css">
+    <link rel="stylesheet" href="../styles/popup.css">
 </head>
 <body>
+    <script src="../controllers/popup.js"></script>
+    <!-- Popup pour les mention légale-->
+    <div class="overlay" id="popup-mention-legale">
+        <div class="popup">
+            <h2>Bienvenue sur les mention legale</h2>
+            <button onclick="fermer('popup-mention-legale')">Fermer</button>
+        </div>
+    </div>
+    <!-- Popup pour nous contacter-->
+     <div class="overlay" id="popup-contact">
+        <div class="popup">
+            <h2>Bienvenue sur nous contacter</h2>
+            <button onclick="fermer('popup-contact')">Fermer</button>
+        </div>
+    </div>
+    <!-- Popup pour le profil-->
+     <div class="overlay" id="popup-profil">
+        <div class="popup">
+            <h2>Bienvenue sur le profil</h2>
+            <button onclick="fermer('popup-profil')">Fermer</button>
+        </div>
+    </div>
+    <!-- En tête de la page-->
     <header id="en-tete">
         <p></p>
         <h3>Bienvenue sur Web for All</h3>
@@ -15,11 +39,12 @@
                 <button type="sumit">OK</button>
         </div>
         <div id="profil">
-            <a href="../views/acceuil.html">
+            <a href="#" onclick="ouvrir('popup-profil')">
                 <img src="../images/PROFIL.png" alt="PROFIL.png">
             </a>
         </div>
     </header>
+    <!-- Barre latérale de page-->
     <aside id="sidebar">
         <div id="logo">
             <a href="../views/acceuil.html">
@@ -36,9 +61,9 @@
             <a id="pilote" href="../views/pilote.html">Pilotes</a>
         </div>
         <footer id="pied-de-page">
-            <a id="mention-legale" href="../views/acceuil.html" onclick="executeAction">@2026-mentions legales</a>
+            <a id="mention-legale" href="#" onclick="ouvrir('popup-mention-legale')">@2026-mentions legales</a>
             <br/><br/>
-            <a id="contact" href="../views/acceuil.html">Nous contacter</a>
+            <a id="contact" href="#" onclick="ouvrir('popup-contact')">Nous contacter</a>
         </footer>
     </aside>
     <main id="page">
