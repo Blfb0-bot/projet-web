@@ -12,8 +12,6 @@
 #outils-offre{
     display: flex;
     justify-content: space-around;
-    gap: 400px;
-    max-width: 750px;
 }
 #outils-offre #filtre{
     background-color: black;
@@ -24,13 +22,15 @@
     color: white;
 }
 .offres{
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
     padding: 5px 10px;
-    margin: 45px;
     border: 3px solid rgb(73, 20, 109);
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
     cursor: pointer;
-    max-width: 700px;
 }
 .debut-contenu-offre{
     display: flex;
