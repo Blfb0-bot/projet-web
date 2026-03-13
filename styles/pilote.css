@@ -16,7 +16,9 @@
 }
 #outils-pilote #creation-offre{
     background-color: rgb(73, 20, 109);
-    color: white;
+    border-radius: 25px;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.726);
 }
 .table-pilote{
     display: flex;
@@ -33,7 +35,7 @@
 }
 .table-pilote th{
     background-color: rgb(73, 20, 109);
-    color:white;
+    color:rgba(255, 255, 255, 0.726);
     padding: 10px 10px;
     border-collapse: collapse;
     border: 2px solid black;
@@ -49,5 +51,5 @@
     border: 3px solid rgb(73, 20, 109);
     background-color: rgb(73, 20, 109);
     border-radius: 20px;
-    color: white;
+    color: rgba(255, 255, 255, 0.726);
 }

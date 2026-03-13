@@ -16,11 +16,15 @@
 }
 #outils-entreprise #filtre{
     background-color: black;
-    color: white;
+    border-radius: 25px;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.726);
 }
 #outils-entreprise #creation-offre{
     background-color: rgb(73, 20, 109);
-    color: white;
+    border-radius: 25px;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.726);
 }
 /*presentation de nos entreprise*/
 #nos-entreprises{
@@ -80,5 +84,5 @@
     border: 3px solid rgb(73, 20, 109);
     background-color: rgb(73, 20, 109);
     border-radius: 20px;
-    color: white;
+    color: rgba(255, 255, 255, 0.726);
 }

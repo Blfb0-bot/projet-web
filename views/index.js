@@ -1,3 +1,6 @@
+fetch('../views/index.html').then(response => response.text()).then(html => {
+    document.getElementById('index').innerHTML = html;
+  });
 function ouvrir(id) {
     document.getElementById(id).classList.add("actif");
 }

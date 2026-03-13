@@ -2,78 +2,21 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--sans ça, les mobiles affichent la version pc-->
     <title>WEB FOR ALL</title>
-    <link rel="stylesheet" href="../styles/acceuil.css">
-        <link rel="stylesheet" href="../styles/pilote.css">
-        <link rel="stylesheet" href="../styles/popup.css">
-
+    <link rel="stylesheet" href="../styles/pilote.css">
+    <link rel="preload" href="../views/index.html" as="fetch">
+    <link rel="stylesheet" href="../styles/index.css">
+    <script src="../views/index.js"></script>
 </head>
 <body>
-    <script src="../controllers/popup.js"></script>
-    <!-- Popup pour les mention légale-->
-    <div class="overlay" id="popup-mention-legale">
-        <div class="popup">
-            <h2>Bienvenue sur les mention legale</h2>
-            <button onclick="fermer('popup-mention-legale')">Fermer</button>
-        </div>
-    </div>
-    <!-- Popup pour nous contacter-->
-     <div class="overlay" id="popup-contact">
-        <div class="popup">
-            <h2>Bienvenue sur nous contacter</h2>
-            <button onclick="fermer('popup-contact')">Fermer</button>
-        </div>
-    </div>
-    <!-- Popup pour le profil-->
-     <div class="overlay" id="popup-profil">
-        <div class="popup">
-            <h2>Bienvenue sur le profil</h2>
-            <button onclick="fermer('popup-profil')">Fermer</button>
-        </div>
-    </div>
-    <!-- En tête de la page-->
-    <header id="en-tete">
-        <p></p>
-        <h3>Bienvenue sur Web for All</h3>
-        <div id="recherche">
-            <form action="/recherche" methode="post">
-                <input type="search" name="q" placeholder="recherche..." aria-label="recherche sur le site">
-                <button type="sumit">OK</button>
-        </div>
-        <div id="profil">
-            <a href="#" onclick="ouvrir('popup-profil')">
-                <img src="../images/PROFIL.png" alt="PROFIL.png">
-            </a>
-        </div>
-    </header>
-    <!-- Barre latérale de page-->
-    <aside id="sidebar">
-        <div id="logo">
-            <a href="../views/acceuil.html">
-                <img src="../images/LOGO.png" alt="LOGO.png">
-            </a>
-        </div> 
-        <div id="navigation">
-            <a id="offre" href="../views/offre.html">offres</a>
-            <br/><br/><br/>
-            <a id="entreprise" href="../views/entreprise.html">entreprises</a>
-            <br/><br/><br/>
-            <a id="etudiant" href="../views/etudiant.html">Etudiants</a>
-            <br/><br/><br/>
-            <a id="pilote" href="../views/pilote.html">Pilotes</a>
-        </div>
-        <footer id="pied-de-page">
-            <a id="mention-legale" href="#" onclick="ouvrir('popup-mention-legale')">@2026-mentions legales</a>
-            <br/><br/>
-            <a id="contact" href="#" onclick="ouvrir('popup-contact')">Nous contacter</a>
-        </footer>
-    </aside>
+    <div id="index"></div>
     <main id="page">
         <section id="presentation-pilote">
             <h1>Nos Pilotes</h1>
         </section>
         <section id="outils-pilote">
-            <button id="creation-offre" onclick="">créer un pilote</button>
+            <button id="creation-offre" onclick="ouvrir('popup-creer-pilote')">créer un pilote</button>
         </section>
         <section id="nos-pilote">
             <div class="pilote">
@@ -90,45 +33,10 @@
                             <tr>
                             <td>Aurélien</td>
                             <td>Lefebvre</td>
-                            <td><button onclick="">modifier</button>
-                        <button onclick="">supprimer</button></td>
+                            <td><button onclick="ouvrir('popup-modifier-pilote')">modifier</button>
+                        <button onclick="ouvrir('popup-supprimer-pilote')">supprimer</button></td>
                         </tr>
                         </tbody>
-                        <tbody>
-                            <tr>
-                            <td>.....</td>
-                            <td>.....</td>
-                            <td><button onclick="">modifier</button>
-                        <button onclick="">supprimer</button></td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                            <tr>
-                            <td>.....</td>
-                            <td>.....</td>
-                            <td><button onclick="">modifier</button>
-                        <button onclick="">supprimer</button></td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                            <tr>
-                            <td>.....</td>
-                            <td>.....</td>
-                            <td><button onclick="">modifier</button>
-                        <button onclick="">supprimer</button></td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                            <tr>
-                            <td>.....</td>
-                            <td>.....</td>
-                            <td><button onclick="">modifier</button>
-                        <button onclick="">supprimer</button></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </section>
     </main>
 </body>
