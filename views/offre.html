@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>WEB FOR ALL</title>
+    <link rel="stylesheet" href="../styles/acceuil.css">
+    <link rel="stylesheet" href="../styles/offre.css">
+    <link rel="stylesheet" href="../styles/popup.css">
+</head>
+<body>
+    <script src="../controllers/popup.js"></script>
+    <!-- Popup pour les mention légale-->
+    <div class="overlay" id="popup-mention-legale">
+        <div class="popup">
+            <h2>Bienvenue sur les mention legale</h2>
+            <button onclick="fermer('popup-mention-legale')">Fermer</button>
+        </div>
+    </div>
+    <!-- Popup pour nous contacter-->
+     <div class="overlay" id="popup-contact">
+        <div class="popup">
+            <h2>Bienvenue sur nous contacter</h2>
+            <button onclick="fermer('popup-contact')">Fermer</button>
+        </div>
+    </div>
+    <!-- Popup pour le profil-->
+     <div class="overlay" id="popup-profil">
+        <div class="popup">
+            <h2>Bienvenue sur le profil</h2>
+            <button onclick="fermer('popup-profil')">Fermer</button>
+        </div>
+    </div>
+    <!-- En tête de la page-->
+    <header id="en-tete">
+        <p></p>
+        <h3>Bienvenue sur Web for All</h3>
+        <div id="recherche">
+            <form action="/recherche" methode="post">
+                <input type="search" name="q" placeholder="recherche..." aria-label="recherche sur le site">
+                <button type="sumit">OK</button>
+        </div>
+        <div id="profil">
+            <a href="#" onclick="ouvrir('popup-profil')">
+                <img src="../images/PROFIL.png" alt="PROFIL.png">
+            </a>
+        </div>
+    </header>
+    <!-- Barre latérale de page-->
+    <aside id="sidebar">
+        <div id="logo">
+            <a href="../views/acceuil.html">
+                <img src="../images/LOGO.png" alt="LOGO.png">
+            </a>
+        </div> 
+        <div id="navigation">
+            <a id="offre" href="../views/offre.html">offres</a>
+            <br/><br/><br/>
+            <a id="entreprise" href="../views/entreprise.html">entreprises</a>
+            <br/><br/><br/>
+            <a id="etudiant" href="../views/etudiant.html">Etudiants</a>
+            <br/><br/><br/>
+            <a id="pilote" href="../views/pilote.html">Pilotes</a>
+        </div>
+        <footer id="pied-de-page">
+            <a id="mention-legale" href="#" onclick="ouvrir('popup-mention-legale')">@2026-mentions legales</a>
+            <br/><br/>
+            <a id="contact" href="#" onclick="ouvrir('popup-contact')">Nous contacter</a>
+        </footer>
+    </aside>
+    <main id="page">
+        <section id="presentation-offre">
+            <h1>Nos Offres</h1>
+        </section>
+        <section id="outils-offre">
+            <button id="filtre" onclick="">filtre</button>
+            <button id="creation-offre" onclick="">créer une offre</button>
+        </section>
+        <section id="nos-offres">
+            <div class="offres">
+                <div class="debut-contenu-offre">
+                    <div class="type">stage</div>
+                    <div class="title"><h3>Title</h3></div>
+                    <div><a class="employeur" href="../views/entreprise.html">entreprises</a></div>
+                    <div class="modification-offre">
+                        <button onclick="">modifier</button>
+                        <button onclick="">supprimer</button>
+                    </div>
+                    
+                </div>
+                <div class="contenu-offre">
+                    <div class="description">
+                        <h2>description</h2>
+                        <article>
+                            <p>tetetetetetetettetetetetetetetet</p>
+                        </article>
+                    </div>
+                    <div class="competences">
+                        <h2>compétences</h2>
+                        <article>
+                            <p>tetetetetetetettetetetetetetetet</p>
+                        </article>
+                    </div>
+                    <div class="detail">
+                        <article><p>nombre de candidat: </p></article>
+                        <article><p>rémunération: </p></article>
+                    </div>
+                </div>
+                <div class="fin-contenu-offre">
+                    <p>date et heure</p>
+                </div>
+            </div>
+            <div class="offres">
+                <div class="debut-contenu-offre">
+                    <div class="type">stage</div>
+                    <div class="title"><h3>Title</h3></div>
+                    <div><a class="employeur" href="../views/entreprise.html">entreprises</a></div>
+                    <div class="modification-offre">
+                        <button onclick="">modifier</button>
+                        <button onclick="">supprimer</button>
+                    </div>
+                    
+                </div>
+                <div class="contenu-offre">
+                    <div class="description">
+                        <h2>description</h2>
+                        <article>
+                            <p>tetetetetetetettetetetetetetetet</p>
+                        </article>
+                    </div>
+                    <div class="competences">
+                        <h2>compétences</h2>
+                        <article>
+                            <p>tetetetetetetettetetetetetetetet</p>
+                        </article>
+                    </div>
+                    <div class="detail">
+                        <article><p>nombre de candidat: </p></article>
+                        <article><p>rémunération: </p></article>
+                    </div>
+                </div>
+                <div class="fin-contenu-offre">
+                    <p>date et heure</p>
+                </div>
+            </div>
+            <div class="offres">
+                <div class="debut-contenu-offre">
+                    <div class="type">stage</div>
+                    <div class="title"><h3>Title</h3></div>
+                    <div><a class="employeur" href="../views/entreprise.html">entreprises</a></div>
+                    <div class="modification-offre">
+                        <button onclick="">modifier</button>
+                        <button onclick="">supprimer</button>
+                    </div>
+                    
+                </div>
+                <div class="contenu-offre">
+                    <div class="description">
+                        <h2>description</h2>
+                        <article>
+                            <p>tetetetetetetettetetetetetetetet</p>
+                        </article>
+                    </div>
+                    <div class="competences">
+                        <h2>compétences</h2>
+                        <article>
+                            <p>tetetetetetetettetetetetetetetet</p>
+                        </article>
+                    </div>
+                    <div class="detail">
+                        <article><p>nombre de candidat: </p></article>
+                        <article><p>rémunération: </p></article>
+                    </div>
+                </div>
+                <div class="fin-contenu-offre">
+                    <p>date et heure</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html> 

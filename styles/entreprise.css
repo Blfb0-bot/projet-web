@@ -1,0 +1,84 @@
+/*Sidebar*/
+#navigation #entreprise{
+    background: rgb(50, 50, 50);
+    border: 3px solid rgb(50, 50, 50);
+}
+/*page*/
+#presentation-entreprise{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*filtre et création de l'entreprise/*/
+#outils-entreprise{
+    display: flex;
+    justify-content: space-around;
+}
+#outils-entreprise #filtre{
+    background-color: black;
+    color: white;
+}
+#outils-entreprise #creation-offre{
+    background-color: rgb(73, 20, 109);
+    color: white;
+}
+/*presentation de nos entreprise*/
+#nos-entreprises{
+    display: grid;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    grid-template-columns: repeat(2,1fr);
+}
+/*mise en forme des entreprise*/
+.entreprises{
+    padding: 5px 10px;
+    margin: 15px;
+    border: 3px solid rgb(73, 20, 109);
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    cursor: pointer;
+    max-width: auto;
+}
+.debut-contenu-entreprise{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.debut-contenu-entreprise img{
+    width: 150px;
+    height: 150px;
+}
+.debut-contenu-entreprise p{
+    display: grid;
+    align-items: center;
+}
+.contenu-entreprise{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.contenu-entreprise .description{
+    padding: 2px 5px;
+    margin: 2px;
+    border: 3px solid rgb(73, 20, 109);
+    border-radius: 20px;
+}
+.contenu-entreprise .information-entreprise{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.fin-contenu-entreprise .modification-entreprise{
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3,1fr);
+    margin: 15px;
+}
+.fin-contenu-entreprise .modification-entreprise button{
+    padding:5px 5px;
+    margin: 15px;
+    border: 3px solid rgb(73, 20, 109);
+    background-color: rgb(73, 20, 109);
+    border-radius: 20px;
+    color: white;
+}
