@@ -20,6 +20,10 @@
     padding: 10px;
     color: rgba(255, 255, 255, 0.726);
 }
+#outils-etudiant #creation-offre:hover{
+    background-color: rgba(73, 20, 109, 0.5);
+    border: 1px solid rgba(73, 20, 109, 0.5);
+}
 .table-etudiant{
     display: flex;
     justify-content: center;
@@ -52,4 +56,8 @@
     background-color: rgb(73, 20, 109);
     border-radius: 20px;
     color: rgba(255, 255, 255, 0.726);
+}
+.table-etudiant button:hover{
+    background-color: rgba(73, 20, 109, 0.5);
+    border: 1px solid rgba(73, 20, 109, 0.5);
 }

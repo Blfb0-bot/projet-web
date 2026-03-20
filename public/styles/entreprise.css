@@ -20,11 +20,18 @@
     padding: 10px;
     color: rgba(255, 255, 255, 0.726);
 }
+#outils-entreprise #filtre:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+}
 #outils-entreprise #creation-offre{
     background-color: rgb(73, 20, 109);
     border-radius: 25px;
     padding: 10px;
     color: rgba(255, 255, 255, 0.726);
+}
+#outils-entreprise #creation-offre:hover{
+    background-color: rgba(73, 20, 109, 0.5);
+    border: 1px solid rgba(73, 20, 109, 0.5);
 }
 /*presentation de nos entreprise*/
 #nos-entreprises{
@@ -85,4 +92,8 @@
     background-color: rgb(73, 20, 109);
     border-radius: 20px;
     color: rgba(255, 255, 255, 0.726);
+}
+.fin-contenu-entreprise .modification-entreprise button:hover{
+    background-color: rgba(73, 20, 109, 0.5);
+    border: 1px solid rgba(73, 20, 109, 0.5);
 }
