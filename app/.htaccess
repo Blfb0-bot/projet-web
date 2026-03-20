@@ -1,0 +1,15 @@
+# Désactiver l'affichage du contenu des dossiers
+Options -Indexes
+
+# Activer la réécriture d'URL
+RewriteEngine On
+
+# Définir la base de réécriture (souvent '/' ou le nom du dossier projet)
+# RewriteBase /
+
+# Si le fichier ou le dossier demandé n'existe pas physiquement...
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# ...alors on redirige tout vers index.php
+RewriteRule ^(.*)$ index.php [L,QSA]

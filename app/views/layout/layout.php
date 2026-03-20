@@ -26,15 +26,16 @@
     <!--Barre latérale de nos pages-->
     <aside id="sidebar">
         <div id="logo">
-            <a href="../views/acceuil.html">
+            <a href="../app/views/pages/acceuil.php">
                 <img src="../public/images/LOGO.png" alt="LOGO.png">
             </a>
         </div> 
         <nav id="navigation">
-            <a id="offre" href="../views/offre.html">offres</a>
-            <a id="entreprise" href="../views/entreprise.html">entreprises</a>
-            <a id="etudiant" href="../views/etudiant.html">Etudiants</a>
-            <a id="pilote" href="../views/pilote.html">Pilotes</a>
+            <a id="offre" href="../app/views/pages/offre.html">offres</a>
+            <!--index.php?controller=contact-->
+            <a id="entreprise" href="../app/views/pages/entreprise.html">entreprises</a>
+            <a id="etudiant" href="../app/views/pages/etudiant.html">Etudiants</a>
+            <a id="pilote" href="../app/views/pages/pilote.html">Pilotes</a>
         </nav>
         <footer id="pied-de-page">
             <a id="mention-legale" href="#" onclick="ouvrir('popup-mention-legale')">@2026-mentions legales</a>
