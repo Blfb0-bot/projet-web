@@ -31,11 +31,11 @@
             </a>
         </div> 
         <nav id="navigation">
-            <a id="offre" href="../app/views/pages/offre.html">offres</a>
+            <a id="offre" href="/index.php?controller=offre&action=index">offres</a>
             <!--index.php?controller=contact-->
-            <a id="entreprise" href="../app/views/pages/entreprise.html">entreprises</a>
-            <a id="etudiant" href="../app/views/pages/etudiant.html">Etudiants</a>
-            <a id="pilote" href="../app/views/pages/pilote.html">Pilotes</a>
+            <a id="entreprise" href="/index.php?controller=entreprise&action=index">entreprise</a>
+            <a id="etudiant" href="/index.php?controller=etudiant&action=index">etudiant</a>
+            <a id="pilote" href="/index.php?controller=pilote&action=index">pilote</a>
         </nav>
         <footer id="pied-de-page">
             <a id="mention-legale" href="#" onclick="ouvrir('popup-mention-legale')">@2026-mentions legales</a>
