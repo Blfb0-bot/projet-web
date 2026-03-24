@@ -4,6 +4,16 @@
     padding: 0;
     box-sizing: border-box;
 }
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: blur(5px) brightness(1);
+}
 /*header*/
 #en-tete {
     position: fixed;
@@ -11,7 +21,7 @@
     left: 180px;  /* commence après la sidebar */
     right: 0;
     height: 67px;
-    background: rgb(76, 0, 130,0.833);
+    background: rgba(51, 2, 86, 0.516);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,7 +51,7 @@
     left: 0;
     width: 180px;
     height: 100vh;
-    background: rgba(76, 0, 130, 0.833);
+    background: rgba(51, 2, 86, 0.705);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -101,7 +111,7 @@
 }
 /* POPUP */
 .popup {
-  background: white;
+  background: rgba(204, 198, 211, 0.697);
   padding: 30px;
   border-radius: 8px;
   width: 500px;

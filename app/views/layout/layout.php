@@ -9,6 +9,10 @@
     <?= $cssExtra ?? '' ?>
 </head>
 <body>
+    <!--Fond d'écran-->
+    <video autoplay muted loop id="bg-video">
+        <source src="../public/images/background.mp4" type="video/mp4">
+    </video>
     <!--En tête de nos pages-->
     <header id="en-tete">
         <h3>Bienvenue sur Web for All</h3>
@@ -26,7 +30,7 @@
     <!--Barre latérale de nos pages-->
     <aside id="sidebar">
         <div id="logo">
-            <a href="../app/views/pages/acceuil.php">
+            <a href="/index.php?controller=accueil&action=index">
                 <img src="../public/images/LOGO.png" alt="LOGO.png">
             </a>
         </div> 
