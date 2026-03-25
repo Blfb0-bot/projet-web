@@ -1,4 +1,7 @@
 <?php
+define('ROOT', __DIR__ . '/');
+require_once ROOT . 'config.php';
+
 $controller = $_GET['controller'] ?? 'accueil';
 $action     = $_GET['action']     ?? 'index';
 

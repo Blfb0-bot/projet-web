@@ -1,0 +1,22 @@
+# ── FICHIERS SECRETS ──────────────────────────────────────
+# Connexion base de données — JAMAIS sur GitHub
+config.php
+
+# ── LOGS ──────────────────────────────────────────────────
+*.log
+logs/
+
+# ── FICHIERS SYSTEME ──────────────────────────────────────
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# ── EDITEURS ──────────────────────────────────────────────
+# VS Code
+.vscode/
+
+# JetBrains (PhpStorm...)
+.idea/
