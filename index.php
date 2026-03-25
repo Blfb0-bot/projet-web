@@ -9,7 +9,7 @@ $controller = preg_replace('/[^a-zA-Z0-9]/', '', $controller);
 $action     = preg_replace('/[^a-zA-Z0-9]/', '', $action);
 
 $class = ucfirst($controller) . 'Controller';
-$file  = 'app/controllers/' . $class . '.php';
+$file  = ROOT . 'app/controllers/' . $class . '.php';
 
 if (file_exists($file)) {
     require_once $file;
@@ -24,4 +24,3 @@ if (file_exists($file)) {
     http_response_code(404);
     echo "Controller introuvable : $class";
 }
-?>
