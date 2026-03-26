@@ -24,10 +24,10 @@ INSERT INTO entreprise (nom, description, email, telephone) VALUES
 ('Allianz Innovation','Pôle innovation du groupe Allianz, axé Data Science et IA appliquée à la finance.','stages@allianz-innovation.fr','01 34 56 78 90'),
 ('Nexia Tech','Société spécialisée en infrastructure réseau et cybersécurité pour les PME.','rh@nexiatech.com','05 67 89 01 23'),
 ('DataVault','Startup DevOps – solutions cloud et CI/CD pour les équipes engineering.','jobs@datavault.io','04 56 78 90 12'),
-('MachineCore','Laboratoire d\'IA appliquée, spécialisé NLP et Computer Vision.','recrutement@machinecore.ai','01 45 67 89 01'),
+('MachineCore','Laboratoire d\IA appliquée, spécialisé NLP et Computer Vision.','recrutement@machinecore.ai','01 45 67 89 01'),
 ('GlobeTech','Agence mobile cross-platform, développement Flutter et React Native.','hello@globetech.fr','02 34 56 78 90');
 
--- Offres
+
 INSERT INTO offre (titre, description, remuneration, date_debut, date_fin, duree_mois, id_entreprise) VALUES
 ('Développeur Full-Stack React/Node.js','Stage axé sur la mise en pratique des connaissances théoriques, le développement de compétences professionnelles et la participation active aux missions de l\'équipe, dans un environnement dynamique et formateur.',800.00,'2026-03-01','2026-09-01',6,1),
 ('Data Scientist Junior','Rejoignez notre équipe Data et participez à l\'analyse de données d\'assurance. Vous serez formé aux outils Python/Pandas et contribuerez à la construction de modèles prédictifs.',900.00,'2026-04-01','2026-10-01',6,2),
