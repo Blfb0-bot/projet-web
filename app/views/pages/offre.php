@@ -56,5 +56,5 @@ ob_start(); // démarre la capture du contenu
 <?php
 $content   = ob_get_clean();         // stocke le contenu
 $pageTitle = "Offre — Web for All"; // titre de l'onglet
-require_once 'app/views/layout/layout.php'; // affiche tout
+require_once ROOT .'app/views/layout/layout.php'; // affiche tout
 ?>
