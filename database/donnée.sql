@@ -29,15 +29,15 @@ INSERT INTO entreprise (nom, description, email, telephone) VALUES
 
 
 INSERT INTO offre (titre, description, remuneration, date_debut, date_fin, duree_mois, id_entreprise) VALUES
-('Développeur Full-Stack React/Node.js','Stage axé sur la mise en pratique des connaissances théoriques, le développement de compétences professionnelles et la participation active aux missions de l\'équipe, dans un environnement dynamique et formateur.',800.00,'2026-03-01','2026-09-01',6,1),
-('Data Scientist Junior','Rejoignez notre équipe Data et participez à l\'analyse de données d\'assurance. Vous serez formé aux outils Python/Pandas et contribuerez à la construction de modèles prédictifs.',900.00,'2026-04-01','2026-10-01',6,2),
+('Développeur Full-Stack React/Node.js','Stage axé sur la mise en pratique des connaissances théoriques, le développement de compétences professionnelles et la participation active aux missions de l\équipe, dans un environnement dynamique et formateur.',800.00,'2026-03-01','2026-09-01',6,1),
+('Data Scientist Junior','Rejoignez notre équipe Data et participez à l\analyse de données d\assurance. Vous serez formé aux outils Python/Pandas et contribuerez à la construction de modèles prédictifs.',900.00,'2026-04-01','2026-10-01',6,2),
 ('Ingénieur Réseaux & Sécurité','Mission de stage en infrastructure réseau : supervision, configuration de pare-feux, tests de pénétration supervisés et documentation.',750.00,'2026-03-15','2026-07-15',4,3),
-('Ingénieur DevOps','Participation à l\'automatisation des pipelines CI/CD, containerisation Docker/Kubernetes et monitoring des services cloud.',950.00,'2026-03-01','2026-09-01',6,4),
-('Stage IA – NLP Engineer','Développement de modèles de traitement du langage naturel (NLP) : classification de textes, extraction d\'entités, résumé automatique.',1000.00,'2026-04-01','2026-10-01',6,5),
-('Développeur Mobile Flutter','Développement d\'une application mobile cross-platform Flutter. Vous participerez à la conception UI/UX et à l\'intégration des APIs REST.',700.00,'2026-03-01','2026-07-01',4,6);
+('Ingénieur DevOps','Participation à l\automatisation des pipelines CI/CD, containerisation Docker/Kubernetes et monitoring des services cloud.',950.00,'2026-03-01','2026-09-01',6,4),
+('Stage IA – NLP Engineer','Développement de modèles de traitement du langage naturel (NLP) : classification de textes, extraction d\entités, résumé automatique.',1000.00,'2026-04-01','2026-10-01',6,5),
+('Développeur Mobile Flutter','Développement d\une application mobile cross-platform Flutter. Vous participerez à la conception UI/UX et à l\intégration des APIs REST.',700.00,'2026-03-01','2026-07-01',4,6);
 
 
-INSERT INTO offre_competence (id_offre, id_competence) VALUES
+INSERT INTO offre_competence (id_offre, id_competence) VALUE
 (1,1),(1,3),(1,4),(1,6),(1,8),   -- Full-Stack: PHP, React, Node.js, SQL, Git
 (2,5),(2,6),(2,12),(2,13),       -- Data Scientist: Python, SQL, DS, ML
 (3,14),(3,15),(3,20),            -- Réseaux: Réseaux, Cybersec, Linux
@@ -48,6 +48,6 @@ INSERT INTO offre_competence (id_offre, id_competence) VALUES
 
 INSERT INTO evaluation (id_entreprise, id_etudiant, note, commentaire) VALUES
 (1,4,4,'Très bonne ambiance, équipe sympa et projets intéressants.'),
-(1,5,5,'Excellente expérience, j\'ai beaucoup appris !'),
+(1,5,5,'Excellente expérience, j\ai beaucoup appris !'),
 (2,6,5,'Super stage, encadrement de qualité.'),
 (3,4,3,'Offre correcte mais peu de projets innovants.');

@@ -136,7 +136,6 @@
     background-color: rgba(73, 20, 109, 0.5);
     border: 1px solid rgba(73, 20, 109, 0.5);
 }
-
 /*PAGE PRINCIPALE*/
 #page {
     text-align : center;
@@ -152,6 +151,9 @@ body {
 }
 /*=== RESPONSIVE ===*/
 @media (max-width: 850px) {
+    body{
+        font-size: clamp(14px, 2vw, 18px);
+    }
 
     #sidebar {
         width: 100%;
