@@ -15,20 +15,27 @@ ob_start(); // démarre la capture du contenu
         <div class="table-pilote">
             <table>
                 <thead>
-                        <tr>
-                    <th>Prenom</td>
-                    <th>Nom</td>
-                    <th>outils</td>
-                </tr>
+                    <tr>
+                        <th>Prenom</th>
+                        <th>Nom</th>
+                        <th>outils</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>Aurélien</td>
-                    <td>Lefebvre</td>
-                    <td><button onclick="ouvrir('popup-modifier-pilote')">modifier</button>
-                <button onclick="ouvrir('popup-supprimer-pilote')">supprimer</button></td>
-                </tr>
+                    <?php foreach (($pilots ?? []) as $pilot): ?>
+                        <tr>
+                            <td><?= htmlspecialchars((string)($pilot['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars((string)($pilot['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                            <td>
+                                <button onclick="ouvrir('popup-modifier-pilote')">modifier</button>
+                                <button onclick="ouvrir('popup-supprimer-pilote')">supprimer</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
+            </table>
+        </div>
+    </div>
 </section>
 
 <?php

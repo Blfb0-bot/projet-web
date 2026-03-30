@@ -1,7 +1,4 @@
 <?php
-define('ROOT', __DIR__ . '/');
-require_once ROOT . 'config.php';
-
 $controller = $_GET['controller'] ?? 'accueil';
 $action     = $_GET['action']     ?? 'index';
 
@@ -9,7 +6,7 @@ $controller = preg_replace('/[^a-zA-Z0-9]/', '', $controller);
 $action     = preg_replace('/[^a-zA-Z0-9]/', '', $action);
 
 $class = ucfirst($controller) . 'Controller';
-$file  = ROOT . 'app/controllers/' . $class . '.php';
+$file  = 'app/controllers/' . $class . '.php';
 
 if (file_exists($file)) {
     require_once $file;
@@ -24,3 +21,4 @@ if (file_exists($file)) {
     http_response_code(404);
     echo "Controller introuvable : $class";
 }
+?>
