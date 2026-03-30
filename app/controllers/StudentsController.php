@@ -4,7 +4,7 @@ class EtudiantController {
         require_once __DIR__ . '/../models/UserModel.php';
         $students = (new UserModel())->getByRole('etudiant');
 
-        require_once 'app/views/pages/students.php';
+        require_once __DIR__ . '../app/views/pages/students.php';
     }
 }
 ?>
