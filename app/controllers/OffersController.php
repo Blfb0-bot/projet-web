@@ -8,7 +8,7 @@ class OffersController {
         var_dump($offers);
         die();
         // Les vues sont en PHP "classique" : elles utilisent directement les variables.
-        require_once __DIR__ . '../app/views/pages/offers.php';
+        require_once __DIR__ . '/../app/views/pages/offers.php';
     }
 }
 ?>
