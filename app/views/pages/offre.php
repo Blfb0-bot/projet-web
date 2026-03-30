@@ -11,10 +11,10 @@ ob_start(); // démarre la capture du contenu
     <button id="filtre" onclick="">filtre</button>
     <button id="creation-offre" onclick="ouvrir('popup-creer-offre')">créer une offre</button>
 </section>
-<?php if (empty($offre)) : ?>
+<?php if (empty($offres)) : ?>
     <p>Aucune offre de stage disponible pour le moment.</p>
 <?php else : ?>
-    <?php foreach ($offre as $offre) : ?>
+    <?php foreach ($offres as $offre) : ?>
         <section id="nos-offres">
             <div class="offres" >
                 <div class="debut-contenu-offre">

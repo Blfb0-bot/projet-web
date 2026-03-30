@@ -11,32 +11,36 @@ ob_start(); // démarre la capture du contenu
     <button id="filtre" onclick="">filtre</button>
     <button id="creation-offre" onclick="ouvrir('popup-creer-entreprise')">créer une entreprise</button>
 </section>
-<section id="nos-entreprises">
-    <div class="entreprises">
-        <div class="debut-contenu-entreprise">
-            <img src="../public/images/image-entreprise.png" alt="image-entreprise.png">
-            <p>Nom de l'entreprise</p>
-        </div>
-        <div class="contenu-entreprise">
-            <article class="description">
-                <p>description</p>
-            </article>
-            <div class="information-entreprise">
-                <p>mail</p>
-                <p>numéro</p>
-                <p>blablablablabla</p>
+<?php if (empty($entreprises)) : ?>
+    <p>Aucune entreprise disponible pour le moment.</p>
+<?php else : ?>
+    <?php foreach ($entreprises as $entreprise) : ?>
+    <section id="nos-entreprises">
+        <div class="entreprises">
+            <div class="debut-contenu-entreprise">
+                <img src="../public/images/image-entreprise.png" alt="image-entreprise.png">
+                <p><?= htmlspecialchars($entreprise['nom']) ?></p>
+            </div>
+            <div class="contenu-entreprise">
+                <article class="description">
+                    <p><?= htmlspecialchars($entreprise['description']) ?></p>
+                </article>
+                <div class="information-entreprise">
+                    <p><?= htmlspecialchars($entreprise['email']) ?></p>
+                    <p><?= htmlspecialchars($entreprise['telephone']) ?></p>
+                </div>
+            </div>
+            <div class="fin-contenu-entreprise">
+                <div class="modification-entreprise">
+                    <button onclick="ouvrir('popup-modifier-entreprise')">modifier</button>
+                    <button onclick="ouvrir('popup-supprimer-entreprise')">supprimer</button>
+                    <p>evaluer</p>
+                </div>
             </div>
         </div>
-        <div class="fin-contenu-entreprise">
-            <div class="modification-entreprise">
-                <button onclick="ouvrir('popup-modifier-entreprise')">modifier</button>
-                <button onclick="ouvrir('popup-supprimer-entreprise')">supprimer</button>
-                <p>evaluer</p>
-            </div>
-        </div>
-    </div>
-</section>
-
+    </section>
+    <?php endforeach; ?>
+<?php endif; ?>
 <?php
 $content   = ob_get_clean();         // stocke le contenu
 $pageTitle = "Entreprise — Web for All"; // titre de l'onglet
