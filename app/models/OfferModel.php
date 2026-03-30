@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require_once ROOT . '/../config/Database.php';
+require_once ROOT . '/app/config/Database.php';
 
 final class OfferModel
 {

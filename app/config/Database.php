@@ -21,7 +21,7 @@ final class Database
 
     public static function getPdo(): PDO
     {
-        if (self::$instance !== null) {
+        if (self::$instance === null) {
             $host = self::env('DB_HOST', 'localhost');
             $db   = self::env('DB_NAME', 'projet_web');
             $user = self::env('DB_USER', 'root');
@@ -33,11 +33,12 @@ final class Database
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                     PDO::ATTR_EMULATE_PREPARES   => false,
                 ]);
-            } catch (PDOException $e) {
+            } catch (\PDOException $e) {
                 error_log('DB Error: ' . $e->getMessage());
                 die('Erreur de connexion à la base de données.');
-            }            
+            }
         }
+
         return self::$instance;
     }
 }
