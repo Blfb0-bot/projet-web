@@ -37,7 +37,7 @@
         <nav id="navigation">
             <a id="offre" href="/index.php?controller=offers&action=index">offres</a>
             <!--index.php?controller=contact-->
-            <a id="entreprise" href="/index.php?controller=compagnies&action=index">entreprise</a>
+            <a id="entreprise" href="/index.php?controller=companies&action=index">entreprise</a>
             <a id="etudiant" href="/index.php?controller=students&action=index">etudiant</a>
             <a id="pilote" href="/index.php?controller=pilots&action=index">pilote</a>
         </nav>
