@@ -1,4 +1,6 @@
 <?php
+define('ROOT', __DIR__);
+
 $controller = $_GET['controller'] ?? 'accueil';
 $action     = $_GET['action']     ?? 'index';
 
