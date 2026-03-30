@@ -1,4 +1,7 @@
 <?php
+
+var_dump($offres);
+die();
 class OffreController {
     public function index() {
         require_once __DIR__ . '/../models/OfferModel.php';
