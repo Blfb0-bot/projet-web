@@ -23,7 +23,6 @@ ob_start(); // démarre la capture du contenu
                     </tr>
                 </thead>
                 <tbody>
-                    <?php var_dump($students); ?>
                     <?php foreach (($students ?? []) as $student): ?>
                         <tr>
                             <td><?= htmlspecialchars((string)($student['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>

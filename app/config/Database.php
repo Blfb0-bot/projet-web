@@ -31,8 +31,8 @@ final class Database
         EnvLoader::load($envFile);
 
         $host = self::env('DB_HOST', 'localhost');
-        $db   = self::env('DB_NAME', 'stagefinder');
-        $user = self::env('DB_USER', 'sfuser');
+        $db   = self::env('DB_NAME', 'projet_web');
+        $user = self::env('DB_USER', 'root');
         $pass = self::env('DB_PASS', 'Beuvry/0710');
 
         $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
