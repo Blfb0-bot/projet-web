@@ -1,6 +1,6 @@
 <?php
 
-var_dump($offres);
+var_dump($offers);
 die();
 class OffreController {
     public function index() {
