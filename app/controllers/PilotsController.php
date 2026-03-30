@@ -1,5 +1,5 @@
 <?php
-class PiloteController {
+class PilotsController {
     public function index() {
         require_once __DIR__ . '/../models/UserModel.php';
         $pilots = (new UserModel())->getByRole('pilote');
