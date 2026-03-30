@@ -16,21 +16,28 @@ ob_start(); // démarre la capture du contenu
             <table>
                 <thead>
                     <tr>
-                    <th>Prenom</th>
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th>outils</th>
+                        <th>Prenom</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>outils</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>Benjamin</td>
-                    <td>Lefebvre</td>
-                    <td>benjaminlefevre@gmail.com</td>
-                    <td><button onclick="ouvrir('popup-modifier-etudiant')">modifier</button>
-                    <button onclick="ouvrir('popup-supprimer-etudiant')">supprimer</button></td>
-                </tr>
+                    <?php foreach (($students ?? []) as $student): ?>
+                        <tr>
+                            <td><?= htmlspecialchars((string)($student['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars((string)($student['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars((string)($student['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                            <td>
+                                <button onclick="ouvrir('popup-modifier-etudiant')">modifier</button>
+                                <button onclick="ouvrir('popup-supprimer-etudiant')">supprimer</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
+            </table>
+        </div>
+    </div>
 </section>
 
 <?php

@@ -1,10 +1,4 @@
 SET FOREIGN_KEY_CHECKS = 0;
-CREATE DATABASE IF NOT EXISTS projet_web
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE projet_web;
-
 DROP TABLE IF EXISTS wishlist, candidature, evaluation, offre_competence, competence, offre, entreprise, utilisateur;
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -76,7 +70,7 @@ CREATE TABLE evaluation (
   created_at    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE KEY uq_evaluation (id_entreprise, id_etudiant),
   FOREIGN KEY (id_entreprise) REFERENCES entreprise(id)   ON DELETE CASCADE,
-  FOREIGN KEY (id_etudiant)   REFERENCES utilisateur(id)  ON DELETE CASCADE
+  FOREIGN KEY (id_etudiant)   REFERENCES utilisateur(id)   ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE wishlist (
@@ -86,3 +80,4 @@ CREATE TABLE wishlist (
   FOREIGN KEY (id_offre)    REFERENCES offre(id)       ON DELETE CASCADE,
   FOREIGN KEY (id_etudiant) REFERENCES utilisateur(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
