@@ -33,7 +33,7 @@ final class Database
         $host = self::env('DB_HOST', 'localhost');
         $db   = self::env('DB_NAME', 'stagefinder');
         $user = self::env('DB_USER', 'sfuser');
-        $pass = self::env('DB_PASS', '');
+        $pass = self::env('DB_PASS', 'Beuvry/0710');
 
         $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
 
