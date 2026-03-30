@@ -34,6 +34,15 @@ final class Database
         $db   = self::env('DB_NAME', 'projet_web');
         $user = self::env('DB_USER', 'root');
         $pass = self::env('DB_PASS', 'Beuvry/0710');
+        try {
+            $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+            self::$instance = new PDO($dsn, $user, $pass, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]);
+        } catch (PDOException $e) {
+            // Ce message s'affichera sur ta page Students/Offers
+            die("Désolé, la connexion a échoué : " . $e->getMessage());
+        }
 
         $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
 
