@@ -22,36 +22,22 @@ final class Database
     public static function getPdo(): PDO
     {
         if (self::$instance !== null) {
-            return self::$instance;
-        }
-
-        // Charge .env de manière optionnelle
-        $envFile = __DIR__ . '/../../.env';
-        require_once __DIR__ . '/EnvLoader.php';
-        EnvLoader::load($envFile);
-
-        $host = self::env('DB_HOST', 'localhost');
-        $db   = self::env('DB_NAME', 'projet_web');
-        $user = self::env('DB_USER', 'root');
-        $pass = self::env('DB_PASS', 'Beuvry/0710');
-        try {
+            $host = self::env('DB_HOST', 'localhost');
+            $db   = self::env('DB_NAME', 'projet_web');
+            $user = self::env('DB_USER', 'root');
+            $pass = self::env('DB_PASS', '');
             $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
-            self::$instance = new PDO($dsn, $user, $pass, [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-            ]);
-        } catch (PDOException $e) {
-            // Ce message s'affichera sur ta page Students/Offers
-            die("Désolé, la connexion a échoué : " . $e->getMessage());
+            try {
+                self::$instance = new PDO($dsn, $user, $pass, [
+                    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES   => false,
+                ]);
+            } catch (PDOException $e) {
+                error_log('DB Error: ' . $e->getMessage());
+                die('Erreur de connexion à la base de données.');
+            }            
         }
-
-        $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
-
-        self::$instance = new PDO($dsn, $user, $pass, [
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES   => false,
-        ]);
-
         return self::$instance;
     }
 }
