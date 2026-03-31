@@ -24,8 +24,8 @@ $routes = [
     'accueil'   => ['AccueilController','index'],
     'companies' => ['CompaniesController','index'],
     'offers'    => ['OffersController','index'],
-    'Pilots'    => ['PilotsController','index'],
-    'Students'  => ['StudentsController','index'],
+    'pilots'    => ['PilotsController','index'],
+    'students'  => ['StudentsController','index'],
 ];
 // Lecture des paramètres de la requête
 $controller = $_GET['controller'] ?? 'accueil';
