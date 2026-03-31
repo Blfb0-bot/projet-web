@@ -13,12 +13,6 @@
     display: flex;
     justify-content: space-around;
 }
-#outils-offre #filtre{
-    background-color: black;
-    border-radius: 25px;
-    padding: 10px;
-    color: rgba(255, 255, 255, 0.726);
-}
 #outils-offre #filtre:hover{
     background-color: rgba(0, 0, 0, 0.5);
 }
