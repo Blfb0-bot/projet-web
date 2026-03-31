@@ -10,36 +10,22 @@ $companies = $companies ?? [];
     <h1>Nos Offres</h1>
 </section>
 <section id="outils-offre">
-    <button type="button" id="creation-offre" onclick="ouvrir('popup-creer-offre')">créer une offre</button>
-    <!-- Formulaire « vide » : les cases à cocher des cartes y sont rattachées via l'attribut form -->
-    <form id="form-offers-bulk" method="post" class="offers-bulk-form"></form>
-    <div class="offers-bulk-toolbar">
-        <button type="button" class="btn-select-all" onclick="document.querySelectorAll('input[name=\'offer_ids[]\']').forEach(function(c){ c.checked = true; });">Tout sélectionner</button>
-        <button type="button" class="btn-select-none" onclick="document.querySelectorAll('input[name=\'offer_ids[]\']').forEach(function(c){ c.checked = false; });">Tout désélectionner</button>
-        <button type="submit" form="form-offers-bulk" formaction="<?= htmlspecialchars($formBase . 'openEditForSelection', ENT_QUOTES, 'UTF-8') ?>">Modifier la sélection</button>
-        <button type="submit" form="form-offers-bulk" formaction="<?= htmlspecialchars($formBase . 'deleteMany', ENT_QUOTES, 'UTF-8') ?>" class="btn-danger" onclick="return confirm('Supprimer les offres cochées ?');">Supprimer la sélection</button>
-    </div>
-    <?php if (!empty($_GET['error'])): ?>
-        <?php if ($_GET['error'] === 'bulk_none'): ?>
-            <p class="form-error" role="alert">Cochez au moins une offre.</p>
-        <?php elseif ($_GET['error'] === 'bulk_edit_one'): ?>
-            <p class="form-error" role="alert">Pour modifier, cochez une seule offre.</p>
-        <?php endif; ?>
-    <?php endif; ?>
+    <button id="creation-offre" onclick="ouvrir('popup-creer-offre')">créer une offre</button>
 </section>
 <section id="nos-offres">
     <?php foreach (($offers ?? []) as $offer): ?>
         <?php $oid = (int)($offer['id'] ?? 0); ?>
         <div class="offres">
             <div class="debut-contenu-offre">
-                <?php if ($oid > 0): ?>
-                    <label class="offre-select-label" title="Sélectionner pour modifier ou supprimer">
-                        <input type="checkbox" form="form-offers-bulk" name="offer_ids[]" value="<?= $oid ?>">
-                    </label>
-                <?php endif; ?>
                 <div class="type" onclick="ouvrir('popup-postuler-offre')">stage</div>
                 <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
                 <div><a class="évaluer" href="#">évaluer</a></div>
+                <?php if ($oid > 0): ?>
+                <div class="modification-offre">
+                    <button type="button" onclick="ouvrir('popup-modifier-offre-<?= $oid ?>')">modifier</button>
+                    <button type="button" onclick="ouvrir('popup-supprimer-offre-<?= $oid ?>')">supprimer</button>
+                </div>
+                <?php endif; ?>
             </div>
             <div class="contenu-offre">
                 <div class="description">
@@ -66,7 +52,7 @@ $companies = $companies ?? [];
     <?php endforeach; ?>
 </section>
 
-<!-- Popups offres : formulaires POST vers OffersController (create / update) -->
+<!-- Popups offres -->
 <div id="popups-offres-page">
     <div class="overlay" id="popup-creer-offre">
         <div class="popup">
@@ -142,21 +128,20 @@ $companies = $companies ?? [];
                 <button type="button" onclick="fermer('popup-modifier-offre-<?= $oid ?>')">Fermer</button>
             </div>
         </div>
+
+        <div class="overlay" id="popup-supprimer-offre-<?= $oid ?>">
+            <div class="popup">
+                <h2>Supprimer cette offre ?</h2>
+                <p>Offre : <?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
+                <form action="<?= htmlspecialchars($formBase . 'delete', ENT_QUOTES, 'UTF-8') ?>" method="post">
+                    <input type="hidden" name="id" value="<?= $oid ?>">
+                    <button type="submit">Oui, supprimer</button>
+                </form>
+                <button type="button" onclick="fermer('popup-supprimer-offre-<?= $oid ?>')">Annuler</button>
+            </div>
+        </div>
     <?php endforeach; ?>
 </div>
-
-<?php
-$openEdit = isset($_GET['open_edit']) ? (int)$_GET['open_edit'] : 0;
-if ($openEdit > 0):
-?>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    if (typeof ouvrir === 'function') {
-        ouvrir('popup-modifier-offre-<?= $openEdit ?>');
-    }
-});
-</script>
-<?php endif; ?>
 
 <?php
 $content   = ob_get_clean();
