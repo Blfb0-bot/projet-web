@@ -170,12 +170,23 @@ body {
         margin: 5px;
     }
 
-    #navigation {
+    /* Forcer la navigation en ligne sur mobile */
+    #sidebar #navigation {
+        display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 8px;
         margin-top: 0;
         padding: 5px;
+        align-items: center;
+    }
+
+    /* Les liens doivent occuper leur largeur intrinsèque, pas 100% */
+    #sidebar #navigation a {
+        display: inline-block;
+        width: auto;
+        padding: 5px 10px;
+        margin: 0;
     }
 
     #pied-de-page {

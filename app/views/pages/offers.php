@@ -18,7 +18,7 @@ ob_start(); // démarre la capture du contenu
                 <div class="debut-contenu-offre">
                     <div class="type" onclick="ouvrir('popup-postuler-offre')">stage</div>
                     <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
-                    <div><a class="employeur" href="/index.php?controller=entreprise&action=index">entreprises</a></div>
+                    <div><a class="évaluer" href="#">évaluer</a></div>
                     <div class="modification-offre">
                         <button onclick="ouvrir('popup-modifier-offre')">modifier</button>
                         <button onclick="ouvrir('popup-supprimer-offre')">supprimer</button>
