@@ -1,4 +1,4 @@
-<?php $cssExtra = '<link rel="stylesheet" href="/public/styles/offre.css">'; ?>
+<?php $cssExtra = '<link rel="stylesheet" href="../public/styles/offre.css">'; ?>
 
 <?php
 ob_start(); // démarre la capture du contenu
