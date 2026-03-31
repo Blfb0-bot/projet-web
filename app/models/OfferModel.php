@@ -17,6 +17,7 @@ final class OfferModel
                 o.date_debut,
                 o.date_fin,
                 o.duree_mois,
+                o.id_entreprise,
                 o.created_at,
                 e.nom AS entreprise_nom,
                 (SELECT COUNT(*) FROM candidature ca WHERE ca.id_offre = o.id) AS nb_candidatures,
@@ -31,23 +32,171 @@ final class OfferModel
 
         return $pdo->query($sql)->fetchAll();
     }
-    public function create(array $data): void
+
+    /**
+     * @param array{
+     *   id_entreprise: int,
+     *   titre: string,
+     *   description: string,
+     *   remuneration: float|null,
+     *   date_debut: string|null,
+     *   date_fin: string|null
+     * } $data
+     */
+    public function create(array $data): int
     {
         $pdo = Database::getPdo();
+        $duree = self::computeDureeMois($data['date_debut'] ?? null, $data['date_fin'] ?? null);
+
         $sql = "
-            INSERT INTO offre (id_entreprise, titre, description, remuneration, date_debut, date_fin, duree_mois, created_at)
-            VALUES (:id_entreprise, :titre, :description, :remuneration, :date_debut, :date_fin, :duree_mois, NOW())
+            INSERT INTO offre (
+                id_entreprise, titre, description, remuneration,
+                date_debut, date_fin, duree_mois, created_at
+            )
+            VALUES (
+                :id_entreprise, :titre, :description, :remuneration,
+                :date_debut, :date_fin, :duree_mois, NOW()
+            )
         ";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
-            ':id_entreprise' => 1, // TODO: remplacer par l'ID de l'entreprise connectée
-            ':titre' => $data['titre'] ?? '',
-            ':description' => $data['description'] ?? '',
-            ':remuneration' => $data['remuneration'] ?? null,
-            ':date_debut' => date('Y-m-d'), // ou une autre date par défaut
-            ':date_fin' => $data['date_fin'] ?? null,
-            ':duree_mois' => null // calculer si besoin
+            ':id_entreprise' => $data['id_entreprise'],
+            ':titre' => $data['titre'],
+            ':description' => $data['description'],
+            ':remuneration' => $data['remuneration'],
+            ':date_debut' => $data['date_debut'],
+            ':date_fin' => $data['date_fin'],
+            ':duree_mois' => $duree,
+        ]);
+
+        return (int)$pdo->lastInsertId();
+    }
+
+    /**
+     * @param array{
+     *   id_entreprise: int,
+     *   titre: string,
+     *   description: string,
+     *   remuneration: float|null,
+     *   date_debut: string|null,
+     *   date_fin: string|null
+     * } $data
+     */
+    public function update(int $id, array $data): void
+    {
+        $pdo = Database::getPdo();
+        $duree = self::computeDureeMois($data['date_debut'] ?? null, $data['date_fin'] ?? null);
+
+        $sql = "
+            UPDATE offre SET
+                id_entreprise = :id_entreprise,
+                titre = :titre,
+                description = :description,
+                remuneration = :remuneration,
+                date_debut = :date_debut,
+                date_fin = :date_fin,
+                duree_mois = :duree_mois
+            WHERE id = :id
+        ";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':id' => $id,
+            ':id_entreprise' => $data['id_entreprise'],
+            ':titre' => $data['titre'],
+            ':description' => $data['description'],
+            ':remuneration' => $data['remuneration'],
+            ':date_debut' => $data['date_debut'],
+            ':date_fin' => $data['date_fin'],
+            ':duree_mois' => $duree,
         ]);
     }
-}
 
+    public function delete(int $id): void
+    {
+        $pdo = Database::getPdo();
+        $stmt = $pdo->prepare('DELETE FROM offre WHERE id = :id');
+        $stmt->execute([':id' => $id]);
+    }
+
+    /**
+     * @param list<int> $ids
+     */
+    public function deleteMany(array $ids): void
+    {
+        $ids = array_values(array_unique(array_filter(array_map('intval', $ids), static fn (int $x): bool => $x > 0)));
+        if ($ids === []) {
+            return;
+        }
+        $pdo = Database::getPdo();
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+        $stmt = $pdo->prepare("DELETE FROM offre WHERE id IN ($placeholders)");
+        $stmt->execute($ids);
+    }
+
+    /**
+     * Remplace les compétences liées à l'offre (libellés séparés par virgule).
+     */
+    public function syncCompetencesForOffer(int $idOffre, string $competencesCsv): void
+    {
+        $labels = self::parseCompetenceLabels($competencesCsv);
+        $pdo = Database::getPdo();
+        $pdo->prepare('DELETE FROM offre_competence WHERE id_offre = :id')->execute([':id' => $idOffre]);
+
+        foreach ($labels as $libelle) {
+            $idComp = $this->ensureCompetenceId($pdo, $libelle);
+            $ins = $pdo->prepare(
+                'INSERT INTO offre_competence (id_offre, id_competence) VALUES (:o, :c)'
+            );
+            $ins->execute([':o' => $idOffre, ':c' => $idComp]);
+        }
+    }
+
+    private function ensureCompetenceId(\PDO $pdo, string $libelle): int
+    {
+        $sel = $pdo->prepare('SELECT id FROM competence WHERE libelle = :l LIMIT 1');
+        $sel->execute([':l' => $libelle]);
+        $row = $sel->fetch();
+        if ($row !== false) {
+            return (int)$row['id'];
+        }
+        $ins = $pdo->prepare('INSERT INTO competence (libelle) VALUES (:l)');
+        $ins->execute([':l' => $libelle]);
+        return (int)$pdo->lastInsertId();
+    }
+
+    /**
+     * @return list<string>
+     */
+    private static function parseCompetenceLabels(string $csv): array
+    {
+        $parts = preg_split('/[,;]/', $csv) ?: [];
+        $out = [];
+        foreach ($parts as $p) {
+            $t = trim($p);
+            if ($t !== '') {
+                $out[] = $t;
+            }
+        }
+        return $out;
+    }
+
+    private static function computeDureeMois(?string $dateDebut, ?string $dateFin): ?int
+    {
+        if ($dateDebut === null || $dateDebut === '' || $dateFin === null || $dateFin === '') {
+            return null;
+        }
+        try {
+            $d1 = new \DateTimeImmutable($dateDebut);
+            $d2 = new \DateTimeImmutable($dateFin);
+            if ($d2 < $d1) {
+                return null;
+            }
+            $y = (int)$d1->diff($d2)->y;
+            $m = (int)$d1->diff($d2)->m;
+            $total = $y * 12 + $m;
+            return max(1, $total);
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+}

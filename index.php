@@ -32,8 +32,4 @@ if (file_exists($file)) {
     http_response_code(404);
     echo "Controller introuvable : $class";
 }
-if ($uri === '/offers/create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $controller = new OffersController();
-    $controller->create();
-}
 ?>
