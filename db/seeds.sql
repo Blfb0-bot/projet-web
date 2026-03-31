@@ -28,13 +28,13 @@ INSERT INTO entreprise (nom, description, email, telephone) VALUES
 ('GlobeTech','Agence mobile cross-platform, développement Flutter et React Native.','hello@globetech.fr','02 34 56 78 90');
 
 -- Offres
-INSERT INTO offre (titre, type_annonce, description, remuneration, date_debut, date_fin, duree_mois, id_entreprise) VALUES
-('Développeur Full-Stack React/Node.js','stage','Stage axé sur la mise en pratique des connaissances théoriques, le développement de compétences professionnelles et la participation active aux missions de l''équipe, dans un environnement dynamique et formateur.',800.00,'2026-03-01','2026-09-01',6,1),
-('Data Scientist Junior','stage','Rejoignez notre équipe Data et participez à l''analyse de données d''assurance. Vous serez formé aux outils Python/Pandas et contribuerez à la construction de modèles prédictifs.',900.00,'2026-04-01','2026-10-01',6,2),
-('Ingénieur Réseaux & Sécurité','stage','Mission de stage en infrastructure réseau : supervision, configuration de pare-feux, tests de pénétration supervisés et documentation.',750.00,'2026-03-15','2026-07-15',4,3),
-('Ingénieur DevOps','alternance','Participation à l''automatisation des pipelines CI/CD, containerisation Docker/Kubernetes et monitoring des services cloud.',950.00,'2026-03-01','2026-09-01',6,4),
-('Stage IA – NLP Engineer','stage','Développement de modèles de traitement du langage naturel (NLP) : classification de textes, extraction d''entités, résumé automatique.',1000.00,'2026-04-01','2026-10-01',6,5),
-('Développeur Mobile Flutter','stage','Développement d''une application mobile cross-platform Flutter. Vous participerez à la conception UI/UX et à l''intégration des APIs REST.',700.00,'2026-03-01','2026-07-01',4,6);
+INSERT INTO offre (titre, description, remuneration, date_debut, date_fin, duree_mois, id_entreprise) VALUES
+('Développeur Full-Stack React/Node.js','Stage axé sur la mise en pratique des connaissances théoriques, le développement de compétences professionnelles et la participation active aux missions de l''équipe, dans un environnement dynamique et formateur.',800.00,'2026-03-01','2026-09-01',6,1),
+('Data Scientist Junior','Rejoignez notre équipe Data et participez à l''analyse de données d''assurance. Vous serez formé aux outils Python/Pandas et contribuerez à la construction de modèles prédictifs.',900.00,'2026-04-01','2026-10-01',6,2),
+('Ingénieur Réseaux & Sécurité','Mission de stage en infrastructure réseau : supervision, configuration de pare-feux, tests de pénétration supervisés et documentation.',750.00,'2026-03-15','2026-07-15',4,3),
+('Ingénieur DevOps','Participation à l''automatisation des pipelines CI/CD, containerisation Docker/Kubernetes et monitoring des services cloud.',950.00,'2026-03-01','2026-09-01',6,4),
+('Stage IA – NLP Engineer','Développement de modèles de traitement du langage naturel (NLP) : classification de textes, extraction d''entités, résumé automatique.',1000.00,'2026-04-01','2026-10-01',6,5),
+('Développeur Mobile Flutter','Développement d''une application mobile cross-platform Flutter. Vous participerez à la conception UI/UX et à l''intégration des APIs REST.',700.00,'2026-03-01','2026-07-01',4,6);
 
 
 INSERT INTO offre_competence (id_offre, id_competence) VALUES

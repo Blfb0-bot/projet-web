@@ -3,15 +3,6 @@
 <?php
 ob_start();
 $formBase = '/index.php?controller=offers&action=';
-
-$typeOptions = [
-    'stage' => 'Stage',
-    'alternance' => 'Alternance',
-    'CDD' => 'CDD',
-    'CDI' => 'CDI',
-    'interim' => 'Intérim',
-    'autre' => 'Autre',
-];
 ?>
 <!--Le contenue de la page-->
 <section id="presentation-offre">
@@ -22,17 +13,10 @@ $typeOptions = [
 </section>
 <section id="nos-offres">
     <?php foreach (($offers ?? []) as $offer): ?>
-        <?php
-        $oid = (int)($offer['id'] ?? 0);
-        $typeKey = (string)($offer['type_annonce'] ?? 'stage');
-        if (!array_key_exists($typeKey, $typeOptions)) {
-            $typeKey = 'stage';
-        }
-        $typeLabel = $typeOptions[$typeKey];
-        ?>
+        <?php $oid = (int)($offer['id'] ?? 0); ?>
         <div class="offres">
             <div class="debut-contenu-offre">
-                <div class="type" onclick="ouvrir('popup-postuler-offre')"><?= htmlspecialchars($typeLabel, ENT_QUOTES, 'UTF-8') ?></div>
+                <div class="type" onclick="ouvrir('popup-postuler-offre')">offre</div>
                 <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
                 <div><a class="évaluer" href="#">évaluer</a></div>
                 <?php if ($oid > 0): ?>
@@ -81,12 +65,6 @@ $typeOptions = [
                 <?php endif; ?>
             <?php endif; ?>
             <form action="<?= htmlspecialchars($formBase . 'create', ENT_QUOTES, 'UTF-8') ?>" method="post">
-                <label for="create-type">Type d'offre</label><br/>
-                <select id="create-type" name="type_annonce" required>
-                    <?php foreach ($typeOptions as $val => $label): ?>
-                        <option value="<?= htmlspecialchars($val, ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8') ?></option>
-                    <?php endforeach; ?>
-                </select><br/>
                 <label for="create-entreprise">Nom de l'entreprise</label><br/>
                 <input type="text" id="create-entreprise" name="entreprise_nom" required maxlength="200" placeholder="Ex. SoftCorp"><br/>
                 <label for="create-titre">Titre de l'offre</label><br/>
@@ -118,10 +96,6 @@ $typeOptions = [
         $remStr = $rem !== null && $rem !== '' ? htmlspecialchars((string)$rem, ENT_QUOTES, 'UTF-8') : '';
         $dd = $offer['date_debut'] ?? '';
         $df = $offer['date_fin'] ?? '';
-        $currentType = (string)($offer['type_annonce'] ?? 'stage');
-        if (!array_key_exists($currentType, $typeOptions)) {
-            $currentType = 'stage';
-        }
         $entrepriseNom = (string)($offer['entreprise_nom'] ?? '');
         ?>
         <div class="overlay" id="popup-modifier-offre-<?= $oid ?>">
@@ -129,12 +103,6 @@ $typeOptions = [
                 <h2>Modifier l'offre</h2>
                 <form action="<?= htmlspecialchars($formBase . 'update', ENT_QUOTES, 'UTF-8') ?>" method="post">
                     <input type="hidden" name="id" value="<?= $oid ?>">
-                    <label for="edit-type-<?= $oid ?>">Type d'offre</label><br/>
-                    <select id="edit-type-<?= $oid ?>" name="type_annonce" required>
-                        <?php foreach ($typeOptions as $val => $label): ?>
-                            <option value="<?= htmlspecialchars($val, ENT_QUOTES, 'UTF-8') ?>"<?= $val === $currentType ? ' selected' : '' ?>><?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8') ?></option>
-                        <?php endforeach; ?>
-                    </select><br/>
                     <label for="edit-entreprise-<?= $oid ?>">Nom de l'entreprise</label><br/>
                     <input type="text" id="edit-entreprise-<?= $oid ?>" name="entreprise_nom" required maxlength="200" value="<?= htmlspecialchars($entrepriseNom, ENT_QUOTES, 'UTF-8') ?>"><br/>
                     <label for="edit-titre-<?= $oid ?>">Titre</label><br/>
