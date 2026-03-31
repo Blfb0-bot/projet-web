@@ -38,15 +38,18 @@
     margin-right: auto;
     margin-top: 30px;
     padding: 5px 10px;
+    border: none !important; /* s'assurer qu'il n'y a pas de bordure sur le conteneur */
+    background: transparent !important;
 }
 
 /* Chaque offre devient une carte individuelle */
 .offre{
-    border: 2px solid rgb(73, 20, 109);
-    background-color: rgba(204, 198, 211, 0.53);
-    border-radius: 15px;
-    padding: 15px;
-    margin: 15px 0;
+    border: 2px solid rgb(73, 20, 109) !important;
+    background-color: rgba(204, 198, 211, 0.53) !important;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    margin: 15px 0 !important;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 .debut-contenu-offre{
     display: flex;
