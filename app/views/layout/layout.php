@@ -122,40 +122,6 @@
     <div id = "popup-specific">
         <!-- Popup creation-->
         <div>
-            <!-- Popup pour la création d'offre-->
-            <div class="overlay" id="popup-creer-offre">
-                <div class="popup">
-                    <h2>Creation d'une offre</h2>
-                    <form action="offre/create" methode="post">
-                        <label for="type">type d'offre:</label>
-                        <select id="type" name="type" required>
-                            <option value="stage">stage</option>7
-                            <option value="alternance">alternance</option>
-                            <option value="CDD">CDD</option>
-                            <option value="CDI">CDI</option>
-                            <option value="interim">interim</option>
-                            <option value="autre">autre</option>
-                        </select><br/>
-                        <label for="titre">titre de l'offre:</label><br/>
-                        <input type="text" id="titre" name="titre" required><br/>
-                        <label for="entreprise">noms de l'entreprise:</label><br/>
-                        <input type="text" id="entreprise" name="entreprise" required><br/>
-                        <label for="description">une petite description:</label><br/>
-                        <textarea id="description" name="description" rows="4" cols="40" placeholder="Votre description..." required></textarea><br/>
-                        <label for="description">les compétences requis:</label><br/>
-                        <textarea id="description" name="description" rows="4" cols="40" placeholder="Les compétences..." required></textarea><br/>
-                        <label for="remuneration">La remuneration</label>
-                        <input type="text" id="remuneration" name="remuration" required><br/>
-                        <label for="date1">Date de debut: </label>
-                        <input type="date" id="date1" name="date1" required><br/>
-                        <label for="date2">Date de fin:</label>
-                        <input type="date" id="date2" name="date2" required><br/><br/>
-                        <input type="submit" value="Envoyer">
-                        <input type="reset" value="Réinitialiser"><br/><br/>
-                    </form>
-                    <button onclick="fermer('popup-creer-offre')">Fermer</button>
-                </div>
-            </div>
             <!-- Popup pour la création d'entreprise-->
             <div class="overlay" id="popup-creer-entreprise">
                 <div class="popup">
@@ -212,12 +178,6 @@
 
         <!-- Popup modification-->
         <div>
-            <!-- Popup pour la modification d'offre-->
-            <div class="overlay" id="popup-modifier-offre">
-                <div class="popup">
-                    <button onclick="fermer('popup-modifier-offre')">Fermer</button>
-                </div>
-            </div>
             <!-- Popup pour la modification d'entreprise-->
             <div class="overlay" id="popup-modifier-entreprise">
                 <div class="popup">
@@ -240,12 +200,6 @@
 
         <!-- Popup suppression-->
         <div>
-            <!-- Popup pour la suppression d'offre-->
-            <div class="overlay" id="popup-supprimer-offre">
-                <div class="popup">
-                    <button onclick="fermer('popup-supprimer-offre')">Fermer</button>
-                </div>
-            </div>
             <!-- Popup pour la suppression d'entreprise-->
             <div class="overlay" id="popup-supprimer-entreprise">
                 <div class="popup">
