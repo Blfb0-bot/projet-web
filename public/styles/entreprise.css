@@ -43,8 +43,8 @@
 /*mise en forme des entreprise*/
 .entreprises{
     display: grid;
-    grid-template-columns: 1fr; /* une colonne */
-    gap: 24px; /* espace vertical entre les cartes */
+    grid-template-columns: repeat(2,1fr);
+    gap: 24px; 
     padding: 5px 10px;
 }
 

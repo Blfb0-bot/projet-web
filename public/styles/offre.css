@@ -34,24 +34,18 @@
 }
 .offres{
     max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
+    margin: 30px auto;
     padding: 5px 10px;
-    border: none !important; /* s'assurer qu'il n'y a pas de bordure sur le conteneur */
-    background: transparent !important;
     display: flex;
     flex-direction: column;
-    gap: 24px; /* espace vertical entre les cartes */
+    gap: 25px;
 }
 
-/* Chaque offre devient une carte individuelle */
 .offre{
     border: 2px solid rgb(73, 20, 109) !important;
     background-color: rgba(204, 198, 211, 0.53) !important;
-    border-radius: 15px !important;
-    padding: 20px !important;
-    margin: 0 !important; /* gap gère l'espacement */
+    border-radius: 15px;
+    padding: 20px;
     box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 .debut-contenu-offre{
