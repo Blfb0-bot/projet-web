@@ -33,25 +33,16 @@
     background-color: rgba(73, 20, 109, 0.5);
     border: 1px solid rgba(73, 20, 109, 0.5);
 }
-/*presentation de nos entreprise*/
 #nos-entreprises{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
 }
-/*mise en forme des entreprise*/
 .entreprises{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 24px; 
-    padding: 5px 10px;
-}
-
-/* Carte individuelle par entreprise */
-.entreprise{
     padding: 18px;
-    margin: 0;
     border: 3px solid rgb(73, 20, 109);
     background-color: rgba(204, 198, 211, 0.7);
     border-radius: 16px;
