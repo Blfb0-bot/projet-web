@@ -6,13 +6,14 @@ final class OffersController
 {
     private const REDIRECT_LIST = '/index.php?controller=offers&action=index';
 
+    /** @var list<string> */
+    private const TYPE_ANNONCE_ALLOWED = ['stage', 'alternance', 'CDD', 'CDI', 'interim', 'autre'];
+
     public function index(): void
     {
         require_once ROOT . '/app/models/OfferModel.php';
-        require_once ROOT . '/app/models/CompanyModel.php';
 
         $offers = (new OfferModel())->getAll();
-        $companies = (new CompanyModel())->getAll();
 
         require_once ROOT . '/app/views/pages/offers.php';
     }
@@ -25,8 +26,10 @@ final class OffersController
         }
 
         require_once ROOT . '/app/models/OfferModel.php';
+        require_once ROOT . '/app/models/CompanyModel.php';
 
-        $idEntreprise = (int)($_POST['id_entreprise'] ?? 0);
+        $entrepriseNom = trim((string)($_POST['entreprise_nom'] ?? ''));
+        $typeAnnonce = self::normalizeTypeAnnonce((string)($_POST['type_annonce'] ?? ''));
         $titre = trim((string)($_POST['titre'] ?? ''));
         $description = trim((string)($_POST['description'] ?? ''));
         $competencesText = trim((string)($_POST['competences'] ?? ''));
@@ -37,14 +40,22 @@ final class OffersController
         $dateDebut = trim((string)($_POST['date_debut'] ?? ''));
         $dateFin = trim((string)($_POST['date_fin'] ?? ''));
 
-        if ($idEntreprise <= 0 || $titre === '' || $description === '') {
+        if ($titre === '' || $description === '' || $entrepriseNom === '') {
             header('Location: ' . self::REDIRECT_LIST . '&error=missing_fields');
+            exit;
+        }
+
+        $companyModel = new CompanyModel();
+        $idEntreprise = $companyModel->findIdByNom($entrepriseNom);
+        if ($idEntreprise === null) {
+            header('Location: ' . self::REDIRECT_LIST . '&error=unknown_company');
             exit;
         }
 
         $model = new OfferModel();
         $offerId = $model->create([
             'id_entreprise' => $idEntreprise,
+            'type_annonce' => $typeAnnonce,
             'titre' => $titre,
             'description' => $description,
             'remuneration' => $remuneration,
@@ -68,9 +79,11 @@ final class OffersController
         }
 
         require_once ROOT . '/app/models/OfferModel.php';
+        require_once ROOT . '/app/models/CompanyModel.php';
 
         $id = (int)($_POST['id'] ?? 0);
-        $idEntreprise = (int)($_POST['id_entreprise'] ?? 0);
+        $entrepriseNom = trim((string)($_POST['entreprise_nom'] ?? ''));
+        $typeAnnonce = self::normalizeTypeAnnonce((string)($_POST['type_annonce'] ?? ''));
         $titre = trim((string)($_POST['titre'] ?? ''));
         $description = trim((string)($_POST['description'] ?? ''));
         $competencesText = trim((string)($_POST['competences'] ?? ''));
@@ -81,7 +94,9 @@ final class OffersController
         $dateDebut = trim((string)($_POST['date_debut'] ?? ''));
         $dateFin = trim((string)($_POST['date_fin'] ?? ''));
 
-        if ($id <= 0 || $idEntreprise <= 0 || $titre === '' || $description === '') {
+        $idEntreprise = (new CompanyModel())->findOrCreateByNom($entrepriseNom);
+
+        if ($id <= 0 || $idEntreprise === null || $titre === '' || $description === '') {
             header('Location: ' . self::REDIRECT_LIST . '&error=invalid_update');
             exit;
         }
@@ -89,6 +104,7 @@ final class OffersController
         $model = new OfferModel();
         $model->update($id, [
             'id_entreprise' => $idEntreprise,
+            'type_annonce' => $typeAnnonce,
             'titre' => $titre,
             'description' => $description,
             'remuneration' => $remuneration,
@@ -117,5 +133,11 @@ final class OffersController
 
         header('Location: ' . self::REDIRECT_LIST);
         exit;
+    }
+
+    private static function normalizeTypeAnnonce(string $raw): string
+    {
+        $t = trim($raw);
+        return in_array($t, self::TYPE_ANNONCE_ALLOWED, true) ? $t : 'stage';
     }
 }

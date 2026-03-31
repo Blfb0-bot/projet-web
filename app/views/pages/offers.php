@@ -3,7 +3,15 @@
 <?php
 ob_start();
 $formBase = '/index.php?controller=offers&action=';
-$companies = $companies ?? [];
+
+$typeOptions = [
+    'stage' => 'Stage',
+    'alternance' => 'Alternance',
+    'CDD' => 'CDD',
+    'CDI' => 'CDI',
+    'interim' => 'Intérim',
+    'autre' => 'Autre',
+];
 ?>
 <!--Le contenue de la page-->
 <section id="presentation-offre">
@@ -14,10 +22,17 @@ $companies = $companies ?? [];
 </section>
 <section id="nos-offres">
     <?php foreach (($offers ?? []) as $offer): ?>
-        <?php $oid = (int)($offer['id'] ?? 0); ?>
+        <?php
+        $oid = (int)($offer['id'] ?? 0);
+        $typeKey = (string)($offer['type_annonce'] ?? 'stage');
+        if (!array_key_exists($typeKey, $typeOptions)) {
+            $typeKey = 'stage';
+        }
+        $typeLabel = $typeOptions[$typeKey];
+        ?>
         <div class="offres">
             <div class="debut-contenu-offre">
-                <div class="type" onclick="ouvrir('popup-postuler-offre')">stage</div>
+                <div class="type" onclick="ouvrir('popup-postuler-offre')"><?= htmlspecialchars($typeLabel, ENT_QUOTES, 'UTF-8') ?></div>
                 <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
                 <div><a class="évaluer" href="#">évaluer</a></div>
                 <?php if ($oid > 0): ?>
@@ -41,6 +56,7 @@ $companies = $companies ?? [];
                     </article>
                 </div>
                 <div class="detail">
+                    <article><p>entreprise: <?= htmlspecialchars((string)($offer['entreprise_nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p></article>
                     <article><p>nombre de candidat: <?= htmlspecialchars((string)($offer['nb_candidatures'] ?? '0'), ENT_QUOTES, 'UTF-8') ?></p></article>
                     <article><p>rémunération: <?= htmlspecialchars((string)($offer['remuneration'] ?? ''), ENT_QUOTES, 'UTF-8') ?> €</p></article>
                 </div>
@@ -57,17 +73,22 @@ $companies = $companies ?? [];
     <div class="overlay" id="popup-creer-offre">
         <div class="popup">
             <h2>Création d'une offre</h2>
-            <?php if (!empty($_GET['error']) && $_GET['error'] === 'missing_fields'): ?>
-                <p class="form-error">Merci de remplir l'entreprise, le titre et la description.</p>
+            <?php if (!empty($_GET['error'])): ?>
+                <?php if ($_GET['error'] === 'missing_fields'): ?>
+                    <p class="form-error">Merci de renseigner le nom de l'entreprise, le titre et la description.</p>
+                <?php elseif ($_GET['error'] === 'unknown_company'): ?>
+                    <p class="form-error">Entreprise inconnue, veuillez la créer.</p>
+                <?php endif; ?>
             <?php endif; ?>
             <form action="<?= htmlspecialchars($formBase . 'create', ENT_QUOTES, 'UTF-8') ?>" method="post">
-                <label for="create-id-entreprise">Entreprise</label><br/>
-                <select id="create-id-entreprise" name="id_entreprise" required>
-                    <option value="">— Choisir —</option>
-                    <?php foreach ($companies as $c): ?>
-                        <option value="<?= (int)($c['id'] ?? 0) ?>"><?= htmlspecialchars((string)($c['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></option>
+                <label for="create-type">Type d'offre</label><br/>
+                <select id="create-type" name="type_annonce" required>
+                    <?php foreach ($typeOptions as $val => $label): ?>
+                        <option value="<?= htmlspecialchars($val, ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8') ?></option>
                     <?php endforeach; ?>
                 </select><br/>
+                <label for="create-entreprise">Nom de l'entreprise</label><br/>
+                <input type="text" id="create-entreprise" name="entreprise_nom" required maxlength="200" placeholder="Ex. SoftCorp"><br/>
                 <label for="create-titre">Titre de l'offre</label><br/>
                 <input type="text" id="create-titre" name="titre" required><br/>
                 <label for="create-description">Description</label><br/>
@@ -97,20 +118,25 @@ $companies = $companies ?? [];
         $remStr = $rem !== null && $rem !== '' ? htmlspecialchars((string)$rem, ENT_QUOTES, 'UTF-8') : '';
         $dd = $offer['date_debut'] ?? '';
         $df = $offer['date_fin'] ?? '';
-        $idEnt = (int)($offer['id_entreprise'] ?? 0);
+        $currentType = (string)($offer['type_annonce'] ?? 'stage');
+        if (!array_key_exists($currentType, $typeOptions)) {
+            $currentType = 'stage';
+        }
+        $entrepriseNom = (string)($offer['entreprise_nom'] ?? '');
         ?>
         <div class="overlay" id="popup-modifier-offre-<?= $oid ?>">
             <div class="popup">
                 <h2>Modifier l'offre</h2>
                 <form action="<?= htmlspecialchars($formBase . 'update', ENT_QUOTES, 'UTF-8') ?>" method="post">
                     <input type="hidden" name="id" value="<?= $oid ?>">
-                    <label for="edit-ent-<?= $oid ?>">Entreprise</label><br/>
-                    <select id="edit-ent-<?= $oid ?>" name="id_entreprise" required>
-                        <?php foreach ($companies as $c): ?>
-                            <?php $cid = (int)($c['id'] ?? 0); ?>
-                            <option value="<?= $cid ?>"<?= $cid === $idEnt ? ' selected' : '' ?>><?= htmlspecialchars((string)($c['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></option>
+                    <label for="edit-type-<?= $oid ?>">Type d'offre</label><br/>
+                    <select id="edit-type-<?= $oid ?>" name="type_annonce" required>
+                        <?php foreach ($typeOptions as $val => $label): ?>
+                            <option value="<?= htmlspecialchars($val, ENT_QUOTES, 'UTF-8') ?>"<?= $val === $currentType ? ' selected' : '' ?>><?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8') ?></option>
                         <?php endforeach; ?>
                     </select><br/>
+                    <label for="edit-entreprise-<?= $oid ?>">Nom de l'entreprise</label><br/>
+                    <input type="text" id="edit-entreprise-<?= $oid ?>" name="entreprise_nom" required maxlength="200" value="<?= htmlspecialchars($entrepriseNom, ENT_QUOTES, 'UTF-8') ?>"><br/>
                     <label for="edit-titre-<?= $oid ?>">Titre</label><br/>
                     <input type="text" id="edit-titre-<?= $oid ?>" name="titre" required value="<?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
                     <label for="edit-desc-<?= $oid ?>">Description</label><br/>
@@ -142,6 +168,19 @@ $companies = $companies ?? [];
         </div>
     <?php endforeach; ?>
 </div>
+
+<?php
+$openCreatePopup = !empty($_GET['error']) && in_array((string)$_GET['error'], ['missing_fields', 'unknown_company'], true);
+if ($openCreatePopup):
+?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof ouvrir === 'function') {
+        ouvrir('popup-creer-offre');
+    }
+});
+</script>
+<?php endif; ?>
 
 <?php
 $content   = ob_get_clean();

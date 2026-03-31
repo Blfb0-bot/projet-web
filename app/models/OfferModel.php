@@ -12,6 +12,7 @@ final class OfferModel
             SELECT
                 o.id,
                 o.titre,
+                o.type_annonce,
                 o.description,
                 o.remuneration,
                 o.date_debut,
@@ -36,6 +37,7 @@ final class OfferModel
     /**
      * @param array{
      *   id_entreprise: int,
+     *   type_annonce: string,
      *   titre: string,
      *   description: string,
      *   remuneration: float|null,
@@ -50,11 +52,11 @@ final class OfferModel
 
         $sql = "
             INSERT INTO offre (
-                id_entreprise, titre, description, remuneration,
+                id_entreprise, titre, type_annonce, description, remuneration,
                 date_debut, date_fin, duree_mois, created_at
             )
             VALUES (
-                :id_entreprise, :titre, :description, :remuneration,
+                :id_entreprise, :titre, :type_annonce, :description, :remuneration,
                 :date_debut, :date_fin, :duree_mois, NOW()
             )
         ";
@@ -62,6 +64,7 @@ final class OfferModel
         $stmt->execute([
             ':id_entreprise' => $data['id_entreprise'],
             ':titre' => $data['titre'],
+            ':type_annonce' => $data['type_annonce'],
             ':description' => $data['description'],
             ':remuneration' => $data['remuneration'],
             ':date_debut' => $data['date_debut'],
@@ -75,6 +78,7 @@ final class OfferModel
     /**
      * @param array{
      *   id_entreprise: int,
+     *   type_annonce: string,
      *   titre: string,
      *   description: string,
      *   remuneration: float|null,
@@ -91,6 +95,7 @@ final class OfferModel
             UPDATE offre SET
                 id_entreprise = :id_entreprise,
                 titre = :titre,
+                type_annonce = :type_annonce,
                 description = :description,
                 remuneration = :remuneration,
                 date_debut = :date_debut,
@@ -103,6 +108,7 @@ final class OfferModel
             ':id' => $id,
             ':id_entreprise' => $data['id_entreprise'],
             ':titre' => $data['titre'],
+            ':type_annonce' => $data['type_annonce'],
             ':description' => $data['description'],
             ':remuneration' => $data['remuneration'],
             ':date_debut' => $data['date_debut'],
