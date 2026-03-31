@@ -32,18 +32,23 @@
     background-color: rgba(73, 20, 109, 0.5);
     border: 1px solid rgba(73, 20, 109, 0.5);
 }
-.offre{
+#nos-offres{
     display: flex;
     flex-direction: column;
     max-width: 900px;
-    margin: 30px auto;
-    padding: 5px 10px;
-    border: 2px solid rgb(73, 20, 109) !important;
-    background-color: rgba(204, 198, 211, 0.53) !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+.offre[data-offer-id]{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(73, 20, 109);
+    background-color: rgba(204, 198, 211, 0.53);
     border-radius: 15px;
     padding: 20px;
+    margin-bottom: 10px;
     box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-    gap: 25px;
 }
 .debut-contenu-offre{
     display: flex;
