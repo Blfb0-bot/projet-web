@@ -33,15 +33,18 @@
     border: 1px solid rgba(73, 20, 109, 0.5);
 }
 .offres{
+    display: flex;
+    flex-direction: column;
     max-width: 900px;
     margin: 30px auto;
     padding: 5px 10px;
-    display: flex;
-    flex-direction: column;
+    
     gap: 25px;
 }
 
 .offre{
+    display: flex;
+    flex-direction: column;
     border: 2px solid rgb(73, 20, 109) !important;
     background-color: rgba(204, 198, 211, 0.53) !important;
     border-radius: 15px;
