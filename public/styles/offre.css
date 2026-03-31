@@ -40,7 +40,7 @@
     margin-right: auto;
     margin-top: 30px;
 }
-.offre{
+#offre{
     display: flex;
     flex-direction: column;
     border: 2px solid rgb(73, 20, 109);
