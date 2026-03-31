@@ -1,8 +1,3 @@
-<?php $cssExtra = '<link rel="stylesheet" href="/public/styles/entreprise.css">'; ?>
-
-<?php
-ob_start(); // démarre la capture du contenu
-?>
 <!--Le contenue de la page-->
 <section id="presentation-entreprise">
     <h1>Nos entreprises</h1>
@@ -36,8 +31,3 @@ ob_start(); // démarre la capture du contenu
         </div>
         <?php endforeach; ?>
 </section>
-
-<?php
-$content   = ob_get_clean();         // stocke le contenu
-$pageTitle = "Entreprise — Web for All"; // titre de l'onglet
-require_once ROOT . '/app/views/layout/layout.php';?>

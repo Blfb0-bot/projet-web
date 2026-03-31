@@ -5,9 +5,13 @@ final class OffersController{
     private const REDIRECT_LIST = '/index.php?controller=offers&action=index';
 
     public function index(): void{
+        $formBase = '/index.php?controller=offers&action=';
+        $cssExtra = '<link rel="stylesheet" href="/public/styles/offre.css">';
+        $pageTitle = 'Offres — Web for All';
+        $page = ROOT . '/app/views/pages/offers.php';
         require_once ROOT . '/app/models/OfferModel.php';
+        require_once ROOT . '/app/views/layout/layout.php';
         $offers = (new OfferModel())->getAll();
-        require_once ROOT . '/app/views/pages/offers.php';
     }
     public function create(): void{
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
