@@ -172,21 +172,23 @@ body {
 
     /* Forcer la navigation en ligne sur mobile */
     #sidebar #navigation {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 0;
-        padding: 5px;
-        align-items: center;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        margin-top: 0 !important;
+        padding: 5px !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
     }
 
     /* Les liens doivent occuper leur largeur intrinsèque, pas 100% */
     #sidebar #navigation a {
-        display: inline-block;
-        width: auto;
-        padding: 5px 10px;
-        margin: 0;
+        display: inline-flex !important;
+        width: auto !important;
+        flex: 0 0 auto !important;
+        padding: 5px 10px !important;
+        margin: 0 !important;
     }
 
     #pied-de-page {
