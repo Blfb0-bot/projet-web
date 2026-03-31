@@ -34,8 +34,8 @@ ob_start(); // démarre la capture du contenu
                     <p>evaluer</p>
                 </div>
             </div>
+        </div>
         <?php endforeach; ?>
-    </div>
 </section>
 
 <?php
