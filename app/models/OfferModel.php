@@ -119,21 +119,6 @@ final class OfferModel
     }
 
     /**
-     * @param list<int> $ids
-     */
-    public function deleteMany(array $ids): void
-    {
-        $ids = array_values(array_unique(array_filter(array_map('intval', $ids), static fn (int $x): bool => $x > 0)));
-        if ($ids === []) {
-            return;
-        }
-        $pdo = Database::getPdo();
-        $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        $stmt = $pdo->prepare("DELETE FROM offre WHERE id IN ($placeholders)");
-        $stmt->execute($ids);
-    }
-
-    /**
      * Remplace les compétences liées à l'offre (libellés séparés par virgule).
      */
     public function syncCompetencesForOffer(int $idOffre, string $competencesCsv): void
