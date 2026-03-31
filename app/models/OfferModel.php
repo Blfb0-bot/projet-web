@@ -1,12 +1,9 @@
 <?php
 declare(strict_types=1);
-
 require_once ROOT . '/app/config/Database.php';
 
-final class OfferModel
-{
-    public function getAll(): array
-    {
+final class OfferModel{
+    public function getAll(): array{
         $pdo = Database::getPdo();
         $sql = "
             SELECT
@@ -29,25 +26,11 @@ final class OfferModel
             GROUP BY o.id
             ORDER BY o.created_at DESC
         ";
-
         return $pdo->query($sql)->fetchAll();
     }
-
-    /**
-     * @param array{
-     *   id_entreprise: int,
-     *   titre: string,
-     *   description: string,
-     *   remuneration: float|null,
-     *   date_debut: string|null,
-     *   date_fin: string|null
-     * } $data
-     */
-    public function create(array $data): int
-    {
+    public function create(array $data): int{
         $pdo = Database::getPdo();
         $duree = self::computeDureeMois($data['date_debut'] ?? null, $data['date_fin'] ?? null);
-
         $sql = "
             INSERT INTO offre (
                 id_entreprise, titre, description, remuneration,
@@ -68,25 +51,11 @@ final class OfferModel
             ':date_fin' => $data['date_fin'],
             ':duree_mois' => $duree,
         ]);
-
         return (int)$pdo->lastInsertId();
     }
-
-    /**
-     * @param array{
-     *   id_entreprise: int,
-     *   titre: string,
-     *   description: string,
-     *   remuneration: float|null,
-     *   date_debut: string|null,
-     *   date_fin: string|null
-     * } $data
-     */
-    public function update(int $id, array $data): void
-    {
+    public function update(int $id, array $data): void{
         $pdo = Database::getPdo();
         $duree = self::computeDureeMois($data['date_debut'] ?? null, $data['date_fin'] ?? null);
-
         $sql = "
             UPDATE offre SET
                 id_entreprise = :id_entreprise,
@@ -110,23 +79,15 @@ final class OfferModel
             ':duree_mois' => $duree,
         ]);
     }
-
-    public function delete(int $id): void
-    {
+    public function delete(int $id): void{
         $pdo = Database::getPdo();
         $stmt = $pdo->prepare('DELETE FROM offre WHERE id = :id');
         $stmt->execute([':id' => $id]);
     }
-
-    /**
-     * Remplace les compétences liées à l'offre (libellés séparés par virgule).
-     */
-    public function syncCompetencesForOffer(int $idOffre, string $competencesCsv): void
-    {
+    public function syncCompetencesForOffer(int $idOffre, string $competencesCsv): void{
         $labels = self::parseCompetenceLabels($competencesCsv);
         $pdo = Database::getPdo();
         $pdo->prepare('DELETE FROM offre_competence WHERE id_offre = :id')->execute([':id' => $idOffre]);
-
         foreach ($labels as $libelle) {
             $idComp = $this->ensureCompetenceId($pdo, $libelle);
             $ins = $pdo->prepare(
@@ -135,9 +96,7 @@ final class OfferModel
             $ins->execute([':o' => $idOffre, ':c' => $idComp]);
         }
     }
-
-    private function ensureCompetenceId(\PDO $pdo, string $libelle): int
-    {
+    private function ensureCompetenceId(\PDO $pdo, string $libelle): int{
         $sel = $pdo->prepare('SELECT id FROM competence WHERE libelle = :l LIMIT 1');
         $sel->execute([':l' => $libelle]);
         $row = $sel->fetch();
@@ -148,12 +107,7 @@ final class OfferModel
         $ins->execute([':l' => $libelle]);
         return (int)$pdo->lastInsertId();
     }
-
-    /**
-     * @return list<string>
-     */
-    private static function parseCompetenceLabels(string $csv): array
-    {
+    private static function parseCompetenceLabels(string $csv): array{
         $parts = preg_split('/[,;]/', $csv) ?: [];
         $out = [];
         foreach ($parts as $p) {
@@ -164,9 +118,7 @@ final class OfferModel
         }
         return $out;
     }
-
-    private static function computeDureeMois(?string $dateDebut, ?string $dateFin): ?int
-    {
+    private static function computeDureeMois(?string $dateDebut, ?string $dateFin): ?int{
         if ($dateDebut === null || $dateDebut === '' || $dateFin === null || $dateFin === '') {
             return null;
         }

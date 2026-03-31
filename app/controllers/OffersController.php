@@ -1,27 +1,19 @@
 <?php
-
 declare(strict_types=1);
 
-final class OffersController
-{
+final class OffersController{
     private const REDIRECT_LIST = '/index.php?controller=offers&action=index';
 
-    public function index(): void
-    {
+    public function index(): void{
         require_once ROOT . '/app/models/OfferModel.php';
-
         $offers = (new OfferModel())->getAll();
-
         require_once ROOT . '/app/views/pages/offers.php';
     }
-
-    public function create(): void
-    {
+    public function create(): void{
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;
         }
-
         require_once ROOT . '/app/models/OfferModel.php';
         require_once ROOT . '/app/models/CompanyModel.php';
 
@@ -65,14 +57,11 @@ final class OffersController
         header('Location: ' . self::REDIRECT_LIST);
         exit;
     }
-
-    public function update(): void
-    {
+    public function update(): void{
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;
         }
-
         require_once ROOT . '/app/models/OfferModel.php';
         require_once ROOT . '/app/models/CompanyModel.php';
 
@@ -109,14 +98,11 @@ final class OffersController
         header('Location: ' . self::REDIRECT_LIST);
         exit;
     }
-
-    public function delete(): void
-    {
+    public function delete(): void{
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;
         }
-
         require_once ROOT . '/app/models/OfferModel.php';
 
         $id = (int)($_POST['id'] ?? 0);
