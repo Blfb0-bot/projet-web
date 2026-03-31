@@ -32,24 +32,18 @@
     background-color: rgba(73, 20, 109, 0.5);
     border: 1px solid rgba(73, 20, 109, 0.5);
 }
-.offres{
+.offre{
     display: flex;
     flex-direction: column;
     max-width: 900px;
     margin: 30px auto;
     padding: 5px 10px;
-    
-    gap: 25px;
-}
-
-.offre{
-    display: flex;
-    flex-direction: column;
     border: 2px solid rgb(73, 20, 109) !important;
     background-color: rgba(204, 198, 211, 0.53) !important;
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    gap: 25px;
 }
 .debut-contenu-offre{
     display: flex;
