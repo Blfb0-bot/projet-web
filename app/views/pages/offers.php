@@ -12,48 +12,46 @@ ob_start(); // démarre la capture du contenu
     <button id="creation-offre" onclick="ouvrir('popup-creer-offre')">créer une offre</button>
 </section>
 <section id="nos-offres">
-    <div class="offres">
-        <?php
-        // Debug: afficher le nombre d'offres dans le HTML (visible via "Afficher le code source")
-        $offersCount = is_array($offers ?? null) ? count($offers) : 0;
-        echo "<!-- OFFERS_COUNT: $offersCount -->\n";
-        foreach (($offers ?? []) as $offer): ?>
-            <!-- OFFER START -->
-            <div class="offre" id="offer-<?= htmlspecialchars((string)($offer['id'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" data-offer-id="<?= htmlspecialchars((string)($offer['id'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
-                <div class="debut-contenu-offre">
-                    <div class="type" onclick="ouvrir('popup-postuler-offre')">stage</div>
-                    <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
-                    <div><a class="évaluer" href="#">évaluer</a></div>
-                    <div class="modification-offre">
-                        <button onclick="ouvrir('popup-modifier-offre')">modifier</button>
-                        <button onclick="ouvrir('popup-supprimer-offre')">supprimer</button>
-                    </div>
-                </div>
-                <div class="contenu-offre">
-                    <div class="description">
-                        <h2>description</h2>
-                        <article>
-                            <p><?= nl2br(htmlspecialchars((string)($offer['description'] ?? ''), ENT_QUOTES, 'UTF-8')) ?></p>
-                        </article>
-                    </div>
-                    <div class="competences">
-                        <h2>compétences</h2>
-                        <article>
-                            <p><?= htmlspecialchars((string)($offer['competences'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
-                        </article>
-                    </div>
-                    <div class="detail">
-                        <article><p>nombre de candidat: <?= htmlspecialchars((string)($offer['nb_candidatures'] ?? '0'), ENT_QUOTES, 'UTF-8') ?></p></article>
-                        <article><p>rémunération: <?= htmlspecialchars((string)($offer['remuneration'] ?? ''), ENT_QUOTES, 'UTF-8') ?> €</p></article>
-                    </div>
-                </div>
-                <div class="fin-contenu-offre">
-                    <p><?= htmlspecialchars((string)($offer['date_fin'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
+    <?php
+    // Debug: afficher le nombre d'offres dans le HTML (visible via "Afficher le code source")
+    $offersCount = is_array($offers ?? null) ? count($offers) : 0;
+    echo "<!-- OFFERS_COUNT: $offersCount -->\n";
+    foreach (($offers ?? []) as $offer): ?>
+        <!-- OFFER START -->
+        <div class="offre" id="offer-<?= htmlspecialchars((string)($offer['id'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" data-offer-id="<?= htmlspecialchars((string)($offer['id'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
+            <div class="debut-contenu-offre">
+                <div class="type" onclick="ouvrir('popup-postuler-offre')">stage</div>
+                <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
+                <div><a class="évaluer" href="#">évaluer</a></div>
+                <div class="modification-offre">
+                    <button onclick="ouvrir('popup-modifier-offre')">modifier</button>
+                    <button onclick="ouvrir('popup-supprimer-offre')">supprimer</button>
                 </div>
             </div>
-            <!-- OFFER END -->
-        <?php endforeach; ?>
-    </div>
+            <div class="contenu-offre">
+                <div class="description">
+                    <h2>description</h2>
+                    <article>
+                        <p><?= nl2br(htmlspecialchars((string)($offer['description'] ?? ''), ENT_QUOTES, 'UTF-8')) ?></p>
+                    </article>
+                </div>
+                <div class="competences">
+                    <h2>compétences</h2>
+                    <article>
+                        <p><?= htmlspecialchars((string)($offer['competences'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
+                    </article>
+                </div>
+                <div class="detail">
+                    <article><p>nombre de candidat: <?= htmlspecialchars((string)($offer['nb_candidatures'] ?? '0'), ENT_QUOTES, 'UTF-8') ?></p></article>
+                    <article><p>rémunération: <?= htmlspecialchars((string)($offer['remuneration'] ?? ''), ENT_QUOTES, 'UTF-8') ?> €</p></article>
+                </div>
+            </div>
+            <div class="fin-contenu-offre">
+                <p><?= htmlspecialchars((string)($offer['date_fin'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
+            </div>
+        </div>
+        <!-- OFFER END -->
+    <?php endforeach; ?>
 </section>
 
 <?php
