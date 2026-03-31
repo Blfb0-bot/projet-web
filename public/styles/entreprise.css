@@ -35,22 +35,26 @@
 }
 /*presentation de nos entreprise*/
 #nos-entreprises{
-    display: grid;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
-    grid-template-columns: repeat(2,1fr);
 }
 /*mise en forme des entreprise*/
 .entreprises{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     padding: 5px 10px;
-    margin: 15px;
+}
+
+/* Carte individuelle par entreprise */
+.entreprise{
+    padding: 12px;
+    margin: 0;
     border: 3px solid rgb(73, 20, 109);
     background-color: rgba(204, 198, 211, 0.53);
-    border-radius: 20px;
-    cursor: pointer;
-    max-width: auto;
+    border-radius: 16px;
 }
 .debut-contenu-entreprise{
     display: grid;
