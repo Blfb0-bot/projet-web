@@ -31,5 +31,23 @@ final class OfferModel
 
         return $pdo->query($sql)->fetchAll();
     }
+    public function create(array $data): void
+    {
+        $pdo = Database::getPdo();
+        $sql = "
+            INSERT INTO offre (id_entreprise, titre, description, remuneration, date_debut, date_fin, duree_mois, created_at)
+            VALUES (:id_entreprise, :titre, :description, :remuneration, :date_debut, :date_fin, :duree_mois, NOW())
+        ";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':id_entreprise' => 1, // TODO: remplacer par l'ID de l'entreprise connectée
+            ':titre' => $data['titre'] ?? '',
+            ':description' => $data['description'] ?? '',
+            ':remuneration' => $data['remuneration'] ?? null,
+            ':date_debut' => date('Y-m-d'), // ou une autre date par défaut
+            ':date_fin' => $data['date_fin'] ?? null,
+            ':duree_mois' => null // calculer si besoin
+        ]);
+    }
 }
 

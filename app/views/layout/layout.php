@@ -126,7 +126,7 @@
             <div class="overlay" id="popup-creer-offre">
                 <div class="popup">
                     <h2>Creation d'une offre</h2>
-                    <form action="sumit_offre" methode="post">
+                    <form action="offre/create" methode="post">
                         <label for="type">type d'offre:</label>
                         <select id="type" name="type" required>
                             <option value="stage">stage</option>7

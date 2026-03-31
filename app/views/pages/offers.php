@@ -8,7 +8,6 @@ ob_start(); // démarre la capture du contenu
     <h1>Nos Offres</h1>
 </section>
 <section id="outils-offre">
-    <button id="filtre" onclick="">filtre</button>
     <button id="creation-offre" onclick="ouvrir('popup-creer-offre')">créer une offre</button>
 </section>
 <section id="nos-offres">
