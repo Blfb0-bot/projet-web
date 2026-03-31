@@ -5,20 +5,7 @@ final class Database
 {
     private static ?PDO $instance = null;
 
-    private static function env(string $key, ?string $default = null): ?string
-    {
-        $value = getenv($key);
-        if ($value !== false && $value !== '') {
-            return $value;
-        }
-        if (isset($_ENV[$key]) && $_ENV[$key] !== '') {
-            return (string)$_ENV[$key];
-        }
-        return $default;
-    }
-
-    public static function getPdo(): PDO
-    {
+    public static function getPdo(): PDO{
         if (self::$instance === null) {
             $host = self::env('DB_HOST', 'localhost');
             $db   = self::env('DB_NAME', 'projet_web');
@@ -36,8 +23,20 @@ final class Database
                 die('Erreur de connexion à la base de données.');
             }
         }
-
         return self::$instance;
     }
+
+    private static function env(string $key, ?string $default = null): ?string
+    {
+        $value = getenv($key);
+        if ($value !== false && $value !== '') {
+            return $value;
+        }
+        if (isset($_ENV[$key]) && $_ENV[$key] !== '') {
+            return (string)$_ENV[$key];
+        }
+        return $default;
+    }
+
 }
 
