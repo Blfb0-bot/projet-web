@@ -43,18 +43,19 @@
 /*mise en forme des entreprise*/
 .entreprises{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr; /* une colonne */
+    gap: 24px; /* espace vertical entre les cartes */
     padding: 5px 10px;
 }
 
 /* Carte individuelle par entreprise */
 .entreprise{
-    padding: 12px;
+    padding: 18px;
     margin: 0;
     border: 3px solid rgb(73, 20, 109);
-    background-color: rgba(204, 198, 211, 0.53);
+    background-color: rgba(204, 198, 211, 0.7);
     border-radius: 16px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.10);
 }
 .debut-contenu-entreprise{
     display: grid;
