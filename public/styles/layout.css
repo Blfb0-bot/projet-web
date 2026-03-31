@@ -147,7 +147,7 @@
     min-height: calc(100vh - 67px);
 }
 body {
-    min-width: 850px; /* taille minimale globale de la page */
+    min-width: 320px; /* taille minimale globale de la page (réduit pour responsive) */
     overflow-x: auto; /* affiche une scrollbar horizontale au lieu de compresser */
 }
 /*=== RESPONSIVE ===*/
@@ -175,7 +175,7 @@ body {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: wrap !important;
-        gap: 8px !important;
+        gap: 2px !important;
         margin-top: 0 !important;
         padding: 5px !important;
         align-items: center !important;
