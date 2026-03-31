@@ -12,13 +12,8 @@ ob_start(); // démarre la capture du contenu
     <button id="creation-offre" onclick="ouvrir('popup-creer-offre')">créer une offre</button>
 </section>
 <section id="nos-offres">
-    <?php
-    // Debug: afficher le nombre d'offres dans le HTML (visible via "Afficher le code source")
-    $offersCount = is_array($offers ?? null) ? count($offers) : 0;
-    echo "<!-- OFFERS_COUNT: $offersCount -->\n";
-    foreach (($offers ?? []) as $offer): ?>
-        <!-- OFFER START -->
-        <div class="offre" id="offer-<?= htmlspecialchars((string)($offer['id'] ?? ''), ENT_QUOTES, 'UTF-8') ?>" data-offer-id="<?= htmlspecialchars((string)($offer['id'] ?? ''), ENT_QUOTES, 'UTF-8') ?>">
+    <?php foreach (($offers ?? []) as $offer): ?>
+        <div class="offres">
             <div class="debut-contenu-offre">
                 <div class="type" onclick="ouvrir('popup-postuler-offre')">stage</div>
                 <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
@@ -50,7 +45,6 @@ ob_start(); // démarre la capture du contenu
                 <p><?= htmlspecialchars((string)($offer['date_fin'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
             </div>
         </div>
-        <!-- OFFER END -->
     <?php endforeach; ?>
 </section>
 
