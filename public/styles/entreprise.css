@@ -63,6 +63,7 @@
 .debut-contenu-entreprise img{
     width: 150px;
     height: 150px;
+    border-radius: 20px;
 }
 .debut-contenu-entreprise p{
     display: grid;
