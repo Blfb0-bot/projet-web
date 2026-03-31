@@ -1,8 +1,6 @@
 <?php
 declare(strict_types=1);
 
-use PDO;
-
 final class Database
 {
     private static ?PDO $instance = null;
