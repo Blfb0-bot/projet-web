@@ -118,6 +118,162 @@
             </div>
         </div> 
     </div>
+    <!--Popup spécifiques à certaines pages-->
+    <div id = "popup-specific">
+        <!-- Popup creation-->
+        <div>
+            <!-- Popup pour la création d'offre-->
+            <div class="overlay" id="popup-creer-offre">
+                <div class="popup">
+                    <h2>Creation d'une offre</h2>
+                    <form action="sumit_offre" methode="post">
+                        <label for="type">type d'offre:</label>
+                        <select id="type" name="type" required>
+                            <option value="stage">stage</option>7
+                            <option value="alternance">alternance</option>
+                            <option value="CDD">CDD</option>
+                            <option value="CDI">CDI</option>
+                            <option value="interim">interim</option>
+                            <option value="autre">autre</option>
+                        </select><br/>
+                        <label for="titre">titre de l'offre:</label><br/>
+                        <input type="text" id="titre" name="titre" required><br/>
+                        <label for="entreprise">noms de l'entreprise:</label><br/>
+                        <input type="text" id="entreprise" name="entreprise" required><br/>
+                        <label for="description">une petite description:</label><br/>
+                        <textarea id="description" name="description" rows="4" cols="40" placeholder="Votre description..." required></textarea><br/>
+                        <label for="description">les compétences requis:</label><br/>
+                        <textarea id="description" name="description" rows="4" cols="40" placeholder="Les compétences..." required></textarea><br/>
+                        <label for="remuneration">La remuneration</label>
+                        <input type="text" id="remuneration" name="remuration" required><br/>
+                        <label for="date1">Date de debut: </label>
+                        <input type="date" id="date1" name="date1" required><br/>
+                        <label for="date2">Date de fin:</label>
+                        <input type="date" id="date2" name="date2" required><br/><br/>
+                        <input type="submit" value="Envoyer">
+                        <input type="reset" value="Réinitialiser"><br/><br/>
+                    </form>
+                    <button onclick="fermer('popup-creer-offre')">Fermer</button>
+                </div>
+            </div>
+            <!-- Popup pour la création d'entreprise-->
+            <div class="overlay" id="popup-creer-entreprise">
+                <div class="popup">
+                    <h3>Creation d'une entreprise</h3>
+                    <form action="submit_entreprise" methode="post">
+                        <label for="image">image de l'entreprise:</label>
+                        <input type="image" id="image" name="image" required><br/>
+                        <label for="nom">Nom de l'entreprise: </label>
+                        <input type="text" id="nom" name="nom" required><br/>
+                        <label for="description">Description de l'entreprise: </label><br/>
+                        <textarea id="description" name="description" rows="4" cols="40" placeholder="Votre description..." required></textarea><br/>
+                        <label for="mail">Mail de l'entreprise: </label>
+                        <input type="email" id="mail" name="mail" required><br/>
+                        <label for="numero">Numéro de l'entreprise: </label>
+                        <input type="number" id="numero" name="numero" required><br/><br/>
+                        <input type="submit" value="Envoyer">
+                        <input type="reset" value="Réinitialiser"><br/><br/>
+                    </form>
+                    <button onclick="fermer('popup-creer-entreprise')">Fermer</button>
+                </div>
+            </div>
+            <!-- Popup pour la création d'etudiant-->
+            <div class="overlay" id="popup-creer-etudiant">
+                <div class="popup">
+                    <h2>Creation d'un étudiant</h2>
+                    <form action="submit_etudiant" methode="post">
+                        <label for="prenom">Prenom de l'étudiant</label>
+                        <input type="text" id="prenom" name="prenom" required><br/>
+                        <label for="nom">Nom de l'étudiant</label>
+                        <input type="text" id="nom" name="nom"><br/>
+                        <label for="mail">Email de l'étudiant</label>
+                        <input type="email" id="mail" name="mail" required><br/><br/>
+                        <input type="submit" value="Envoyer">
+                        <input type="reset" value="Réinitialiser"><br/><br/>
+                    </form>
+                    <button onclick="fermer('popup-creer-etudiant')">Fermer</button>
+                </div>
+            </div>
+            <!-- Popup pour la création de pilote-->
+            <div class="overlay" id="popup-creer-pilote">
+                <div class="popup">
+                    <h2>Creation d'un pilote</h2>
+                    <form action="submit_pilote" methode="post">
+                        <label for="prenom">Prenom du pilote</label>
+                        <input type="text" id="prenom" name="prenom" required><br/>
+                        <label for="nom">Nom du pilote</label>
+                        <input type="text" id="nom" name="nom"><br/><br/>
+                        <input type="submit" value="Envoyer">
+                        <input type="reset" value="Réinitialiser"><br/><br/>
+                    <button onclick="fermer('popup-creer-pilote')">Fermer</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popup modification-->
+        <div>
+            <!-- Popup pour la modification d'offre-->
+            <div class="overlay" id="popup-modifier-offre">
+                <div class="popup">
+                    <button onclick="fermer('popup-modifier-offre')">Fermer</button>
+                </div>
+            </div>
+            <!-- Popup pour la modification d'entreprise-->
+            <div class="overlay" id="popup-modifier-entreprise">
+                <div class="popup">
+                    <button onclick="fermer('popup-modifier-entreprise')">Fermer</button>
+                </div>
+            </div>
+            <!-- Popup pour la modification d'etudiant-->
+            <div class="overlay" id="popup-modifier-etudiant">
+                <div class="popup">
+                    <button onclick="fermer('popup-modifier-etudiant')">Fermer</button>
+                </div>
+            </div>
+            <!-- Popup pour la modification de pilote-->
+            <div class="overlay" id="popup-modifier-pilote">
+                <div class="popup">
+                    <button onclick="fermer('popup-modifier-pilote')">Fermer</button>
+                </div>
+            </div>    
+        </div>
+
+        <!-- Popup suppression-->
+        <div>
+            <!-- Popup pour la suppression d'offre-->
+            <div class="overlay" id="popup-supprimer-offre">
+                <div class="popup">
+                    <button onclick="fermer('popup-supprimer-offre')">Fermer</button>
+                </div>
+            </div>
+            <!-- Popup pour la suppression d'entreprise-->
+            <div class="overlay" id="popup-supprimer-entreprise">
+                <div class="popup">
+                    <button onclick="fermer('popup-supprimer-entreprise')">Fermer</button>
+                </div>
+            </div>
+            <!-- Popup pour la suppression d'etudiant-->
+            <div class="overlay" id="popup-supprimer-etudiant">
+                <div class="popup">
+                    <button onclick="fermer('popup-supprimer-etudiant')">Fermer</button>
+                </div>
+            </div>
+            <!-- Popup pour la supression de pilote-->
+            <div class="overlay" id="popup-supprimer-pilote">
+                <div class="popup">
+                    <button onclick="fermer('popup-supprimer-pilote')">Fermer</button>
+                </div>
+            </div>
+        </div>
+
+        <!--Poppup pour postuler-->
+        <div class="overlay" id="popup-postuler-offre">
+            <div class="popup">
+                <h2>Postuler a cette offre</h2>
+                <button onclick="fermer('popup-postuler-offre')">Fermer</button>
+            </div>
+        </div>
+    </div>
     <!--Notre page-->
     <main id="page">
         <?= $content ?>  <!-- contenu unique de la page -->
