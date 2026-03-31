@@ -1,9 +1,3 @@
-<?php
-$cssExtra = '<link rel="stylesheet" href="/public/styles/offre.css">';
-ob_start();
-$formBase = '/index.php?controller=offers&action=';
-?>
-
 <!--Le contenue de la page-->
 <section id="presentation-offre">
     <h1>Nos Offres</h1>
@@ -60,9 +54,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <?php endif; ?>
-
-<?php
-$content   = ob_get_clean();
-$pageTitle = "Offre — Web for All";
-require_once ROOT . '/app/views/layout/layout.php';
-?>
