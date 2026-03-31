@@ -6,9 +6,6 @@ final class OffersController
 {
     private const REDIRECT_LIST = '/index.php?controller=offers&action=index';
 
-    /** @var list<string> */
-    private const TYPE_ANNONCE_ALLOWED = ['stage', 'alternance', 'CDD', 'CDI', 'interim', 'autre'];
-
     public function index(): void
     {
         require_once ROOT . '/app/models/OfferModel.php';
@@ -29,7 +26,6 @@ final class OffersController
         require_once ROOT . '/app/models/CompanyModel.php';
 
         $entrepriseNom = trim((string)($_POST['entreprise_nom'] ?? ''));
-        $typeAnnonce = self::normalizeTypeAnnonce((string)($_POST['type_annonce'] ?? ''));
         $titre = trim((string)($_POST['titre'] ?? ''));
         $description = trim((string)($_POST['description'] ?? ''));
         $competencesText = trim((string)($_POST['competences'] ?? ''));
@@ -55,7 +51,6 @@ final class OffersController
         $model = new OfferModel();
         $offerId = $model->create([
             'id_entreprise' => $idEntreprise,
-            'type_annonce' => $typeAnnonce,
             'titre' => $titre,
             'description' => $description,
             'remuneration' => $remuneration,
@@ -83,7 +78,6 @@ final class OffersController
 
         $id = (int)($_POST['id'] ?? 0);
         $entrepriseNom = trim((string)($_POST['entreprise_nom'] ?? ''));
-        $typeAnnonce = self::normalizeTypeAnnonce((string)($_POST['type_annonce'] ?? ''));
         $titre = trim((string)($_POST['titre'] ?? ''));
         $description = trim((string)($_POST['description'] ?? ''));
         $competencesText = trim((string)($_POST['competences'] ?? ''));
@@ -104,7 +98,6 @@ final class OffersController
         $model = new OfferModel();
         $model->update($id, [
             'id_entreprise' => $idEntreprise,
-            'type_annonce' => $typeAnnonce,
             'titre' => $titre,
             'description' => $description,
             'remuneration' => $remuneration,
@@ -133,11 +126,5 @@ final class OffersController
 
         header('Location: ' . self::REDIRECT_LIST);
         exit;
-    }
-
-    private static function normalizeTypeAnnonce(string $raw): string
-    {
-        $t = trim($raw);
-        return in_array($t, self::TYPE_ANNONCE_ALLOWED, true) ? $t : 'stage';
     }
 }

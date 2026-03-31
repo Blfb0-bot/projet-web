@@ -26,7 +26,6 @@ CREATE TABLE entreprise (
 CREATE TABLE offre (
   id            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   titre         VARCHAR(200) NOT NULL,
-  type_annonce  VARCHAR(30) NOT NULL DEFAULT 'stage',
   description   TEXT NOT NULL,
   remuneration  DECIMAL(8,2) UNSIGNED,
   date_debut    DATE,
