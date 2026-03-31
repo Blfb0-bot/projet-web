@@ -309,7 +309,7 @@
     </div>
     <!--Notre page-->
     <main id="page">
-        <?php if (isset($page)) && file_exists($page)) include $page; else echo '<p>Page introuvable</p>'; ?>
+        <?php if (isset($page) && file_exists($page)) include $page; else echo '<p>Page introuvable</p>'; ?>
     </main>
 </body>
 </html>
