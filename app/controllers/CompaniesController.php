@@ -4,6 +4,8 @@ class CompaniesController {
         $cssExtra = '<link rel="stylesheet" href="/public/styles/entreprise.css">';
         $pageTitle = 'Entreprises — Web for All';
         $page = ROOT . '/app/views/pages/companies.php';
+        require_once ROOT . '/app/models/CompanyModel.php';
+        $companies = (new CompanyModel())->getAll();
         require_once ROOT . '/app/views/layout/layout.php';
     }
 }
