@@ -2,7 +2,8 @@
 declare(strict_types=1);
 class CompaniesController {
     private const REDIRECT_LIST = '/index.php?controller=offers&action=index';
-    public function index(): void{
+    public function index(): void {
+        $formBase = '/index.php?controller=companies&action='; 
         $cssExtra = '<link rel="stylesheet" href="/public/styles/entreprise.css">';
         $pageTitle = 'Entreprises — Web for All';
         $page = ROOT . '/app/views/pages/companies.php';
@@ -12,24 +13,40 @@ class CompaniesController {
     }
     public function create(): void{
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: ' . self::REDIRECT_LIST);
+            header('Location: /index.php?controller=companies&action=index');
             exit;
         }
+        
         require_once ROOT . '/app/models/CompanyModel.php';
-        require_once ROOT . '/app/config/Database.php';
+
         $nom = trim((string)($_POST['nom'] ?? ''));
         $description = trim((string)($_POST['description'] ?? ''));
         $email = trim((string)($_POST['email'] ?? ''));
         $telephone = trim((string)($_POST['telephone'] ?? ''));
 
         if ($nom === '' || $description === '' || $email === '' || $telephone === '') {
-            header('Location: ' . self::REDIRECT_LIST . '&error=missing_fields');
+            header('Location: /index.php?controller=companies&action=index&error=missing_fields');
             exit;
         }
 
         $model = new CompanyModel();
-        $model->findOrCreateByNom($nom);
-        header('Location: ' . self::REDIRECT_LIST);
+        
+        // On vérifie si elle existe déjà pour éviter les doublons
+        if ($model->findIdByNom($nom) !== null) {
+            header('Location: /index.php?controller=companies&action=index&error=known_company');
+            exit;
+        }
+
+        // ON UTILISE LA MÉTHODE CREATE AVEC TOUTES LES DONNÉES
+        $model->create([
+            'nom' => $nom,
+            'description' => $description,
+            'email' => $email,
+            'telephone' => $telephone
+        ]);
+
+        header('Location: /index.php?controller=companies&action=index');
+        exit;
     }
     public function update(): void{
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
