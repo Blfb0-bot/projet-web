@@ -5,7 +5,6 @@ class CompaniesController {
     public function index(): void {
         $formBase = '/index.php?controller=companies&action='; 
         $cssExtra = '<link rel="stylesheet" href="/public/styles/entreprise.css">';
-        $cssExtra = '<link rel="stylesheet" href="/public/styles/layout.css">';
         $pageTitle = 'Entreprises — Web for All';
         $page = ROOT . '/app/views/pages/companies.php';
         require_once ROOT . '/app/models/CompanyModel.php';

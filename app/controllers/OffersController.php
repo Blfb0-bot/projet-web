@@ -6,7 +6,6 @@ final class OffersController{
     public function index(): void{
         $formBase = '/index.php?controller=offers&action=';
         $cssExtra = '<link rel="stylesheet" href="/public/styles/offre.css">';
-        $cssExtra = '<link rel="stylesheet" href="/public/styles/layout.css">';
         $pageTitle = 'Offres — Web for All';
         $page = ROOT . '/app/views/pages/offers.php';
         require_once ROOT . '/app/models/OfferModel.php';
