@@ -17,19 +17,19 @@
         <?php endif; ?>
         <form action="<?= htmlspecialchars($formBase . 'create', ENT_QUOTES, 'UTF-8') ?>" method="post">
             <label for="create-entreprise">Nom de l'entreprise</label><br/>
-            <input type="text" id="create-entreprise" name="entreprise_nom" required maxlength="200" placeholder="Ex. SoftCorp"><br/>
+            <input type="text" id="create-entreprise" name="create-entreprise_nom" required maxlength="200" placeholder="Ex. SoftCorp"><br/>
             <label for="create-titre">Titre de l'offre</label><br/>
-            <input type="text" id="create-titre" name="titre" required><br/>
+            <input type="text" id="create-titre" name="create-titre" required><br/>
             <label for="create-description">Description</label><br/>
-            <textarea id="create-description" name="description" rows="4" required></textarea><br/>
+            <textarea id="create-description" name="create-description" rows="4" required></textarea><br/>
             <label for="create-competences">Compétences (séparées par des virgules)</label><br/>
-            <textarea id="create-competences" name="competences" rows="3" placeholder="PHP, MySQL, …"></textarea><br/>
+            <textarea id="create-competences" name="create-competences" rows="3" placeholder="PHP, MySQL, …"></textarea><br/>
             <label for="create-remuneration">Rémunération (€)</label><br/>
-            <input type="number" id="create-remuneration" name="remuneration" step="0.01" min="0"><br/>
+            <input type="number" id="create-remuneration" name="create-remuneration" step="0.01" min="0"><br/>
             <label for="create-date-debut">Date de début</label><br/>
-            <input type="date" id="create-date-debut" name="date_debut"><br/>
+            <input type="date" id="create-date-debut" name="create-date-debut"><br/>
             <label for="create-date-fin">Date de fin</label><br/>
-            <input type="date" id="create-date-fin" name="date_fin"><br/><br/>
+            <input type="date" id="create-date-fin" name="create-date-fin"><br/><br/>
             <input type="submit" value="Enregistrer">
             <input type="reset" value="Réinitialiser">
         </form>
@@ -85,19 +85,19 @@
                 <form action="<?= htmlspecialchars($formBase . 'update', ENT_QUOTES, 'UTF-8') ?>" method="post">
                     <input type="hidden" name="id" value="<?= $oid ?>">
                     <label for="edit-entreprise-<?= $oid ?>">Nom de l'entreprise</label><br/>
-                    <input type="text" id="edit-entreprise-<?= $oid ?>" name="entreprise_nom" required maxlength="200" value="<?= htmlspecialchars($entrepriseNom, ENT_QUOTES, 'UTF-8') ?>"><br/>
+                    <input type="text" id="edit-entreprise-<?= $oid ?>" name="edit-entreprise_nom" required maxlength="200" value="<?= htmlspecialchars($entrepriseNom, ENT_QUOTES, 'UTF-8') ?>"><br/>
                     <label for="edit-titre-<?= $oid ?>">Titre</label><br/>
-                    <input type="text" id="edit-titre-<?= $oid ?>" name="titre" required value="<?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
+                    <input type="text" id="edit-titre-<?= $oid ?>" name="edit-titre" required value="<?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
                     <label for="edit-desc-<?= $oid ?>">Description</label><br/>
-                    <textarea id="edit-desc-<?= $oid ?>" name="description" rows="4" required><?= htmlspecialchars((string)($offer['description'] ?? ''), ENT_QUOTES, 'UTF-8') ?></textarea><br/>
+                    <textarea id="edit-desc-<?= $oid ?>" name="edit-description" rows="4" required><?= htmlspecialchars((string)($offer['description'] ?? ''), ENT_QUOTES, 'UTF-8') ?></textarea><br/>
                     <label for="edit-comp-<?= $oid ?>">Compétences (virgules)</label><br/>
-                    <textarea id="edit-comp-<?= $oid ?>" name="competences" rows="3"><?= htmlspecialchars((string)($offer['competences'] ?? ''), ENT_QUOTES, 'UTF-8') ?></textarea><br/>
+                    <textarea id="edit-comp-<?= $oid ?>" name="edit-competences" rows="3"><?= htmlspecialchars((string)($offer['competences'] ?? ''), ENT_QUOTES, 'UTF-8') ?></textarea><br/>
                     <label for="edit-rem-<?= $oid ?>">Rémunération (€)</label><br/>
-                    <input type="number" id="edit-rem-<?= $oid ?>" name="remuneration" step="0.01" min="0" value="<?= $remStr ?>"><br/>
+                    <input type="number" id="edit-rem-<?= $oid ?>" name="edit-remuneration" step="0.01" min="0" value="<?= $remStr ?>"><br/>
                     <label for="edit-dd-<?= $oid ?>">Date de début</label><br/>
-                    <input type="date" id="edit-dd-<?= $oid ?>" name="date_debut" value="<?= htmlspecialchars((string)$dd, ENT_QUOTES, 'UTF-8') ?>"><br/>
+                    <input type="date" id="edit-dd-<?= $oid ?>" name="edit-date_debut" value="<?= htmlspecialchars((string)$dd, ENT_QUOTES, 'UTF-8') ?>"><br/>
                     <label for="edit-df-<?= $oid ?>">Date de fin</label><br/>
-                    <input type="date" id="edit-df-<?= $oid ?>" name="date_fin" value="<?= htmlspecialchars((string)$df, ENT_QUOTES, 'UTF-8') ?>"><br/><br/>
+                    <input type="date" id="edit-df-<?= $oid ?>" name="edit-date_fin" value="<?= htmlspecialchars((string)$df, ENT_QUOTES, 'UTF-8') ?>"><br/><br/>
                     <input type="submit" value="Enregistrer les modifications">
                 </form>
                 <button type="button" onclick="fermer('popup-modifier-offre-<?= $oid ?>')">Fermer</button>

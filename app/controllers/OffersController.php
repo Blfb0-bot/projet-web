@@ -14,24 +14,22 @@ final class OffersController{
     }
     public function create(): void{
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: ' . self::REDIRECT_LIST);
+            header('Location: /index.php?controller=offers&action=index' );
             exit;
         }
         require_once ROOT . '/app/models/OfferModel.php';
         require_once ROOT . '/app/models/CompanyModel.php';
-        require_once ROOT . '/app/config/Database.php';
-        require_once ROOT . '/app/models/CompetenceModel.php';
 
-        $entrepriseNom = trim((string)($_POST['entreprise_nom'] ?? ''));
-        $titre = trim((string)($_POST['titre'] ?? ''));
-        $description = trim((string)($_POST['description'] ?? ''));
-        $competencesText = trim((string)($_POST['competences'] ?? ''));
-        $remunerationRaw = $_POST['remuneration'] ?? '';
+        $entrepriseNom = trim((string)($_POST['create-entreprise'] ?? ''));
+        $titre = trim((string)($_POST['create-titre'] ?? ''));
+        $description = trim((string)($_POST['create-description'] ?? ''));
+        $competencesText = trim((string)($_POST['create-competences'] ?? ''));
+        $remunerationRaw = $_POST['create-remuneration'] ?? '';
         $remuneration = $remunerationRaw === '' || $remunerationRaw === null
             ? null
             : (float)$remunerationRaw;
-        $dateDebut = trim((string)($_POST['date_debut'] ?? ''));
-        $dateFin = trim((string)($_POST['date_fin'] ?? ''));
+        $dateDebut = trim((string)($_POST['create-date_debut'] ?? ''));
+        $dateFin = trim((string)($_POST['create-date_fin'] ?? ''));
 
         if ($titre === '' || $description === '' || $entrepriseNom === '') {
             header('Location: ' . self::REDIRECT_LIST . '&error=missing_fields');
@@ -41,11 +39,18 @@ final class OffersController{
         $companyModel = new CompanyModel();
         $idEntreprise = $companyModel->findIdByNom($entrepriseNom);
         if ($idEntreprise === null) {
-            header('Location: ' . self::REDIRECT_LIST . '&error=unknown_company');
+            header('Location: /index.php?controller=offers&action=index&error=missing_fields');
+            echo '<p class="form-error">missing_fields</p>';
             exit;
         }
 
         $model = new OfferModel();
+        if($model->findIdByTitreAndCompany($titre, $idEntreprise) !== null) {
+            header('Location: /index.php?controller=offers&action=index&error=unknown_company and/or offers already exists');
+            echo '<p class="form-error">unknown_company and/or offers already exists</p>';
+            exit;
+        }
+
         $offerId = $model->create([
             'id_entreprise' => $idEntreprise,
             'titre' => $titre,
@@ -59,7 +64,7 @@ final class OffersController{
             $model->syncCompetencesForOffer($offerId, $competencesText);
         }
 
-        header('Location: ' . self::REDIRECT_LIST);
+        header('Location: /index.php?controller=offers&action=index&success=created');
         exit;
     }
     public function update(): void{
@@ -83,7 +88,7 @@ final class OffersController{
         $dateDebut = trim((string)($_POST['date_debut'] ?? ''));
         $dateFin = trim((string)($_POST['date_fin'] ?? ''));
 
-        $idEntreprise = (new CompanyModel())->findOrCreateByNom($entrepriseNom);
+        $idEntreprise = (new CompanyModel())->findIdByNom($entrepriseNom);
 
         if ($id <= 0 || $idEntreprise === null || $titre === '' || $description === '') {
             header('Location: ' . self::REDIRECT_LIST . '&error=invalid_update');
