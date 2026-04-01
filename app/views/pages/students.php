@@ -49,8 +49,8 @@
                             <td><?= htmlspecialchars((string)($student['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
                             <td>
                                 <?php if ($eid > 0): ?><!--si l'ID de l'etudiant est valide -->
-                                    <button onclick="ouvrir('popup-modifier-etudiant')">modifier</button>
-                                    <button onclick="ouvrir('popup-supprimer-etudiant')">supprimer</button>
+                                    <button onclick="ouvrir('popup-modifier-etudiant-<?= $eid ?>')">modifier</button>
+                                    <button onclick="ouvrir('popup-supprimer-etudiant-<?= $eid ?>')">supprimer</button>
                                 <?php endif; ?>
                             </td>
                         </tr>
