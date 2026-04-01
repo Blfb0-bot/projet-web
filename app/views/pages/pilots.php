@@ -3,7 +3,7 @@
     <h1>Nos Pilotes</h1>
 </section>
 <section id="outils-pilote">
-    <button id="creation-offre" onclick="ouvrir('popup-creer-pilote')">créer un pilote</button>
+    <button id="creation-pilote" onclick="ouvrir('popup-creer-pilote')">créer un pilote</button>
 </section>
 <div class="overlay" id="popup-creer-pilote">
     <div class="popup">

@@ -3,7 +3,7 @@
     <h1>Nos Etudiants</h1>
 </section>
 <section id="outils-etudiant">
-    <button id="creation-offre" onclick="ouvrir('popup-creer-etudiant')">créer un etudiant</button>
+    <button id="creation-etudiant" onclick="ouvrir('popup-creer-etudiant')">créer un etudiant</button>
 </section>
 <section id="nos-etudiant">
     <div class="etudiants">
