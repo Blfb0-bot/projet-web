@@ -4,7 +4,6 @@ class StudentsController {
     private const REDIRECT_LIST = '/index.php?controller=students&action=index';
     public function index(): void{
         $cssExtra = '<link rel="stylesheet" href="/public/styles/etudiant.css">';
-        $cssExtra = '<link rel="stylesheet" href="/public/styles/layout.css">';
         $pageTitle = 'Etudiants — Web for All';
         $page = ROOT . '/app/views/pages/students.php';
         require_once ROOT . '/app/models/UserModel.php';
