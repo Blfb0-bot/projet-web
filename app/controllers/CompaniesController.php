@@ -16,7 +16,6 @@ class CompaniesController {
             header('Location: /index.php?controller=companies&action=index');
             exit;
         }
-        echo "Je suis ici"; die();
         require_once ROOT . '/app/models/CompanyModel.php';
 
         $nom = trim((string)($_POST['create-nom'] ?? ''));
