@@ -39,17 +39,16 @@
                 <tbody>
                     <?php foreach (($pilots ?? []) as $pilot): ?>
                         <?php
-                            $pid = (int)($pilot['id'] ?? 0);
-                        ?>
+                            $pid = (int)($pilot['id'] ?? 0); ?>
                         <tr>
                             <td><?= htmlspecialchars((string)($pilot['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
                             <td><?= htmlspecialchars((string)($pilot['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
-                            <?php if ($pid > 0): ?> <!--si l'ID du pilote est valide -->
                             <td>
-                                <button onclick="ouvrir('popup-modifier-pilote')">modifier</button>
-                                <button onclick="ouvrir('popup-supprimer-pilote')">supprimer</button>
+                                <?php if ($pid > 0): ?><!--si l'ID du pilote est valide -->
+                                    <button onclick="ouvrir('popup-modifier-pilote')">modifier</button>
+                                    <button onclick="ouvrir('popup-supprimer-pilote')">supprimer</button>
+                                <?php endif; ?>
                             </td>
-                            <?php else: ?>
                             <?php if ($pid > 0): ?>
                                 <div class="overlay" id="popup-modifier-pilote-<?= $pid ?>">
                                     <div class="popup">
@@ -77,6 +76,7 @@
                                             <button onclick="fermer('popup-supprimer-pilote-<?= $pid ?>')">Annuler</button>
                                         </form>
                                     </div>
+                                </div>
                             <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
