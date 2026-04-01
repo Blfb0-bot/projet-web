@@ -6,15 +6,17 @@ function fermer(id) {
 }
 function basculerAuth() {
     const isChecked = document.getElementById('toggle-auth').checked;
-    const formConnexion = document.getElementById('form-connexion');
-    const formInscription = document.getElementById('form-inscription');
+    const formConnexion = document.getElementById('connexion');
+    const formInscription = document.getElementById('inscription');
 
     if (isChecked) {
-        formConnexion.style.display = 'none';
-        formInscription.style.display = 'block';
+        // On bascule sur l'inscription
+        formConnexion.classList.remove("actif");
+        formInscription.classList.add("actif");
     } else {
-        formConnexion.style.display = 'block';
-        formInscription.style.display = 'none';
+        // On revient sur la connexion
+        formInscription.classList.remove("actif");
+        formConnexion.classList.add("actif");
     }
 }
 // Ouvrir la popup automatiquement au chargement si pas connecté

@@ -76,61 +76,51 @@
             </div>
         </div>
         <!-- Popup pour le profil-->
-        <div class="overlay" id="popup-profil">
+        <div class="overlay" id="popup-profil actif">
             <div class="popup">
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <h2>Mon Compte</h2>
                     <p>Bonjour, <?= htmlspecialchars($_SESSION['user_prenom'] . ' ' . $_SESSION['user_nom']) ?></p>
                     <p>Rôle : <?= htmlspecialchars($_SESSION['user_role']) ?></p>
                     <hr>
-                    <a href="/index.php?controller=profile&action=index">gérer mon profil</a><br/>
-                    <a href="/index.php?controller=profile&action=logout">déconnexion</a><br/>
+                    <a href="/index.php?controller=profile&action=index">Gérer mon profil</a><br/>
+                    <a href="/index.php?controller=auth&action=logout">Déconnexion</a><br/>
                 <?php else : ?>
-                    <div class="bouton-toggle">
-                        <span>Connection</span>
+                    <div class="switch-container">
+                        <span>Connexion</span>
                         <label class="switch">
                             <input type="checkbox" id="toggle-auth" onchange="basculerAuth()">
                             <span class="slider"></span>
                         </label>
-                        <span>INscription</span>
+                        <span>Inscription</span>
                     </div>
-                    <div class="formulaire-profil" id="connexion">
-                        <form action="submit_connexion" method="post"> <!--voir qu'elle méthode garder-->
-                            <h2>formulaire de connexion</h2>
+
+                    <div class="formulaire-profil actif" id="connexion">
+                        <form action="index.php?controller=auth&action=login" method="post">
+                            <h2>Connexion</h2>
                             <label for="email">Email</label><br/>
-                            <input type="email" id="email" name="email" required><br/>
+                            <input type="email" name="email" required><br/>
                             <label for="mot-de-passe">Mot de passe</label><br/>
-                            <input type="password" id="mot-de-passe" name="mot-de-passe" required><br/><br/>
-                            <input type="submit" value="Envoyer">
-                            <input type="reset" value="Réinitialiser"><br/>
+                            <input type="password" name="mot_de_passe" required><br/><br/>
+                            <input type="submit" value="Se connecter">
                         </form>
                     </div>
-                    <!--formuaire d'inscription-->
+
                     <div class="formulaire-profil" id="inscription">
-                        <form action="submit_inscription" method="post"> <!--voir qu'elle méthode garder-->
-                            <h2>formulaire d'inscription</h2>
-                            <select id="genre" name="genre" required>
-                                <option value="Homme">Homme</option>
-                                <option value="Femme">Femme</option>
-                                <option value="Autre">Autre</option>
-                            </select><br/>
-                            <label for="nom-utilisateur">Nom de l'utilisateur</label><br/>
-                            <input type="text" id="nom-uttilisateur" name="nom-utilisateur" required><br/>
-                            <label for="prenom-utilisateur">Prénom de l'utilisateur</label><br/>
-                            <input type="text" id="prenom-uttilisateur" name="prenom-utilisateur" required><br/>
-                            <label for="email">Email</label><br/>
-                            <input type="email" id="email" name="email" required><br/>
-                            <label for="mot-de-passe">Mot de passe</label><br/>
-                            <input type="password" id="mot-de-passe" name="mot-de-passe" required><br/><br/>
-                            <input type="submit" value="Envoyer">
-                            <input type="reset" value="Réinitialiser"><br/>
+                        <form action="index.php?controller=users&action=register" method="post">
+                            <h2>Inscription</h2>
+                            <input type="text" name="nom" placeholder="Nom" required><br/>
+                            <input type="text" name="prenom" placeholder="Prénom" required><br/>
+                            <input type="email" name="email" placeholder="Email" required><br/>
+                            <input type="password" name="mot_de_passe" placeholder="Mot de passe" required><br/><br/>
+                            <input type="submit" value="Créer mon compte">
                         </form>
                     </div>
                 <?php endif ?>
                 <br/>
                 <button onclick="fermer('popup-profil')">Fermer</button>
             </div>
-        </div> 
+        </div>
     </div>
     <!--Notre page-->
     <main id="page">
