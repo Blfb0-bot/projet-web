@@ -38,8 +38,7 @@
                 </thead>
                 <tbody>
                     <?php foreach (($pilots ?? []) as $pilot): ?>
-                        <?php
-                            $pid = (int)($pilot['id'] ?? 0); ?>
+                        <?php $pid = (int)($pilot['id'] ?? 0); ?>
                         <tr>
                             <td><?= htmlspecialchars((string)($pilot['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
                             <td><?= htmlspecialchars((string)($pilot['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
