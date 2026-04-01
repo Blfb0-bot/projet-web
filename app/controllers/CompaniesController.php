@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 class CompaniesController {
-    private const REDIRECT_LIST = '/index.php?controller=offers&action=index';
+    private const REDIRECT_LIST = '/index.php?controller=companies&action=index';
     public function index(): void {
         $formBase = '/index.php?controller=companies&action='; 
         $cssExtra = '<link rel="stylesheet" href="/public/styles/entreprise.css">';
