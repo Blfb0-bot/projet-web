@@ -30,7 +30,7 @@ class CompaniesController {
         $model->findOrCreateByNom($nom);
         header('Location: ' . self::REDIRECT_LIST);
     }
-    publivc function update(): void{
+    public function update(): void{
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;
