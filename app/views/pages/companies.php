@@ -11,9 +11,9 @@
         <h2>Creation d'une entreprise</h2>
         <?php if (!empty($_GET['error'])): ?>
             <?php if ($_GET['error'] === 'missing_fields'): ?>
-                <p class="form-error">Merci de renseigner tous les champs.</p>
+                <?php echo '<p class="form-error">Merci de renseigner tous les champs.</p>'; ?>
             <?php elseif ($_GET['error'] === 'known_company'): ?>
-                <p class="form-error">Cette entreprise existe déjà.</p>
+                <?php echo '<p class="form-error">Cette entreprise existe déjà.</p>'; ?>
             <?php endif; ?>
         <?php endif; ?>
         <form action="<?= htmlspecialchars($formBase . 'create', ENT_QUOTES, 'UTF-8') ?>" method="post">
