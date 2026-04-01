@@ -45,7 +45,7 @@ class CompaniesController {
             'telephone' => $telephone
         ]);
 
-        header('Location: /index.php?controller=companies&action=index');
+        header('Location: /index.php?controller=companies&action=index&success=created');
         exit;
     }
     public function update(): void{
