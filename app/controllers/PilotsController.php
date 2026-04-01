@@ -4,6 +4,7 @@ class PilotsController {
     private const REDIRECT_LIST = '/index.php?controller=pilots&action=index';
     public function index(): void{
         $cssExtra = '<link rel="stylesheet" href="/public/styles/pilote.css">';
+        $cssExtra = '<link rel="stylesheet" href="/public/styles/layout.css">';
         $pageTitle = 'Pilotes — Web for All';
         $page = ROOT . '/app/views/pages/pilots.php';
         require_once ROOT . '/app/models/UserModel.php';
