@@ -11,7 +11,6 @@ final class CompanyModel{
         ";
         return $pdo->query($sql)->fetchAll();
     }
-
     /** Retourne l’id si une entreprise avec ce nom exact existe, sinon null. */
     public function findIdByNom(string $nom): ?int{
         $nom = trim($nom);

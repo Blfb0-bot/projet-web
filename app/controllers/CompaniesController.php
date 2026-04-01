@@ -16,7 +16,7 @@ class CompaniesController {
             header('Location: /index.php?controller=companies&action=index');
             exit;
         }
-        
+        echo "Je suis ici"; die();
         require_once ROOT . '/app/models/CompanyModel.php';
 
         $nom = trim((string)($_POST['create-nom'] ?? ''));
@@ -26,6 +26,7 @@ class CompaniesController {
 
         if ($nom === '' || $description === '' || $email === '' || $telephone === '') {
             header('Location: /index.php?controller=companies&action=index&error=missing_fields');
+            <?php echo '<p class="form-error">missing_fields</p>'; ?>
             exit;
         }
 
@@ -34,6 +35,7 @@ class CompaniesController {
         // On vérifie si elle existe déjà pour éviter les doublons
         if ($model->findIdByNom($nom) !== null) {
             header('Location: /index.php?controller=companies&action=index&error=known_company');
+            <?php echo '<p class="form-error">known_company</p>'; ?>
             exit;
         }
 
