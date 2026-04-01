@@ -126,6 +126,7 @@
             <div class="overlay" id="popup-creer-offre">
                 <div class="popup">
                     <h2>Création d'une offre</h2>
+
                     <?php if (!empty($_GET['error'])): ?>
                         <?php if ($_GET['error'] === 'missing_fields'): ?>
                             <p class="form-error">Merci de renseigner le nom de l'entreprise, le titre et la description.</p>
@@ -133,36 +134,34 @@
                             <p class="form-error">Entreprise inconnue, veuillez la créer.</p>
                         <?php endif; ?>
                     <?php endif; ?>
+
                     <form action="<?= htmlspecialchars($formBase . 'create', ENT_QUOTES, 'UTF-8') ?>" method="post">
                         <label for="create-entreprise">Nom de l'entreprise</label><br/>
                         <input type="text" id="create-entreprise" name="entreprise_nom" required maxlength="200" placeholder="Ex. SoftCorp"><br/>
+
                         <label for="create-titre">Titre de l'offre</label><br/>
                         <input type="text" id="create-titre" name="titre" required><br/>
+
                         <label for="create-description">Description</label><br/>
-                        <textarea id="create-description" name="description" rows="4" cols="40" required></textarea><br/>
+                        <textarea id="create-description" name="description" rows="4" required></textarea><br/>
+
                         <label for="create-competences">Compétences (séparées par des virgules)</label><br/>
-                        <textarea id="create-competences" name="competences" rows="3" cols="40" placeholder="PHP, MySQL, …"></textarea><br/>
+                        <textarea id="create-competences" name="competences" rows="3" placeholder="PHP, MySQL, …"></textarea><br/>
+
                         <label for="create-remuneration">Rémunération (€)</label><br/>
                         <input type="number" id="create-remuneration" name="remuneration" step="0.01" min="0"><br/>
+
                         <label for="create-date-debut">Date de début</label><br/>
                         <input type="date" id="create-date-debut" name="date_debut"><br/>
+
                         <label for="create-date-fin">Date de fin</label><br/>
                         <input type="date" id="create-date-fin" name="date_fin"><br/><br/>
+
                         <input type="submit" value="Enregistrer">
-                        <input type="reset" value="Réinitialiser"><br/><br/>
+                        <input type="reset" value="Réinitialiser">
                     </form>
+
                     <button type="button" onclick="fermer('popup-creer-offre')">Fermer</button>
-                    <?php foreach (($offers ?? []) as $offer):
-                    $oid = (int)($offer['id'] ?? 0);
-                    if ($oid <= 0) {
-                        continue;
-                    }
-                    $rem = $offer['remuneration'];
-                    $remStr = $rem !== null && $rem !== '' ? htmlspecialchars((string)$rem, ENT_QUOTES, 'UTF-8') : '';
-                    $dd = $offer['date_debut'] ?? '';
-                    $df = $offer['date_fin'] ?? '';
-                    $entrepriseNom = (string)($offer['entreprise_nom'] ?? '');
-                    ?>
                 </div>
             </div>
             <!-- Popup pour la création d'entreprise-->
@@ -298,7 +297,6 @@
                 </div>
             </div>
         </div>
-
         <!--Poppup pour postuler-->
         <div class="overlay" id="popup-postuler-offre">
             <div class="popup">
