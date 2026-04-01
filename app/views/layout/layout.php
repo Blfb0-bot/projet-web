@@ -122,28 +122,6 @@
     <div id = "popup-specific">
         <!-- Popup creation-->
         <div id="popup-creation">
-            
-            <!-- Popup pour la création d'entreprise-->
-            <div class="overlay" id="popup-creer-entreprise">
-                <div class="popup">
-                    <h3>Creation d'une entreprise</h3>
-                    <form action="submit_entreprise" methode="post">
-                        <label for="image">image de l'entreprise:</label>
-                        <input type="image" id="image" name="image" required><br/>
-                        <label for="nom">Nom de l'entreprise: </label>
-                        <input type="text" id="nom" name="nom" required><br/>
-                        <label for="description">Description de l'entreprise: </label><br/>
-                        <textarea id="description" name="description" rows="4" cols="40" placeholder="Votre description..." required></textarea><br/>
-                        <label for="mail">Mail de l'entreprise: </label>
-                        <input type="email" id="mail" name="mail" required><br/>
-                        <label for="numero">Numéro de l'entreprise: </label>
-                        <input type="number" id="numero" name="numero" required><br/><br/>
-                        <input type="submit" value="Envoyer">
-                        <input type="reset" value="Réinitialiser"><br/><br/>
-                    </form>
-                    <button onclick="fermer('popup-creer-entreprise')">Fermer</button>
-                </div>
-            </div>
             <!-- Popup pour la création d'etudiant-->
             <div class="overlay" id="popup-creer-etudiant">
                 <div class="popup">
@@ -178,13 +156,6 @@
         </div>
         <!-- Popup modification-->
         <div id ="popup-modification">
-            
-            <!-- Popup pour la modification d'entreprise-->
-            <div class="overlay" id="popup-modifier-entreprise">
-                <div class="popup">
-                    <button onclick="fermer('popup-modifier-entreprise')">Fermer</button>
-                </div>
-            </div>
             <!-- Popup pour la modification d'etudiant-->
             <div class="overlay" id="popup-modifier-etudiant">
                 <div class="popup">
@@ -200,13 +171,6 @@
         </div>
         <!-- Popup suppression-->
         <div id="popup-suppression">
-            
-            <!-- Popup pour la suppression d'entreprise-->
-            <div class="overlay" id="popup-supprimer-entreprise">
-                <div class="popup">
-                    <button onclick="fermer('popup-supprimer-entreprise')">Fermer</button>
-                </div>
-            </div>
             <!-- Popup pour la suppression d'etudiant-->
             <div class="overlay" id="popup-supprimer-etudiant">
                 <div class="popup">

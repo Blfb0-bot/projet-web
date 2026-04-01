@@ -10,7 +10,7 @@
         <h2>Création d'une offre</h2>
         <?php if (!empty($_GET['error'])): ?>
             <?php if ($_GET['error'] === 'missing_fields'): ?>
-                <p class="form-error">Merci de renseigner le nom de l'entreprise, le titre et la description.</p>
+                <p class="form-error">Merci de renseigner tout les champs</p>
             <?php elseif ($_GET['error'] === 'unknown_company'): ?>
                 <p class="form-error">Entreprise inconnue, veuillez la créer.</p>
             <?php endif; ?>
@@ -78,7 +78,7 @@
                 <p><?= htmlspecialchars((string)($offer['date_fin'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
             </div>
         </div>
-        <?php if ($oid > 0): ?>
+        <?php if ($oid > 0): ?> <!--si l'ID de l'offre est valide -->
         <div class="overlay" id="popup-modifier-offre-<?= $oid ?>">
             <div class="popup">
                 <h2>Modifier l'offre</h2>
@@ -111,10 +111,9 @@
                     <input type="hidden" name="id" value="<?= $oid ?>">
                     <button type="submit">Oui, supprimer</button>
                 </form>
-                <button type="button" onclick="fermer('popup-supprimer-offre-<?= $oid ?>')">Annuler</button>
+                <button type="button" onclick="fermer('popup-supprimer-offre-<?= $oid ?>')">Fermer</button>
             </div>
         </div>
         <?php endif; ?>
-
     <?php endforeach; ?>
 </section>

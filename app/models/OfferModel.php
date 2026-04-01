@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 require_once ROOT . '/app/config/Database.php';
-
 final class OfferModel{
     public function getAll(): array{
         $pdo = Database::getPdo();
