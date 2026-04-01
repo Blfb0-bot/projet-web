@@ -19,10 +19,10 @@ class CompaniesController {
         
         require_once ROOT . '/app/models/CompanyModel.php';
 
-        $nom = trim((string)($_POST['nom'] ?? ''));
-        $description = trim((string)($_POST['description'] ?? ''));
-        $email = trim((string)($_POST['email'] ?? ''));
-        $telephone = trim((string)($_POST['telephone'] ?? ''));
+        $nom = trim((string)($_POST['create-nom'] ?? ''));
+        $description = trim((string)($_POST['create-description'] ?? ''));
+        $email = trim((string)($_POST['create-email'] ?? ''));
+        $telephone = trim((string)($_POST['create-telephone'] ?? ''));
 
         if ($nom === '' || $description === '' || $email === '' || $telephone === '') {
             header('Location: /index.php?controller=companies&action=index&error=missing_fields');
@@ -57,26 +57,25 @@ class CompaniesController {
         require_once ROOT . '/app/models/CompanyModel.php';
         $idRaw = $_POST['id'] ?? '';
         $id = is_numeric($idRaw) ? (int)$idRaw : null;
-        $nom = trim((string)($_POST['nom'] ?? ''));
-        $description = trim((string)($_POST['description'] ?? ''));
-        $email = trim((string)($_POST['email'] ?? ''));
-        $telephone = trim((string)($_POST['telephone'] ?? ''));
+        $nom = trim((string)($_POST['edit-nom'] ?? ''));
+        $description = trim((string)($_POST['edit-description'] ?? ''));
+        $email = trim((string)($_POST['edit-email'] ?? ''));
+        $telephone = trim((string)($_POST['edit-telephone'] ?? ''));
 
         if ($id === null || $nom === '' || $description === '' || $email === '' || $telephone === '') {
             header('Location: ' . self::REDIRECT_LIST . '&error=missing_fields');
             exit;
         }
+        $model = new CompanyModel();
 
-        $pdo = Database::getPdo();
-        $stmt = $pdo->prepare('UPDATE entreprise SET nom = :nom, description = :description, email = :email, telephone = :telephone WHERE id = :id');
-        $stmt->execute([
-            ':id' => $id,
-            ':nom' => $nom,
-            ':description' => $description,
-            ':email' => $email,
-            ':telephone' => $telephone,
+        $model->update($id, [
+            'nom' => $nom,
+            'description' => $description,
+            'email' => $email,
+            'telephone' => $telephone
         ]);
-        header('Location: ' . self::REDIRECT_LIST);
+        header('Location: ' . self::REDIRECT_LIST. '&success=updated');
+        exit;
     }
     public function delete(): void{
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

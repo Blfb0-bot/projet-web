@@ -18,13 +18,13 @@
         <?php endif; ?>
         <form action="<?= htmlspecialchars($formBase . 'create', ENT_QUOTES, 'UTF-8') ?>" method="post">
             <label for ="create-nom">Nom de l'entreprise</label><br/>
-            <input type="text" id="create-nom" name="nom" required maxlength="200" placeholder="Ex. SoftCorp"><br/>
+            <input type="text" id="create-nom" name="create-nom" required maxlength="200" placeholder="Ex. SoftCorp"><br/>
             <label for="create-desc">Description de l'entreprise</label><br/>
-            <textarea id="create-desc" name="description" rows="4" required></textarea><br/>
-            <label for="create-mail">Mail de l'entreprise</label><br/>
-            <input type="email" id="create-mail" name="email" required placeholder="Ex. entreprise@exemple.com"><br/>
-            <label for="create-numero">Numéro de l'entreprise</label><br/>
-            <input type="tel" id="create-numero" name="telephone" required placeholder="Ex. 0123456789"><br/><br/>
+            <textarea id="create-desc" name="create-description" rows="4" required></textarea><br/>
+            <label for="create-email">Mail de l'entreprise</label><br/>
+            <input type="email" id="create-email" name="create-email" required placeholder="Ex. entreprise@exemple.com"><br/>
+            <label for="create-telephone">Numéro de l'entreprise</label><br/>
+            <input type="tel" id="create-telephone" name="create-telephone" required placeholder="Ex. 0123456789"><br/><br/>
             <input type="submit" value="Enregistrer">
             <input type="reset" value="Réinitialiser"><br/><br/>
         </form>
@@ -68,13 +68,13 @@
                     <form action="<?= htmlspecialchars($formBase . 'update', ENT_QUOTES, 'UTF-8') ?>" method="post">
                         <input type="hidden" name="id" value="<?= $cid ?>">
                         <label for="edit-nom-<?= $cid ?>">Nom de l'entreprise</label><br/>
-                        <input type="text" id="edit-nom-<?= $cid ?>" name="nom" required maxlength="200" value="<?= htmlspecialchars((string)($company['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
+                        <input type="text" id="edit-nom-<?= $cid ?>" name="edit-nom" required maxlength="200" value="<?= htmlspecialchars((string)($company['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
                         <label for="edit-desc-<?= $cid ?>">Description de l'entreprise</label><br/>
-                        <textarea id="edit-desc-<?= $cid ?>" name="description" rows="4" required><?= htmlspecialchars((string)($company['description'] ?? ''), ENT_QUOTES, 'UTF-8') ?></textarea><br/>
-                        <label for="edit-mail-<?= $cid ?>">Mail de l'entreprise</label><br/>
-                        <input type="email" id="edit-mail-<?= $cid ?>" name="email" required value="<?= htmlspecialchars((string)($company['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
-                        <label for="edit-numero-<?= $cid ?>">Numéro de l'entreprise</label><br/>
-                        <input type="tel" id="edit-numero-<?= $cid ?>" name="telephone" required value="<?= htmlspecialchars((string)($company['telephone'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/><br/>
+                        <textarea id="edit-desc-<?= $cid ?>" name="edit-description" rows="4" required><?= htmlspecialchars((string)($company['description'] ?? ''), ENT_QUOTES, 'UTF-8') ?></textarea><br/>
+                        <label for="edit-email-<?= $cid ?>">Mail de l'entreprise</label><br/>
+                        <input type="email" id="edit-email-<?= $cid ?>" name="edit-email" required value="<?= htmlspecialchars((string)($company['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
+                        <label for="edit-telephone-<?= $cid ?>">Numéro de l'entreprise</label><br/>
+                        <input type="tel" id="edit-telephone-<?= $cid ?>" name="edit-telephone" required value="<?= htmlspecialchars((string)($company['telephone'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/><br/>
                         <input type="submit" value="Enregistrer">
                         <input type="reset" value="Réinitialiser"><br/><br/>
                     </form>
