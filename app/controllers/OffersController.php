@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 final class OffersController{
     private const REDIRECT_LIST = '/index.php?controller=offers&action=index';
-
     public function index(): void{
         $formBase = '/index.php?controller=offers&action=';
         $cssExtra = '<link rel="stylesheet" href="/public/styles/offre.css">';
