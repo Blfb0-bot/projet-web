@@ -25,7 +25,7 @@
             <input type="submit" value="Enregistrer">
             <input type="reset" value="Réinitialiser"><br/><br/>
         </form>
-        <button onclick="fermer('popup-creer-etudiant')">Fermer</button
+        <button onclick="fermer('popup-creer-etudiant')">Fermer</button>
     </div>
 </div>
 <section id="nos-etudiant">
