@@ -49,6 +49,8 @@ final class CompanyModel{
                 telephone = :telephone
             WHERE id = :id
         ";
+        var_dump($_POST); 
+        die();
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':id' => $id,
@@ -57,6 +59,7 @@ final class CompanyModel{
             ':email' => $data['email'] ?? null,
             ':telephone' => $data['telephone'] ?? null,
         ]);
+        
     }
     public function delete(int $id): void{
         $pdo = Database::getPdo();

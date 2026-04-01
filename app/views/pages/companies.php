@@ -74,7 +74,7 @@
                         <label for="edit-mail-<?= $cid ?>">Mail de l'entreprise</label><br/>
                         <input type="email" id="edit-mail-<?= $cid ?>" name="email" required value="<?= htmlspecialchars((string)($company['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
                         <label for="edit-numero-<?= $cid ?>">Numéro de l'entreprise</label><br/>
-                        <input type="number" id="edit-numero-<?= $cid ?>" name="telephone" required value="<?= htmlspecialchars((string)($company['telephone'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/><br/>
+                        <input type="tel" id="edit-numero-<?= $cid ?>" name="telephone" required value="<?= htmlspecialchars((string)($company['telephone'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/><br/>
                         <input type="submit" value="Enregistrer">
                         <input type="reset" value="Réinitialiser"><br/><br/>
                     </form>
