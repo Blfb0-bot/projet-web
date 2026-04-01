@@ -45,8 +45,8 @@
                             <td><?= htmlspecialchars((string)($pilot['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
                             <td>
                                 <?php if ($pid > 0): ?><!--si l'ID du pilote est valide -->
-                                    <button onclick="ouvrir('popup-modifier-pilote')">modifier</button>
-                                    <button onclick="ouvrir('popup-supprimer-pilote')">supprimer</button>
+                                    <button onclick="ouvrir('popup-modifier-pilote-<?= $pid ?>')">modifier</button>
+                                    <button onclick="ouvrir('popup-supprimer-pilote-<?= $pid ?>')">supprimer</button>
                                 <?php endif; ?>
                             </td>
                         </tr>
