@@ -25,6 +25,7 @@
         </form>
         <button onclick="fermer('popup-creer-pilote')">Fermer</button>
     </div>
+</div>
 <section id="nos-pilote">
     <div class="pilote">
         <div class="table-pilote">
