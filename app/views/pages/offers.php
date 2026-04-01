@@ -45,12 +45,3 @@
         </div>
     <?php endforeach; ?>
 </section>
-<?php if (!empty($_GET['error']) && $_GET['error'] === 'missing_fields'): ?>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    if (typeof ouvrir === 'function') {
-        ouvrir('popup-creer-offre');
-    }
-});
-</script>
-<?php endif; ?>
