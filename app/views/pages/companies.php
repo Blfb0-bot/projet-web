@@ -24,7 +24,7 @@
             <label for="create-mail">Mail de l'entreprise</label><br/>
             <input type="email" id="create-mail" name="email" required placeholder="Ex. entreprise@exemple.com"><br/>
             <label for="create-numero">Numéro de l'entreprise</label><br/>
-            <input type="number" id="create-numero" name="telephone" required placeholder="Ex. 0123456789"><br/><br/>
+            <input type="tel" id="create-numero" name="telephone" required placeholder="Ex. 0123456789"><br/><br/>
             <input type="submit" value="Enregistrer">
             <input type="reset" value="Réinitialiser"><br/><br/>
         </form>
