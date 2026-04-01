@@ -63,22 +63,4 @@ final class CompanyModel{
         $stmt = $pdo->prepare('DELETE FROM entreprise WHERE id = :id');
         $stmt->execute([':id' => $id]);
     }
-    /** Crée une entreprise minimale si le nom exact n’existe pas encore. */
-    public function findOrCreateByNom(string $nom): ?int{
-        $nom = trim($nom);
-        if ($nom === '') {
-            return null;
-        }
-        $pdo = Database::getPdo();
-        $stmt = $pdo->prepare('SELECT id FROM entreprise WHERE nom = :n LIMIT 1');
-        $stmt->execute([':n' => $nom]);
-        $row = $stmt->fetch();
-        if ($row !== false) {
-            return (int)$row['id'];
-        }
-        $ins = $pdo->prepare('INSERT INTO entreprise (nom) VALUES (:n)');
-        $ins->execute([':n' => $nom]);
-        return (int)$pdo->lastInsertId();
-    }
 }
-

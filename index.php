@@ -16,7 +16,6 @@ if (empty($_SESSION['csrf_token'])) {
 }
 
 // --- Table de routes ---
-// On ne stocke que le nom de la classe, l'action sera dynamique
 $routes = [
     'accueil'   => 'AccueilController',
     'companies' => 'CompaniesController',

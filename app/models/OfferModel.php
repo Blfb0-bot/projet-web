@@ -27,6 +27,18 @@ final class OfferModel{
         ";
         return $pdo->query($sql)->fetchAll();
     }
+    public function findIdByTitreAndCompany(string $titre, int $idEntreprise): ?int{
+        $titre = trim($titre);
+        $idEntreprise = max(0, $idEntreprise);
+        if ($titre === '' || $idEntreprise <= 0) {
+            return null;
+        }
+        $pdo = Database::getPdo();
+        $stmt = $pdo->prepare('SELECT id FROM offre WHERE titre = :t AND id_entreprise = :e LIMIT 1');
+        $stmt->execute([':t' => $titre, ':e' => $idEntreprise]);
+        $row = $stmt->fetch();
+        return $row !== false ? (int)$row['id'] : null;
+    }
     public function create(array $data): int{
         $pdo = Database::getPdo();
         $duree = self::computeDureeMois($data['date_debut'] ?? null, $data['date_fin'] ?? null);
