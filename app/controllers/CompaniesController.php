@@ -16,6 +16,7 @@ class CompaniesController {
             exit;
         }
         require_once ROOT . '/app/models/CompanyModel.php';
+        require_once ROOT . '/app/config/Database.php';
         $nom = trim((string)($_POST['nom'] ?? ''));
         $description = trim((string)($_POST['description'] ?? ''));
         $email = trim((string)($_POST['email'] ?? ''));
@@ -36,6 +37,7 @@ class CompaniesController {
             exit;
         }
         require_once ROOT . '/app/config/Database.php';
+        require_once ROOT . '/app/models/CompanyModel.php';
         $idRaw = $_POST['id'] ?? '';
         $id = is_numeric($idRaw) ? (int)$idRaw : null;
         $nom = trim((string)($_POST['nom'] ?? ''));
@@ -65,6 +67,7 @@ class CompaniesController {
             exit;
         }
         require_once ROOT . '/app/config/Database.php';
+        require_once ROOT . '/app/models/CompanyModel.php';
         $idRaw = $_POST['id'] ?? '';
         $id = is_numeric($idRaw) ? (int)$idRaw : null;
         if ($id === null) {
