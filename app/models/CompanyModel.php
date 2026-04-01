@@ -49,8 +49,6 @@ final class CompanyModel{
                 telephone = :telephone
             WHERE id = :id
         ";
-        var_dump($_POST); 
-        die();
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':id' => $id,
