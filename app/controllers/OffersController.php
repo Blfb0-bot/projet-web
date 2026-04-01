@@ -19,6 +19,8 @@ final class OffersController{
         }
         require_once ROOT . '/app/models/OfferModel.php';
         require_once ROOT . '/app/models/CompanyModel.php';
+        require_once ROOT . '/app/config/Database.php';
+        require_once ROOT . '/app/models/CompetenceModel.php';
 
         $entrepriseNom = trim((string)($_POST['entreprise_nom'] ?? ''));
         $titre = trim((string)($_POST['titre'] ?? ''));
@@ -67,6 +69,7 @@ final class OffersController{
         }
         require_once ROOT . '/app/models/OfferModel.php';
         require_once ROOT . '/app/models/CompanyModel.php';
+        require_once ROOT . '/app/config/Database.php';
 
         $id = (int)($_POST['id'] ?? 0);
         $entrepriseNom = trim((string)($_POST['entreprise_nom'] ?? ''));
@@ -107,6 +110,7 @@ final class OffersController{
             exit;
         }
         require_once ROOT . '/app/models/OfferModel.php';
+        require_once ROOT . '/app/config/Database.php';
 
         $id = (int)($_POST['id'] ?? 0);
         if ($id > 0) {
