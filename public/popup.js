@@ -10,10 +10,3 @@ function changerOnglet(id){
     });
     document.getElementById(id).classList.add('actif');
 }
-document.addEventListener('DOMContentLoaded', function () {
-    const params = new URLSearchParams(window.location.search);
-    const error = params.get('error');
-    if (error === 'missing_fields' || error === 'unknown_company') {
-        ouvrir('popup-creer-offre');
-    }
-});
