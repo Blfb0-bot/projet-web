@@ -49,6 +49,7 @@
                                     <button onclick="ouvrir('popup-supprimer-pilote')">supprimer</button>
                                 <?php endif; ?>
                             </td>
+                        </tr>
                             <?php if ($pid > 0): ?>
                                 <div class="overlay" id="popup-modifier-pilote-<?= $pid ?>">
                                     <div class="popup">
@@ -78,7 +79,6 @@
                                     </div>
                                 </div>
                             <?php endif; ?>
-                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>

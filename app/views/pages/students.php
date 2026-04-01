@@ -53,6 +53,7 @@
                                     <button onclick="ouvrir('popup-supprimer-etudiant')">supprimer</button>
                                 <?php endif; ?>
                             </td>
+                        </tr>
                             <?php if ($eid > 0): ?>
                                 <div class="overlay" id="popup-modifier-etudiant-<?= $eid ?>">
                                     <div class="popup">
@@ -83,7 +84,6 @@
                                     </div>
                                 </div>
                             <?php endif ?>
-                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
