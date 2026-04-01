@@ -39,8 +39,8 @@ final class OffersController{
         $companyModel = new CompanyModel();
         $idEntreprise = $companyModel->findIdByNom($entrepriseNom);
         if ($idEntreprise === null) {
-            header('Location: /index.php?controller=offers&action=index&error=missing_fields');
-            echo '<p class="form-error">missing_fields</p>';
+            header('Location: /index.php?controller=offers&action=index&error=company_not_found');
+            echo '<p class="form-error">company_not_found</p>';
             exit;
         }
 
