@@ -20,7 +20,7 @@ final class OffersController{
         require_once ROOT . '/app/models/OfferModel.php';
         require_once ROOT . '/app/models/CompanyModel.php';
 
-        $entrepriseNom = trim((string)($_POST['create-entreprise'] ?? ''));
+        $entrepriseNom = trim((string)($_POST['create-entreprise_nom'] ?? ''));
         $titre = trim((string)($_POST['create-titre'] ?? ''));
         $description = trim((string)($_POST['create-description'] ?? ''));
         $competencesText = trim((string)($_POST['create-competences'] ?? ''));
@@ -77,16 +77,16 @@ final class OffersController{
         require_once ROOT . '/app/config/Database.php';
 
         $id = (int)($_POST['id'] ?? 0);
-        $entrepriseNom = trim((string)($_POST['entreprise_nom'] ?? ''));
-        $titre = trim((string)($_POST['titre'] ?? ''));
-        $description = trim((string)($_POST['description'] ?? ''));
-        $competencesText = trim((string)($_POST['competences'] ?? ''));
-        $remunerationRaw = $_POST['remuneration'] ?? '';
+        $entrepriseNom = trim((string)($_POST['edit-entreprise_nom'] ?? ''));
+        $titre = trim((string)($_POST['edit-titre'] ?? ''));
+        $description = trim((string)($_POST['edit-description'] ?? ''));
+        $competencesText = trim((string)($_POST['edit-competences'] ?? ''));
+        $remunerationRaw = $_POST['edit-remuneration'] ?? '';
         $remuneration = $remunerationRaw === '' || $remunerationRaw === null
             ? null
             : (float)$remunerationRaw;
-        $dateDebut = trim((string)($_POST['date_debut'] ?? ''));
-        $dateFin = trim((string)($_POST['date_fin'] ?? ''));
+        $dateDebut = trim((string)($_POST['edit-date_debut'] ?? ''));
+        $dateFin = trim((string)($_POST['edit-date_fin'] ?? ''));
 
         $idEntreprise = (new CompanyModel())->findIdByNom($entrepriseNom);
 
