@@ -17,7 +17,7 @@
     <header id="en-tete">
         <h3>Bienvenue sur Web for All</h3>
         <div id="recherche">
-            <form action="/recherche" methode="post">
+            <form action="/recherche" method="post">
                 <input type="search" name="q" placeholder="recherche..." aria-label="recherche sur le site">
             </form>
         </div>
@@ -64,7 +64,7 @@
                 <p>Notre numéro: 00-00-00-00-00</p>
                 <p>Notre adresse mail: cesi@viacesi.fr</p>
                 <p>Notre adresse postale: 7 rue diderot 62000 Arras</p>
-                <form action="sumit_message" methode="post"> <!--A voir lequel utiliser-->
+                <form action="sumit_message" method="post"> <!--A voir lequel utiliser-->
                     <label for="nom-utilisateur">Nom et prénom de l'utilisateur</label><br/>
                     <input type="text" id="nom-utilisateur" name="nom-utilisateur" required><br/>
                     <label for="message">Vous avez la parole:</label><br/>
