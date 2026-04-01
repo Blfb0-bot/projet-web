@@ -22,9 +22,7 @@
             </form>
         </div>
         <div id="profil">
-            <a href="#" onclick="ouvrir('popup-profil')">
-                <img src="../public/images/PROFIL.png" alt="PROFIL.png">
-            </a>
+            <img onclick="ouvrir('popup-profil')" src="../public/images/PROFIL.png" alt="PROFIL.png">
         </div>
     </header> 
     <!--Barre latérale de nos pages-->
@@ -76,7 +74,7 @@
             </div>
         </div>
         <!-- Popup pour le profil-->
-        <div class="overlay" id="popup-profil actif">
+        <div class="overlay" id="popup-profil">
             <div class="popup">
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <h2>Mon Compte</h2>

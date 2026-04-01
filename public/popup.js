@@ -1,8 +1,15 @@
 function ouvrir(id) {
-    document.getElementById(id).classList.add("actif");
+    console.log("Tentative d'ouverture de : " + id); // Pour vérifier dans la console
+    const elem = document.getElementById(id);
+    if (elem) {
+        elem.classList.add("actif");
+    }
 }
 function fermer(id) {
-    document.getElementById(id).classList.remove("actif");
+    const elem = document.getElementById(id);
+    if (elem) {
+        elem.classList.remove("actif");
+    }
 }
 function basculerAuth() {
     const isChecked = document.getElementById('toggle-auth').checked;
@@ -21,10 +28,10 @@ function basculerAuth() {
 }
 // Ouvrir la popup automatiquement au chargement si pas connecté
 window.onload = function() {
-    // On vérifie si l'utilisateur est déjà connecté via une classe sur le body ou une variable JS
+    // Si l'utilisateur n'est pas connecté, le JS ajoute la classe 'actif' dynamiquement
     const isConnected = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
     if (!isConnected) {
-        ouvrir('popup-profil');
+        ouvrir('popup-profil'); 
     }
 };
 document.addEventListener('DOMContentLoaded', function () {
