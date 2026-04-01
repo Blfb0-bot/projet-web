@@ -93,5 +93,6 @@ class PilotsController {
         $model->delete($id);
         header('Location: ' . self::REDIRECT_LIST. '&success=deleted');
         exit;
+    }
 }
 ?>
