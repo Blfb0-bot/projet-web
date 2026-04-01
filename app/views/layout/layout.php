@@ -277,7 +277,6 @@
                     <button type="button" onclick="fermer('popup-supprimer-offre-<?= $oid ?>')">Annuler</button>
                 </div>
             </div>
-            <?php endforeach; ?>
             <!-- Popup pour la suppression d'entreprise-->
             <div class="overlay" id="popup-supprimer-entreprise">
                 <div class="popup">
