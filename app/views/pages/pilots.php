@@ -2,30 +2,6 @@
 <section id="presentation-pilote">
     <h1>Nos Pilotes</h1>
 </section>
-<section id="outils-pilote">
-    <button id="creation-pilote" onclick="ouvrir('popup-creer-pilote')">créer un pilote</button>
-</section>
-<div class="overlay" id="popup-creer-pilote">
-    <div class="popup">
-        <h2>Creation d'un pilote</h2>
-        <?php if (!empty($_GET['error'])): ?>
-            <?php if ($_GET['error'] === 'missing_fields'): ?>
-                <?php echo '<p class="form-error">Merci de renseigner tous les champs.</p>'; ?>
-            <?php elseif ($_GET['error'] === 'known_pilot'): ?>
-                <?php echo '<p class="form-error">Ce pilote existe déjà.</p>'; ?>
-            <?php endif; ?>
-        <?php endif; ?>
-        <form action="<?= htmlspecialchars($formBase . 'create', ENT_QUOTES, 'UTF-8') ?>" method="post">
-            <label for ="create-prenom">Prenom du pilote</label><br/>
-            <input type="text" id="create-prenom" name="create-prenom" required maxlength="100" placeholder="Ex. Jean"><br/>
-            <label for="create-nom">Nom du pilote</label><br/>
-            <input type="text" id="create-nom" name="create-nom" required maxlength="100" placeholder="Ex. Dupont"><br/><br/>
-            <input type="submit" value="Enregistrer">
-            <input type="reset" value="Réinitialiser"><br/><br/>
-        </form>
-        <button onclick="fermer('popup-creer-pilote')">Fermer</button>
-    </div>
-</div>
 <section id="nos-pilote">
     <div class="pilote">
         <div class="table-pilote">
