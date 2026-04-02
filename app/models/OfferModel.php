@@ -149,7 +149,7 @@ final class OfferModel{
     }
     public function searchByTitleOrCompany(string $term): array {
         $pdo = Database::getPdo();
-        
+        $search = "%" . $term . "%";
         // On cherche dans le titre de l'offre OU dans le nom de l'entreprise
         $sql = "
             SELECT o.*, e.nom_entreprise 
@@ -160,8 +160,7 @@ final class OfferModel{
         ";
         
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([':term' => '%' . $term . '%']);
-        
+        $stmt->execute([':term' => $search]);        
         $result= $stmt->fetchAll();
         return $result;
     }
