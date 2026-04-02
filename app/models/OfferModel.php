@@ -150,18 +150,23 @@ final class OfferModel{
     public function searchByTitleOrCompany(string $term): array {
         $pdo = Database::getPdo();
         $search = "%" . $term . "%";
-        // On cherche dans le titre de l'offre OU dans le nom de l'entreprise
+
         $sql = "
-            SELECT o.*, e.nom AS entreprise_nom
+            SELECT o.*, e.nom AS nom_entreprise 
             FROM offre o
             LEFT JOIN entreprise e ON o.id_entreprise = e.id
-            WHERE (o.titre LIKE :term OR e.nom LIKE :term)
+            WHERE (o.titre LIKE :term_titre OR e.nom LIKE :term_ent)
             ORDER BY o.created_at DESC
         ";
         
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([':term' => $search]);        
-        $result= $stmt->fetchAll();
-        return $result;
+        
+        // On envoie la même variable $search aux deux paramètres différents
+        $stmt->execute([
+            ':term_titre' => $search,
+            ':term_ent'   => $search
+        ]);        
+        
+        return $stmt->fetchAll();
     }
 }
