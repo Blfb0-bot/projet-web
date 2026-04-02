@@ -5,13 +5,14 @@ final class Database{
     private static ?PDO $instance = null;
     public static function getPdo(): PDO {
         if (self::$instance === null) {
-            // FORCE 127.0.0.1 au lieu de localhost pour WSL
-            $host = self::env('DB_HOST', '127.0.0.1');
-            $db   = self::env('DB_NAME', 'projet_web');
-            $user = self::env('DB_USER', 'root');
-            $pass = self::env('DB_PASS', 'Beuvry/0710');
-            // Ajout du port par défaut au cas où
+            // ON FORCE LES VALEURS ICI POUR LE TEST
+            $host = '127.0.0.1'; 
+            $db   = 'projet_web';
+            $user = 'root';
+            $pass = 'Beuvry/0710';
+            
             $dsn = "mysql:host=$host;port=3306;dbname=$db;charset=utf8mb4";
+            
             try {
                 self::$instance = new PDO($dsn, $user, $pass, [
                     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -19,10 +20,8 @@ final class Database{
                     PDO::ATTR_EMULATE_PREPARES   => false,
                 ]);
             } catch (\PDOException $e) {
-                // STx 11 : On ne print JAMAIS $e->getMessage() directement à l'écran en prod
-                // car cela peut révéler ton mot de passe ou ton nom de serveur.
-                error_log('DB Error: ' . $e->getMessage()); 
-                die('Erreur de connexion : Vérifiez vos identifiants.');
+                // Affiche l'erreur complète juste pour le debug
+                die("Échec du lien : " . $e->getMessage());
             }
         }
         return self::$instance;
