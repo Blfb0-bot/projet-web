@@ -32,6 +32,7 @@
                 </tbody>
             </table>
             <?php foreach (($pilots ?? []) as $pilot): ?>
+                <?php $pid = (int)($pilot['id'] ?? 0); ?>
                 <?php if ($pid > 0): ?>
                     <div class="overlay" id="popup-modifier-pilote-<?= $pid ?>">
                         <div class="popup">
