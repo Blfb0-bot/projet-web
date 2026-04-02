@@ -155,6 +155,8 @@ final class AuthController {
                 header('Location: index.php?success=compte_mis_a_jour');
             } catch (Exception $e) {
                 header('Location: index.php?error=update_failed');
+            }
+        }
     }
     public function updatePassword() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
