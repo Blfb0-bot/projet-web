@@ -149,7 +149,7 @@
             <div class="debut-contenu-offre">
                 <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'etudiant'): ?>
                     <div class="type"><a class="apply-btn" onclick="ouvrir('popup-apply-<?= $oid ?>')">offre de stage</a></div>
-                <?php endif: ?>
+                <?php endif; ?>
                 <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
                 <div><a class="wish-list" href="#">aimer</a></div>
                 <?php if ($oid > 0): ?>
