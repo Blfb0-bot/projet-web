@@ -168,6 +168,11 @@
 .popup .formulaire-profil.actif {
   display: block;
 }
+#popup-cookies.actif {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
 /*PAGE PRINCIPALE*/
 #page {
     text-align : center;
