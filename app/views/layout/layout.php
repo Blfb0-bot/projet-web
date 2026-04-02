@@ -163,14 +163,18 @@
             window.addEventListener('load', function() {
                 const userIsConnected = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
                 const aEteFermee = sessionStorage.getItem('popupManuellementFermee');
+                const cookiesDejaAcceptes = localStorage.getItem('cookiesAcceptes');
+                const aEteFermee = sessionStorage.getItem('popupManuellementFermee');
 
                 console.log("Connecté:", userIsConnected, "Déjà fermée:", aEteFermee);
 
                 if (!userIsConnected && aEteFermee !== 'true') {
                     ouvrir('popup-profil');
-                }
-                if (typeof verifierPopups === "function") {
-                    verifierPopups(userIsConnected);
+                    if(cookiesDejaAcceptes !== 'true') {
+                        ouvrir('popup-cookies');
+                    }elseif(!userIsConnected && aEteFermee !== 'true') {
+                        fermer('popup-cookies');
+                    }
                 }
             });
         })();
