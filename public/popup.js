@@ -11,6 +11,11 @@ function fermer(id) {
     const elem = document.getElementById(id);
     if (elem) {
         elem.classList.remove("actif");
+        
+        // Si c'est la popup de profil qu'on ferme, on enregistre l'action
+        if (id === 'popup-profil') {
+            sessionStorage.setItem('popupManuellementFermee', 'true');
+        }
     }
 }
 function basculerAuth() {

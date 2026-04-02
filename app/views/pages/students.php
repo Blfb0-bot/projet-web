@@ -2,32 +2,6 @@
 <section id="presentation-etudiant">
     <h1>Nos Etudiants</h1>
 </section>
-<section id="outils-etudiant">
-    <button id="creation-etudiant" onclick="ouvrir('popup-creer-etudiant')">créer un etudiant</button>
-</section>
-<div class="overlay" id="popup-creer-etudiant">
-    <div class="popup">
-        <h2>Creation d'un etudiant</h2>
-        <?php if (!empty($_GET['error'])): ?>
-            <?php if ($_GET['error'] === 'missing_fields'): ?>
-                <?php echo '<p class="form-error">Merci de renseigner tous les champs.</p>'; ?>
-            <?php elseif ($_GET['error'] === 'known_student'): ?>
-                <?php echo '<p class="form-error">Cet etudiant existe déjà.</p>'; ?>
-            <?php endif; ?>
-        <?php endif; ?>
-        <form action="<?= htmlspecialchars($formBase . 'create', ENT_QUOTES, 'UTF-8') ?>" method="post">
-            <label for ="create-prenom">Prenom de l'etudiant</label><br/>
-            <input type="text" id="create-prenom" name="create-prenom" required maxlength="100" placeholder="Ex. Jean"><br/>
-            <label for="create-nom">Nom de l'etudiant</label><br/>
-            <input type="text" id="create-nom" name="create-nom" required maxlength="100" placeholder="Ex. Dupont"><br/>
-            <label for="create-email">Email de l'etudiant</label><br/>
-            <input type="email" id="create-email" name="create-email" required maxlength="255" placeholder="Ex. jean.dupont@example.com"><br/>
-            <input type="submit" value="Enregistrer">
-            <input type="reset" value="Réinitialiser"><br/><br/>
-        </form>
-        <button onclick="fermer('popup-creer-etudiant')">Fermer</button>
-    </div>
-</div>
 <section id="nos-etudiant">
     <div class="etudiants">
         <div class="table-etudiant">
