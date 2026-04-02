@@ -129,17 +129,19 @@
         ?>
     </main>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const userIsConnected = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
-            
-            // On vérifie si l'utilisateur a cliqué sur "Fermer" précédemment
-            const aEteFermee = sessionStorage.getItem('popupManuellementFermee');
+        (function() {
+            // On attend que tout soit chargé
+            window.addEventListener('load', function() {
+                const userIsConnected = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
+                const aEteFermee = sessionStorage.getItem('popupManuellementFermee');
 
-            // On n'ouvre auto que si : PAS connecté ET N'A PAS été fermée manuellement
-            if (!userIsConnected && !aEteFermee) {
-                ouvrir('popup-profil');
-            }
-        }); 
-</script>
+                console.log("Connecté:", userIsConnected, "Déjà fermée:", aEteFermee);
+
+                if (!userIsConnected && aEteFermee !== 'true') {
+                    ouvrir('popup-profil');
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

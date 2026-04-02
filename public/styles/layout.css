@@ -105,33 +105,38 @@
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 30px;
+    width: 50px; /* Un peu plus petit pour être élégant */
+    height: 24px;
 }
-.switch input { opacity: 0; width: 0; height: 0; }
+.switch input { 
+    display: none; /* Cacher complètement la checkbox moche */
+}
 .slider {
     position: absolute;
     cursor: pointer;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #ccc;
+    background-color: #777; /* Gris foncé quand c'est éteint */
     transition: .4s;
     border-radius: 34px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
 }
 .slider:before {
     position: absolute;
     content: "";
-    height: 22px;
-    width: 22px;
-    left: 4px;
-    bottom: 4px;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
     background-color: white;
     transition: .4s;
     border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
-input:checked + .slider { background-color: #2ecc71; } /* Ta couleur violette */
-input:checked + .slider:before { transform: translateX(30px); }
+/* LE VERT QUAND ON CLIQUE */
+.switch input:checked + .slider {
+    background-color: #2ecc71 !important; /* Force le vert */
+}
+.switch input:checked + .slider:before {
+    transform: translateX(26px);
+}
 /* OVERLAY */
 .overlay {
   display: none;
