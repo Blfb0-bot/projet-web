@@ -169,4 +169,46 @@ final class OfferModel{
         
         return $stmt->fetchAll();
     }
+    public function getStats(): array {
+        $pdo = Database::getPdo();
+        $repartition = $pdo->query("
+            SELECT COALESCE(duree_mois, 0) AS duree_mois, COUNT(*) AS nb_offres
+            FROM offre
+            GROUP BY duree_mois
+            ORDER BY duree_mois
+        ")->fetchAll();
+        $top_wishlist = $pdo->query("
+            SELECT o.titre, e.nom AS entreprise, COUNT(w.id_etudiant) AS nb_wishlist
+            FROM offre o
+            JOIN entreprise e ON o.id_entreprise = e.id
+            LEFT JOIN wishlist w ON w.id_offre = o.id
+            GROUP BY o.id, o.titre, e.nom
+            ORDER BY nb_wishlist DESC
+            LIMIT 5
+        ")->fetchAll();
+        $totaux = $pdo->query("
+            SELECT
+                COUNT(*) AS total_offres,
+                SUM(CASE WHEN MONTH(created_at) = MONTH(NOW()) AND YEAR(created_at) = YEAR(NOW()) THEN 1 ELSE 0 END) AS nouvelles_ce_mois,
+                COUNT(DISTINCT id_entreprise) AS entreprises_actives
+            FROM offre
+        ")->fetch();
+        $candidatures = $pdo->query("
+            SELECT
+                COUNT(*) AS total_candidatures,
+                ROUND(COUNT(*) / NULLIF((SELECT COUNT(*) FROM offre), 0), 1) AS moyenne,
+                MAX(nb) AS max_sur_une_offre
+            FROM (
+                SELECT id_offre, COUNT(*) AS nb
+                FROM candidature
+                GROUP BY id_offre
+            ) AS sub
+        ")->fetch();
+        return [
+            'repartition_duree' => $repartition,
+            'top_wishlist'      => $top_wishlist,
+            'totaux'            => $totaux,
+            'candidatures'      => $candidatures,
+        ];
+    }
 }

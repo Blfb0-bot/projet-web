@@ -2,7 +2,103 @@
 <section id="presentation-offre">
     <h1>Nos Offres</h1>
 </section>
+<section id="statistiques-offre">
+    <h2>Statistiques</h2>
+    <div class="stats-carousel">
+        <div class="card-track">
+            <div class="card-inner" id="carouselTrack">
+
+                <?php
+                $repartition = $stats['repartition_duree'] ?? [];
+                $maxBar = max(array_column($repartition, 'nb_offres') ?: [1]);
+                $totalRep = array_sum(array_column($repartition, 'nb_offres'));
+                ?>
+                <div class="stat-card">
+                    <div class="card-body">
+                        <span class="card-label">Indicateur 1 / 4</span>
+                        <p class="card-title">Répartition par durée de stage</p>
+                        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+                            <?php foreach ($repartition as $row): ?>
+                                <?php $pct = $maxBar > 0 ? round(($row['nb_offres'] / $maxBar) * 100) : 0; ?>
+                                <div class="bar-row">
+                                    <span class="bar-label"><?= (int)$row['duree_mois'] ?> mois</span>
+                                    <div class="bar-bg"><div class="bar-fill" style="width:<?= $pct ?>%"></div></div>
+                                    <span style="font-size:13px;color:#6b7280;"><?= (int)$row['nb_offres'] ?></span>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <span class="sub-num"><?= (int)$totalRep ?> offres au total</span>
+                    </div>
+                </div>
+
+                <?php $wishlist = $stats['top_wishlist'] ?? []; ?>
+                <div class="stat-card">
+                    <div class="card-body">
+                        <span class="card-label">Indicateur 2 / 4</span>
+                        <p class="card-title">Top offres en wish-list</p>
+                        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+                            <?php foreach ($wishlist as $i => $row): ?>
+                                <div class="wish-row" <?= $i === count($wishlist) - 1 ? 'style="border-bottom:none"' : '' ?>>
+                                    <span class="wish-rank">#<?= $i + 1 ?></span>
+                                    <span class="wish-title"><?= htmlspecialchars($row['titre'], ENT_QUOTES, 'UTF-8') ?> – <?= htmlspecialchars($row['entreprise'], ENT_QUOTES, 'UTF-8') ?></span>
+                                    <span class="wish-count"><?= (int)$row['nb_wishlist'] ?></span>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <?php $totaux = $stats['totaux'] ?? []; ?>
+                <div class="stat-card">
+                    <div class="card-body" style="justify-content:center;align-items:center;text-align:center;">
+                        <span class="card-label">Indicateur 3 / 4</span>
+                        <p class="card-title">Offres disponibles</p>
+                        <div class="big-num" style="margin:1rem 0"><?= (int)($totaux['total_offres'] ?? 0) ?></div>
+                        <span class="sub-num">offres actuellement en base</span>
+                        <div class="grid2" style="margin-top:1.5rem">
+                            <div class="metric-mini">
+                                <div class="val"><?= (int)($totaux['nouvelles_ce_mois'] ?? 0) ?></div>
+                                <div class="lbl">Nouvelles ce mois</div>
+                            </div>
+                            <div class="metric-mini">
+                                <div class="val"><?= (int)($totaux['entreprises_actives'] ?? 0) ?></div>
+                                <div class="lbl">Entreprises actives</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <?php $cand = $stats['candidatures'] ?? []; ?>
+                <div class="stat-card">
+                    <div class="card-body" style="justify-content:center;align-items:center;text-align:center;">
+                        <span class="card-label">Indicateur 4 / 4</span>
+                        <p class="card-title">Candidatures par offre</p>
+                        <div class="big-num" style="margin:1rem 0"><?= $cand['moyenne'] ?? '0' ?></div>
+                        <span class="sub-num">candidatures en moyenne par offre</span>
+                        <div class="grid2" style="margin-top:1.5rem">
+                            <div class="metric-mini">
+                                <div class="val"><?= (int)($cand['total_candidatures'] ?? 0) ?></div>
+                                <div class="lbl">Total candidatures</div>
+                            </div>
+                            <div class="metric-mini">
+                                <div class="val"><?= (int)($cand['max_sur_une_offre'] ?? 0) ?></div>
+                                <div class="lbl">Maximum sur 1 offre</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="carousel-nav">
+            <button class="carousel-btn" id="prevBtn" disabled>&#8592; Préc.</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <button class="carousel-btn" id="nextBtn">Suiv. &#8594;</button>
+        </div>
+    </div>
+</section>
 <section id="outils-offre">
+    <h2>Les offres de stage</h2>
     <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pilote'|| $_SESSION['user_role'] === 'admin'): ?>
         <button id="creation-offre" onclick="ouvrir('popup-creer-offre')">créer une offre</button>
     <?php endif; ?>

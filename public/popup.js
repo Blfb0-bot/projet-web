@@ -78,3 +78,31 @@ function checkConfirm() {
     btn.style.opacity = ok ? '1' : '0.4';
     btn.style.cursor  = ok ? 'pointer' : 'not-allowed';
 }
+(function () {
+    const track = document.getElementById('carouselTrack');
+    const dotsEl = document.getElementById('carouselDots');
+    if (!track || !dotsEl) return;
+
+    let cur = 0;
+    const cards = track.querySelectorAll('.stat-card');
+    const total = cards.length;
+
+    cards.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        btn.onclick = () => goTo(i);
+        dotsEl.appendChild(btn);
+    });
+
+    function goTo(n) {
+        cur = n;
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        document.querySelectorAll('.carousel-dot').forEach((d, i) =>
+            d.className = 'carousel-dot' + (i === cur ? ' active' : ''));
+        document.getElementById('prevBtn').disabled = cur === 0;
+        document.getElementById('nextBtn').disabled = cur === total - 1;
+    }
+
+    document.getElementById('prevBtn').onclick = () => { if (cur > 0) goTo(cur - 1); };
+    document.getElementById('nextBtn').onclick = () => { if (cur < total - 1) goTo(cur + 1); };
+})();
