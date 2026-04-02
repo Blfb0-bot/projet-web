@@ -111,12 +111,11 @@
                             <h2>Inscription</h2>
                             <input type="text" name="nom" placeholder="Nom" required><br/>
                             <input type="text" name="prenom" placeholder="Prénom" required><br/>
-                            <select name="role" required>
-                                <option value="">Je suis: </option>
+                            <select name="role" placeholder="je suis:" required>
                                 <option value="etudiant">Étudiant</option>
                                 <option value="pilote">Pilote</option>
-                                <option value="visiteur">simple visiteur</option>
-                            </select>
+                                <option value="visiteur">visiteur</option>
+                            </select><br/>
                             <input type="email" name="email" placeholder="Email" required><br/>
                             <input type="password" name="mot_de_passe" placeholder="Mot de passe" required><br/><br/>
                             <input type="submit" value="Créer mon compte">
