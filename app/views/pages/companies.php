@@ -59,7 +59,7 @@
                         <button onclick="ouvrir('popup-modifier-entreprise-<?= $cid ?>')">modifier</button>
                         <button onclick="ouvrir('popup-supprimer-entreprise-<?= $cid ?>')">supprimer</button>
                     <?php endif; ?>
-                    <p>evaluer</p>
+                    <button type="button" onclick="ouvrir('popup-evaluer-entreprise-<?= $cid ?>')">Evaluer</button>
                 </div>
                 <?php endif; ?>
             </div>
@@ -95,6 +95,22 @@
                         <button type="submit">Oui, supprimer</button>
                     </form>
                     <button onclick="fermer('popup-supprimer-entreprise-<?= $cid ?>')">fermer</button>
+                </div>
+            </div>
+            <!-- Popup pour l'évaluation d'entreprise-->
+             <div class="overlay" id="popup-evaluer-entreprise<?= $cid ?>">
+                <div class="popup">
+                    <h2>Evaluer  cette offre</h2>
+                    <form action="index.php?controller=companies&action=evaluer" method="post">
+                        <input type="hidden" name="id_entreprise" value="<?= htmlspecialchars($_GET['id_entreprise'] ?? '') ?>">
+                        <input type="hidden" name="id_etudiant" value="<?= htmlspecialchars($_GET['id_etudiant'] ?? '') ?>">
+                        <label for="note">Note (1 à 5)</label><br/>
+                        <input type="number" id="note" name="note" min="1" max="5" required><br/>
+                        <label for="commentaire">Commentaire</label><br/>
+                        <textarea id="commentaire" name="commentaire" rows="4" cols="40" placeholder="Votre commentaire..."></textarea><br/><br/>
+                        <input type="submit" value="Envoyer l'évaluation">
+                    </form>
+                    <button onclick="fermer('popup-evaluer-entreprise<?= $cid ?>')">Fermer</button>
                 </div>
             </div>
         <?php endif; ?>
