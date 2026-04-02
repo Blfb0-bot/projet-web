@@ -173,6 +173,23 @@
     justify-content: center;
     align-items: center;
 }
+.onglet-btn {
+    flex: 1;
+    padding: 8px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+}
+.onglet-btn.actif-tab {
+    border-bottom: 2px solid #333;
+    color: #333;
+    font-weight: 500;
+}
+.onglet-btn.danger-tab { color: red; }
+.onglet-btn.danger-tab.actif-tab { border-bottom-color: red; }
 /*PAGE PRINCIPALE*/
 #page {
     text-align : center;

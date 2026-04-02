@@ -76,4 +76,54 @@ final class AuthController {
         header('Location: index.php?controller=accueil&action=index');
         exit();
     }
+    public function profil() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $action = $_POST['action'] ?? '';
+
+            if ($action === 'modifier') {
+                $prenom = htmlspecialchars($_POST['prenom']);
+                $nom    = htmlspecialchars($_POST['nom']);
+                $email  = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+
+                if (!$email) {
+                    $_SESSION['error'] = 'Email invalide.';
+                } else {
+                    // $this->userModel->update($_SESSION['user_id'], $prenom, $nom, $email);
+                    $_SESSION['success'] = 'Profil mis à jour.';
+                }
+
+            } elseif ($action === 'password') {
+                $actuel   = $_POST['password_actuel'];
+                $nouveau  = $_POST['password_nouveau'];
+                $confirm  = $_POST['password_confirm'];
+
+                if ($nouveau !== $confirm) {
+                    $_SESSION['error'] = 'Les mots de passe ne correspondent pas.';
+                } elseif (strlen($nouveau) < 8) {
+                    $_SESSION['error'] = 'Minimum 8 caractères.';
+                } else {
+                    // Vérifier l'ancien hash, puis mettre à jour
+                    // $hash = password_hash($nouveau, PASSWORD_BCRYPT);
+                    // $this->userModel->updatePassword($_SESSION['user_id'], $hash);
+                    $_SESSION['success'] = 'Mot de passe modifié.';
+                }
+
+            } elseif ($action === 'supprimer') {
+                $confirm = $_POST['confirm_suppression'] ?? '';
+                if ($confirm === 'SUPPRIMER') {
+                    // $this->userModel->delete($_SESSION['user_id']);
+                    session_destroy();
+                    header('Location: /');
+                    exit;
+                }
+            }
+
+            header('Location: /profil');
+            exit;
+        }
+
+        // Affichage de la vue avec le popup
+        $user = $_SESSION['user'] ?? [];
+        include 'views/profil.php';
+    }
 }
