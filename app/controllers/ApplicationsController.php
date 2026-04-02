@@ -1,10 +1,8 @@
 <?php
 declare(strict_types=1);
 
-final class ApplicationController {
-
+final class ApplicationsController {
     private const REDIRECT_LIST = '/index.php?controller=applications&action=index';
-
     public function index(): void {
         require_once ROOT . '/app/controllers/UserController.php';
         verifierRole(['etudiant', 'pilote', 'admin']);
@@ -26,7 +24,6 @@ final class ApplicationController {
         $page      = ROOT . '/app/views/pages/applications.php';
         require_once ROOT . '/app/views/layout/layout.php';
     }
-
     public function create(): void {
         require_once ROOT . '/app/controllers/UserController.php';
         verifierRole(['etudiant']);
