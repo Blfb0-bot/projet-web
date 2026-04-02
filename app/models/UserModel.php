@@ -78,22 +78,5 @@ final class UserModel{
         $stmt = $pdo->prepare('DELETE FROM utilisateur WHERE id = :id');
         $stmt->execute([':id' => $id]);
     }
-    public function searchByRoleAndName(string $role, string $term): array {
-        $pdo = Database::getPdo();
-        $stmt = $pdo->prepare("
-            SELECT * FROM utilisateur 
-            WHERE role = :role 
-            AND (nom LIKE :term OR prenom LIKE :term OR email LIKE :term)
-            ORDER BY created_at DESC
-        ");
-        
-        // Le % permet de trouver le mot n'importe où (début, milieu ou fin)
-        $stmt->execute([
-            ':role' => $role,
-            ':term' => '%' . $term . '%'
-        ]);
-        
-        return $stmt->fetchAll();
-    }
 }
 
