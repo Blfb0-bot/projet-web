@@ -85,8 +85,7 @@ final class UserModel{
         if (!$user) {
             return false;
         }
-
-        return password_verify($password, $user['password']);
+        return password_verify($password, $user['mot_de_passe']);
     }
     public function getUserById($id){
         $pdo = Database::getPdo();
@@ -96,4 +95,3 @@ final class UserModel{
         return $stmt->fetch();
     }
 }
-
