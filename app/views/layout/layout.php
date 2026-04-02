@@ -17,8 +17,10 @@
     <header id="en-tete">
         <h3>Bienvenue sur Web for All</h3>
         <div id="recherche">
-            <form action="/recherche" method="post">
-                <input type="search" name="q" placeholder="recherche..." aria-label="recherche sur le site">
+            <form action="index.php" method="get">
+                <input type="hidden" name="controller" value="<?= htmlspecialchars($_GET['controller'] ?? 'accueil') ?>">
+                <input type="hidden" name="action" value="<?= htmlspecialchars($_GET['action'] ?? 'index') ?>">
+                <input type="search" name="search" placeholder="recherche..." aria-label="recherche sur le site" value="<?= htmlspecialchars($_GET['search'] ?? '')>
             </form>
         </div>
         <div id="profil">

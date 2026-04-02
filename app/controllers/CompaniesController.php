@@ -6,9 +6,15 @@ class CompaniesController {
         $formBase = '/index.php?controller=companies&action='; 
         $cssExtra = '<link rel="stylesheet" href="/public/styles/entreprise.css">';
         $pageTitle = 'Entreprises — Web for All';
-        $page = ROOT . '/app/views/pages/companies.php';
+        $searchTerm = $_GET['search'] ?? null;
         require_once ROOT . '/app/models/CompanyModel.php';
-        $companies = (new CompanyModel())->getAll();
+        $model = new CompanyModel();
+        if ($searchTerm){
+            $companies = $model->searchByName($searchTerm);
+        }else{
+            $companies = $model->getAll();
+        }
+        $page = ROOT . '/app/views/pages/companies.php';
         require_once ROOT . '/app/views/layout/layout.php';
     }
     public function create(): void{

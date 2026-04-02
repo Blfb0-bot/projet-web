@@ -147,4 +147,22 @@ final class OfferModel{
             return null;
         }
     }
+    public function searchByTitleOrCompany(string $term): array {
+        $pdo = Database::getPdo();
+        
+        // On cherche dans le titre de l'offre OU dans le nom de l'entreprise
+        $sql = "
+            SELECT o.*, e.nom_entreprise 
+            FROM offre o
+            LEFT JOIN entreprise e ON o.id_entreprise = e.id
+            WHERE o.titre LIKE :term 
+            OR e.nom_entreprise LIKE :term
+            ORDER BY o.created_at DESC
+        ";
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':term' => '%' . $term . '%']);
+        
+        return $stmt->fetchAll();
+    }
 }
