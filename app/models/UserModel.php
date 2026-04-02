@@ -20,6 +20,7 @@ final class UserModel{
         $user = $stmt->fetch();
         return $user ?: null;
     }
+    public function searchByRoleAndName(string $role, string $term): array {
         $pdo = Database::getPdo();
         $search = '%' . $term . '%';
 
