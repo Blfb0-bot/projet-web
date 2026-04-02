@@ -58,8 +58,9 @@
                     <?php if (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'pilote' || $_SESSION['user_role'] === 'admin')): ?>
                         <button onclick="ouvrir('popup-modifier-entreprise-<?= $cid ?>')">modifier</button>
                         <button onclick="ouvrir('popup-supprimer-entreprise-<?= $cid ?>')">supprimer</button>
+                    <?php elseif (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'etudiant' || $_SESSION['user_role'] === 'admin'):?>
+                        <button type="button" onclick="ouvrir('popup-evaluer-entreprise-<?= $cid ?>')">Evaluer</button>
                     <?php endif; ?>
-                    <button type="button" onclick="ouvrir('popup-evaluer-entreprise-<?= $cid ?>')">Evaluer</button>
                 </div>
                 <?php endif; ?>
             </div>

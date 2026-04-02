@@ -110,7 +110,7 @@ class CompaniesController {
     }
     public function evaluer(): void{
         require_once ROOT . '/app/controllers/UserController.php';
-        verifierRole(['etudiant']);
+        verifierRole(['etudiant','admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;
