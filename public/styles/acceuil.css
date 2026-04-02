@@ -5,7 +5,10 @@
     display: flex;
     margin: auto;
     max-width: 900px;
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 #contenu p{
     text-align: justify;
