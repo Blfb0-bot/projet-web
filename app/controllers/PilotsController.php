@@ -16,7 +16,7 @@ class PilotsController {
         } else {
             $pilots = $model->getByRole('pilote');
         }
-        $page = ROOT . '/app/views/pages/pilotes.php';
+        $page = ROOT . '/app/views/pages/pilots.php';
         require_once ROOT . '/app/views/layout/layout.php';
     }
     public function create(): void{
