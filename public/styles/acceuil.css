@@ -2,7 +2,8 @@
     text-decoration: underline;
 }
 #contenu{
-    margin: 20px;
+    display: flex;
+    margin: auto;
     max-width: 900px;
     justify-content: center;
 }
