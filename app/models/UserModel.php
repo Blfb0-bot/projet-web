@@ -55,9 +55,6 @@ final class UserModel{
             UPDATE utilisateur SET
                 prenom = :prenom,
                 nom = :nom,
-                email = :email,
-                role = :role,
-                id_pilote = :id_pilote
             WHERE id = :id
         ";
         $stmt = $pdo->prepare($sql);
@@ -65,9 +62,6 @@ final class UserModel{
             ':id' => $id,
             ':prenom' => $data['prenom'],
             ':nom' => $data['nom'],
-            ':email' => $data['email'] ?? null,
-            ':role' => $data['role'] ?? null,
-            ':id_pilote' => $data['id_pilote'] ?? null,
         ]);
         
     }
