@@ -14,51 +14,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach (($pilots ?? []) as $pilot): ?>
-                        <?php $pid = (int)($pilot['id'] ?? 0); ?>
-                        <tr>
-                            <td><?= htmlspecialchars((string)($pilot['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars((string)($pilot['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
-                            <td>
-                                <?php if ($pid > 0): ?>
-                                    <?php if (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'pilote' || $_SESSION['user_role'] === 'admin')): ?>
+                    <?php if (!empty($pilots)): ?>
+                        <?php foreach ($pilots as $pilot): ?>
+                            <?php $pid = (int)($pilot['id'] ?? 0); ?>
+                            <tr>
+                                <td><?= htmlspecialchars((string)($pilot['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars((string)($pilot['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                                <td>
+                                    <?php if ($pid > 0 && isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'admin' || $_SESSION['user_role'] === 'pilote')): ?>
                                         <button onclick="ouvrir('popup-modifier-pilote-<?= $pid ?>')">modifier</button>
                                         <button onclick="ouvrir('popup-supprimer-pilote-<?= $pid ?>')">supprimer</button>
                                     <?php endif; ?>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>        
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr><td colspan="3">Aucun pilote trouvé.</td></tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
 
             <?php foreach (($pilots ?? []) as $pilot): ?>
-                <?php $currentPid = (int)($pilot['id'] ?? 0); ?>
-                <?php if ($currentPid > 0): ?>
-                    <div class="overlay" id="popup-modifier-pilote-<?= $currentPid ?>">
+                <?php $pid = (int)($pilot['id'] ?? 0); ?>
+                <?php if ($pid > 0): ?>
+                    <div class="overlay" id="popup-modifier-pilote-<?= $pid ?>" style="display:none;">
                         <div class="popup">
-                            <h2>Modifier le pilote</h2>
-                            <form action="<?= htmlspecialchars($formBase . 'update', ENT_QUOTES, 'UTF-8') ?>" method="post">
-                                <input type="hidden" name="id" value="<?= $currentPid ?>">
-                                <label for="edit-prenom">Prenom</label><br/>
-                                <input type="text" name="edit-prenom" required value="<?= htmlspecialchars((string)($pilot['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
-                                <label for="edit-nom">Nom</label><br/>
-                                <input type="text" name="edit-nom" required value="<?= htmlspecialchars((string)($pilot['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/><br/>
-                                <input type="submit" value="Enregistrer">
+                            <h2>Modifier <?= htmlspecialchars($pilot['prenom']) ?></h2>
+                            <form action="/pilots/update" method="post">
+                                <input type="hidden" name="id" value="<?= $pid ?>">
+                                <input type="text" name="edit-prenom" value="<?= htmlspecialchars($pilot['prenom']) ?>" required>
+                                <input type="text" name="edit-nom" value="<?= htmlspecialchars($pilot['nom']) ?>" required>
+                                <button type="submit">Enregistrer</button>
                             </form>
-                            <button onclick="fermer('popup-modifier-pilote-<?= $currentPid ?>')">Fermer</button>
-                        </div>
-                    </div>
-
-                    <div class="overlay" id="popup-supprimer-pilote-<?= $currentPid ?>">
-                        <div class="popup">
-                            <h2>Supprimer le pilote</h2>
-                            <form action="<?= htmlspecialchars($formBase . 'delete', ENT_QUOTES, 'UTF-8') ?>" method="post">
-                                <input type="hidden" name="id" value="<?= $currentPid ?>">
-                                <p>Êtes-vous sûr de vouloir supprimer ce pilote ?</p>
-                                <button type="submit">Oui, supprimer</button>
-                                <button type="button" onclick="fermer('popup-supprimer-pilote-<?= $currentPid ?>')">Annuler</button>
-                            </form>
+                            <button onclick="fermer('popup-modifier-pilote-<?= $pid ?>')">Fermer</button>
                         </div>
                     </div>
                 <?php endif; ?>
