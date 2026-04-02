@@ -17,16 +17,16 @@
                 <tbody>
                     <?php if (!empty($students)): ?>
                         <?php foreach (($students ?? []) as $student): ?>
-                            <?php $eeid = (int)($student['id'] ?? 0); ?>
+                            <?php $eid = (int)($student['id'] ?? 0); ?>
                             <tr>
                                 <td><?= htmlspecialchars((string)($student['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
                                 <td><?= htmlspecialchars((string)($student['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
                                 <td><?= htmlspecialchars((string)($student['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
                                 <td>
-                                    <?php if ($eeid > 0): ?><!--si l'ID de l'etudiant est valide -->
+                                    <?php if ($eid > 0): ?><!--si l'ID de l'etudiant est valide -->
                                         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'etudiant'|| $_SESSION['user_role'] === 'admin'): ?>
-                                            <button onclick="ouvrir('popup-modifier-etudiant-<?= $eeid ?>')">modifier</button>
-                                            <button onclick="ouvrir('popup-supprimer-etudiant-<?= $eeid ?>')">supprimer</button>
+                                            <button onclick="ouvrir('popup-modifier-etudiant-<?= $eid ?>')">modifier</button>
+                                            <button onclick="ouvrir('popup-supprimer-etudiant-<?= $eid ?>')">supprimer</button>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 </td>

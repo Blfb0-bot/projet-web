@@ -7,7 +7,7 @@ class StudentsController {
         verifierRole(['admin','etudiant', 'pilote']);
         $cssExtra = '<link rel="stylesheet" href="/public/styles/etudiant.css">';
         $pageTitle = 'Etudiants — Web for All';
-        $searchTerm = $GET['search'] ?? null;
+        $searchTerm = $_GET['search'] ?? '';
         $formBase = 'index.php?controller=students&action=';
         require_once ROOT . '/app/models/UserModel.php';
         $model = new UserModel();
