@@ -165,15 +165,13 @@
                 const aEteFermee = sessionStorage.getItem('popupManuellementFermee');
                 const cookiesDejaAcceptes = localStorage.getItem('cookiesAcceptes');
                 console.log("Connecté:", userIsConnected, "Déjà fermée:", aEteFermee);
-
-                if (!userIsConnected && aEteFermee !== 'true') {
-                    ouvrir('popup-profil');
-                    if(cookiesDejaAcceptes !== 'true') {
-                        ouvrir('popup-cookies');
-                    }elseif(!userIsConnected && aEteFermee !== 'true') {
-                        fermer('popup-cookies');
-                    }
+                if(cookiesDejaAcceptes !== 'true') {
+                    ouvrir('popup-cookies');
                 }
+                if (!userIsConnected && aEteFermee !== 'true') {
+                    ouvrir('popup-profil'); 
+                }
+                
             });
         })();
     </script>
