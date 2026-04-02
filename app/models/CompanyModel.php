@@ -73,7 +73,7 @@ final class CompanyModel{
         $stmt->execute([':search' => "%$searchTerm%"]);
         return $stmt->fetchAll();
     }
-    public function evaluer(array $data): void{
+    public function creerEvaluation(array $data): void{
         $pdo = Database::getPdo();
         $sql = "
             INSERT INTO evaluation (id_entreprise, id_etudiant, note, commentaire, created_at)
