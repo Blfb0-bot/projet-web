@@ -48,6 +48,17 @@
                             <button onclick="fermer('popup-modifier-pilote-<?= $ppid ?>')">Fermer</button>
                         </div>
                     </div>
+                    <div class="overlay" id="popup-supprimer-pilote-<?= $ppid ?>" style="display:none;">
+                        <div class="popup">
+                            <h2>Supprimer <?= htmlspecialchars($p['prenom']) ?></h2>
+                            <form action="index.php?controller=pilots&action=delete" method="post">
+                                <input type="hidden" name="id" value="<?= $ppid ?>">
+                                <p>Êtes-vous sûr de vouloir supprimer ce pilote ?</p>
+                                <button type="submit">Oui, supprimer</button>
+                                <button onclick="fermer('popup-supprimer-pilote-<?= $ppid ?>')">Non, annuler</button>
+                            </form>
+                        </div>
+                    </div>
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
