@@ -160,13 +160,13 @@ final class AuthController {
     }
     public function updatePassword() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $userModel = new UserModel();
+            $this->userModel = new UserModel($this->db);
 
             $currentPassword = $_POST['password_actuel'] ?? '';
             $newPassword = $_POST['password_nouveau'] ?? '';
 
             // Vérifier le mot de passe actuel
-            if ($userModel->verifyPassword($_SESSION['user_id'], $currentPassword)) {
+            if ($this->userModel->verifyPassword($_SESSION['user_id'], $currentPassword)) {
                 // Mettre à jour avec le nouveau mot de passe
                 try {
                     $userModel->updatePassword($_SESSION['user_id'], $newPassword);
