@@ -127,7 +127,7 @@ class CompaniesController {
             header('Location: ' . self::REDIRECT_LIST . '&error=missing_fields');
             exit;
         }
-        $model = new CompanyModel.php();
+        $model = new CompanyModel();
         $model->creerEvaluation([
             'id_entreprise' => $idEntreprise,
             'id_etudiant' => $_SESSION['user_id'],
