@@ -91,9 +91,63 @@
                     <p>Bonjour, <?= htmlspecialchars($_SESSION['user_prenom'] . ' ' . $_SESSION['user_nom']) ?></p>
                     <p>Rôle : <?= htmlspecialchars($_SESSION['user_role']) ?></p>
                     <hr>
-                    <a href="/index.php?controller=profile&action=index">Gérer mon profil</a><br/>
+
+                    <!-- Onglets -->
+                    <div style="display:flex; gap:0; margin:1rem 0 0; border-bottom:1px solid #ccc;">
+                        <button onclick="switchOnglet('onglet-edit')"   id="btn-edit"     class="onglet-btn actif-tab">Modifier</button>
+                        <button onclick="switchOnglet('onglet-password')" id="btn-password" class="onglet-btn">Mot de passe</button>
+                        <button onclick="switchOnglet('onglet-delete')" id="btn-delete"   class="onglet-btn danger-tab">Supprimer</button>
+                    </div>
+
+                    <!-- Onglet : Modifier profil -->
+                    <div id="onglet-edit" class="onglet-content">
+                        <form action="index.php?controller=auth&action=profil" method="post">
+                            <input type="hidden" name="action_type" value="modifier">
+                            <label>Prénom</label><br/>
+                            <input type="text" name="prenom" value="<?= htmlspecialchars($_SESSION['user_prenom'] ?? '') ?>" required><br/>
+                            <label>Nom</label><br/>
+                            <input type="text" name="nom" value="<?= htmlspecialchars($_SESSION['user_nom'] ?? '') ?>" required><br/>
+                            <label>Email</label><br/>
+                            <input type="email" name="email" value="<?= htmlspecialchars($_SESSION['user_email'] ?? '') ?>" required><br/><br/>
+                            <input type="submit" value="Enregistrer">
+                        </form>
+                    </div>
+
+                    <!-- Onglet : Mot de passe -->
+                    <div id="onglet-password" class="onglet-content" style="display:none;">
+                        <form action="index.php?controller=auth&action=profil" method="post">
+                            <input type="hidden" name="action_type" value="password">
+                            <label>Mot de passe actuel</label><br/>
+                            <input type="password" name="password_actuel" required><br/>
+                            <label>Nouveau mot de passe</label><br/>
+                            <input type="password" name="password_nouveau" id="pw-new" oninput="checkStrength(this.value)" required><br/>
+                            <div style="height:6px; border-radius:3px; background:#eee; margin:4px 0;">
+                                <div id="pw-bar" style="height:100%; width:0%; border-radius:3px; background:red; transition:width .2s,background .2s;"></div>
+                            </div>
+                            <small id="pw-label" style="color:#888;"></small><br/>
+                            <label>Confirmer le nouveau mot de passe</label><br/>
+                            <input type="password" name="password_confirm" required><br/><br/>
+                            <input type="submit" value="Mettre à jour">
+                        </form>
+                    </div>
+
+                    <!-- Onglet : Supprimer compte -->
+                    <div id="onglet-delete" class="onglet-content" style="display:none;">
+                        <p style="color:red; font-weight:bold;">⚠ Action irréversible — toutes vos données seront supprimées.</p>
+                        <form action="index.php?controller=auth&action=profil" method="post">
+                            <input type="hidden" name="action_type" value="supprimer">
+                            <label>Tapez <strong>SUPPRIMER</strong> pour confirmer</label><br/>
+                            <input type="text" name="confirm_suppression" id="confirm-del" oninput="checkConfirm()" placeholder="SUPPRIMER"><br/><br/>
+                            <input type="submit" id="btn-del-submit" value="Supprimer mon compte" disabled
+                                style="background:red; color:white; opacity:0.4; cursor:not-allowed;">
+                        </form>
+                    </div>
+
+                    <br/>
                     <a href="/index.php?controller=auth&action=logout">Déconnexion</a><br/>
+
                 <?php else : ?>
+                    <!-- Connexion / Inscription (inchangé) -->
                     <div class="switch-container">
                         <span>Connexion</span>
                         <label class="switch">
@@ -105,9 +159,9 @@
                     <div class="formulaire-profil actif" id="connexion">
                         <form action="index.php?controller=auth&action=login" method="post">
                             <h2>Connexion</h2>
-                            <label for="email">Email</label><br/>
+                            <label>Email</label><br/>
                             <input type="email" name="email" required><br/>
-                            <label for="mot-de-passe">Mot de passe</label><br/>
+                            <label>Mot de passe</label><br/>
                             <input type="password" name="mot_de_passe" required><br/><br/>
                             <input type="submit" value="Se connecter">
                         </form>
@@ -115,20 +169,21 @@
                     <div class="formulaire-profil" id="inscription">
                         <form action="index.php?controller=auth&action=register" method="post">
                             <h2>Inscription</h2>
-                            <input type="text" name="nom" placeholder="Nom" required><br/>
-                            <input type="text" name="prenom" placeholder="Prénom" required><br/>
+                            <input type="text"     name="nom"          placeholder="Nom"      required><br/>
+                            <input type="text"     name="prenom"       placeholder="Prénom"   required><br/>
                             <select name="role" required>
                                 <option value="etudiant">Étudiant</option>
                                 <option value="pilote">Pilote</option>
-                                <option value="visiteur">visiteur</option>
-                                <option value="admin">admin</option>
+                                <option value="visiteur">Visiteur</option>
+                                <option value="admin">Admin</option>
                             </select><br/>
-                            <input type="email" name="email" placeholder="Email" required><br/>
+                            <input type="email"    name="email"        placeholder="Email"    required><br/>
                             <input type="password" name="mot_de_passe" placeholder="Mot de passe" required><br/><br/>
                             <input type="submit" value="Créer mon compte">
                         </form>
                     </div>
                 <?php endif ?>
+
                 <br/>
                 <button onclick="fermer('popup-profil')">Fermer</button>
             </div>
