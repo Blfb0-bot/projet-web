@@ -167,12 +167,10 @@
                 console.log("Connecté:", userIsConnected, "Déjà fermée:", aEteFermee);
 
                 if (!userIsConnected && aEteFermee !== 'true') {
-                    ouvrir('popup-profil');
-                    if(cookiesDejaAcceptes !== 'true') {
-                        ouvrir('popup-cookies');
-                    }elseif(!userIsConnected && aEteFermee !== 'true') {
-                        fermer('popup-cookies');
-                    }
+                    ouvrir('popup-profil'); 
+                }
+                if(cookiesDejaAcceptes !== 'true') {
+                    ouvrir('popup-cookies');
                 }
             });
         })();
