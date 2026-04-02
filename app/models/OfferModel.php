@@ -155,14 +155,14 @@ final class OfferModel{
             SELECT o.*, e.nom_entreprise 
             FROM offre o
             LEFT JOIN entreprise e ON o.id_entreprise = e.id
-            WHERE o.titre LIKE :term 
-            OR e.nom_entreprise LIKE :term
+            WHERE (o.titre LIKE :term OR e.nom LIKE :term)
             ORDER BY o.created_at DESC
         ";
         
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':term' => '%' . $term . '%']);
         
-        return $stmt->fetchAll();
+        $result= $stmt->fetchAll();
+        return $result;
     }
 }
