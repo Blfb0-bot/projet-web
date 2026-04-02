@@ -22,8 +22,8 @@ $routes = [
     'offers'    => 'OffersController',
     'pilots'    => 'PilotsController',
     'students'  => 'StudentsController',
-    'users'     => 'UsersController',
-    'auths'      => 'AuthsController',
+    'auth'      => 'AuthController',
+    'user'     => 'UserController',
 ];
 
 // --- Lecture des paramètres ---
