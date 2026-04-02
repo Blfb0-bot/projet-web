@@ -12,9 +12,9 @@ class StudentsController {
         require_once ROOT . '/app/models/UserModel.php';
         $model = new UserModel();
         if ($searchTerm){
-            $student = $model->searchByRoleAndName('etudiant', $searchTerm);
+            $students = $model->searchByRoleAndName('etudiant', $searchTerm);
         }else{
-            $student = $model->getByRole('etudiant');
+            $students = $model->getByRole('etudiant');
         }
         $page = ROOT . '/app/views/pages/students.php';
         require_once ROOT . '/app/views/layout/layout.php';
