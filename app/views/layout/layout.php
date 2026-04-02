@@ -164,8 +164,6 @@
                 const userIsConnected = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
                 const aEteFermee = sessionStorage.getItem('popupManuellementFermee');
                 const cookiesDejaAcceptes = localStorage.getItem('cookiesAcceptes');
-                const aEteFermee = sessionStorage.getItem('popupManuellementFermee');
-
                 console.log("Connecté:", userIsConnected, "Déjà fermée:", aEteFermee);
 
                 if (!userIsConnected && aEteFermee !== 'true') {
