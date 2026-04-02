@@ -4,25 +4,18 @@ class PilotsController {
     private const REDIRECT_LIST = '/index.php?controller=pilots&action=index';
     public function index(): void {
         require_once ROOT . '/app/controllers/UserController.php';
-        verifierRole(['admin', 'pilote', 'etudiant']); // Ajouté etudiant pour qu'ils puissent voir la liste
-        
+        verifierRole(['admin', 'pilote', 'etudiant']);
         $cssExtra = '<link rel="stylesheet" href="/public/styles/pilote.css">';
         $pageTitle = 'Pilotes — Web for All';
+        $searchTerm = $_GET['search'] ?? '';
         $formBase = 'index.php?controller=pilots&action=';
-
         require_once ROOT . '/app/models/UserModel.php';
         $model = new UserModel();
-
-        // CORRECTION ICI : $_GET avec un underscore
-        $searchTerm = $_GET['search'] ?? '';
-
-        if ($searchTerm !== '') {
+        if ($searchTerm) {
             $pilots = $model->searchByRoleAndName('pilote', $searchTerm);
         } else {
             $pilots = $model->getByRole('pilote');
         }
-
-        // On définit la page qui sera incluse par le layout
         $page = ROOT . '/app/views/pages/pilotes.php';
         require_once ROOT . '/app/views/layout/layout.php';
     }
