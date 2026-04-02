@@ -12,6 +12,9 @@ class CompaniesController {
         require_once ROOT . '/app/views/layout/layout.php';
     }
     public function create(): void{
+        require_once ROOT . '/app/controller/UserController.php';
+        require_once ROOT . '/app/controller/UserController.php';
+        verifierRole(['pilote', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: /index.php?controller=companies&action=index');
             exit;
@@ -50,6 +53,9 @@ class CompaniesController {
         exit;
     }
     public function update(): void{
+        require_once ROOT . '/app/controller/UserController.php';
+        require_once ROOT . '/app/controller/UserController.php';
+        verifierRole(['pilote', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;
@@ -79,6 +85,9 @@ class CompaniesController {
         exit;
     }
     public function delete(): void{
+        require_once ROOT . '/app/controller/UserController.php';
+        require_once ROOT . '/app/controller/UserController.php';
+        verifierRole(['pilote', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;

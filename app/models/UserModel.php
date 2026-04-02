@@ -13,6 +13,13 @@ final class UserModel{
         $stmt->execute([':role' => $role]);
         return $stmt->fetchAll();
     }
+    public function getByEmail(string $email): ?array {
+        $pdo = Database::getPdo();
+        $stmt = $pdo->prepare("SELECT * FROM utilisateur WHERE email = :email LIMIT 1");
+        $stmt->execute([':email' => $email]);
+        $user = $stmt->fetch();
+        return $user ?: null;
+    }
     public function findIdByPrenomAndNom(string $prenom, string $nom): ?int{
         $prenom = trim($prenom);
         $nom = trim($nom);
@@ -25,18 +32,19 @@ final class UserModel{
         $row = $stmt->fetch();
         return $row !== false ? (int)$row['id'] : null;
     }
-    public function create(array $data): int{
+    public function create(array $data): int {
         $pdo = Database::getPdo();
         $sql = "
-            INSERT INTO utilisateur (prenom, nom, email, role, id_pilote, created_at)
-            VALUES (:prenom, :nom, :email, :role, :id_pilote, NOW())
+            INSERT INTO utilisateur (prenom, nom, email, role, mot_de_passe, id_pilote, created_at)
+            VALUES (:prenom, :nom, :email, :role, :mdp, :id_pilote, NOW())
         ";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
-            ':prenom' => $data['prenom'],
-            ':nom' => $data['nom'],
-            ':email' => $data['email'] ?? null,
-            ':role' => $data['role'] ?? null,
+            ':prenom'    => $data['prenom'],
+            ':nom'       => $data['nom'],
+            ':email'     => $data['email'],
+            ':role'      => $data['role'] ?? 'etudiant', // Rôle par défaut
+            ':mdp'       => $data['mot_de_passe'],       // Le mot de passe haché
             ':id_pilote' => $data['id_pilote'] ?? null,
         ]);
         return (int)$pdo->lastInsertId();

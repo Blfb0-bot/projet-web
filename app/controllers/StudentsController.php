@@ -3,6 +3,8 @@ declare(strict_types=1);
 class StudentsController {
     private const REDIRECT_LIST = '/index.php?controller=students&action=index';
     public function index(): void{
+        require_once ROOT . '/app/controller/UserController.php';
+        verifierRole(['admin','etudiant', 'pilote']);
         $cssExtra = '<link rel="stylesheet" href="/public/styles/etudiant.css">';
         $pageTitle = 'Etudiants — Web for All';
         $page = ROOT . '/app/views/pages/students.php';
@@ -11,6 +13,8 @@ class StudentsController {
         require_once ROOT . '/app/views/layout/layout.php';
     }
     public function create(): void{
+        require_once ROOT . '/app/controller/UserController.php';
+        verifierRole(['etudiant', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;
@@ -46,6 +50,8 @@ class StudentsController {
         exit;
     }
     public function update(): void{
+        require_once ROOT . '/app/controller/UserController.php';
+        verifierRole(['etudiant', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;
@@ -75,6 +81,8 @@ class StudentsController {
         exit;
     }
     public function delete(): void{
+        require_once ROOT . '/app/controller/UserController.php';
+        verifierRole(['etudiant', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;

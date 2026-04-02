@@ -103,7 +103,7 @@
                         </form>
                     </div>
                     <div class="formulaire-profil" id="inscription">
-                        <form action="index.php?controller=users&action=register" method="post">
+                        <form action="index.php?controller=auth&action=register" method="post">
                             <h2>Inscription</h2>
                             <input type="text" name="nom" placeholder="Nom" required><br/>
                             <input type="text" name="prenom" placeholder="Prénom" required><br/>
