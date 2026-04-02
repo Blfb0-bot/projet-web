@@ -21,8 +21,10 @@
                             <td><?= htmlspecialchars((string)($pilot['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
                             <td>
                                 <?php if ($pid > 0): ?><!--si l'ID du pilote est valide -->
-                                    <button onclick="ouvrir('popup-modifier-pilote-<?= $pid ?>')">modifier</button>
-                                    <button onclick="ouvrir('popup-supprimer-pilote-<?= $pid ?>')">supprimer</button>
+                                    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pilote'|| $_SESSION['user_role'] === 'admin'): ?>
+                                        <button onclick="ouvrir('popup-modifier-pilote-<?= $pid ?>')">modifier</button>
+                                        <button onclick="ouvrir('popup-supprimer-pilote-<?= $pid ?>')">supprimer</button>
+                                    <?php endif; ?>
                                 <?php endif; ?>
                             </td>
                         </tr>

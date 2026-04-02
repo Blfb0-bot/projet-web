@@ -6,22 +6,37 @@ final class AuthController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userModel = new UserModel();
 
-            // Hachage du mot de passe pour la sécurité
-            $hashedPassword = password_hash($_POST['mot_de_passe'], PASSWORD_BCRYPT);
+            // 1. Vérifier si l'utilisateur existe déjà
+            $existingUser = $userModel->getByEmail($_POST['email']);
+            if ($existingUser) {
+                header('Location: index.php?error=email_exists');
+                exit();
+            }
 
+            // 2. Préparer les données
+            $hashedPassword = password_hash($_POST['mot_de_passe'], PASSWORD_BCRYPT);
+            
             $data = [
                 'prenom'       => $_POST['prenom'],
                 'nom'          => $_POST['nom'],
                 'email'        => $_POST['email'],
                 'mot_de_passe' => $hashedPassword,
-                'role'         => 'etudiant' // Par défaut lors d'une inscription publique
+                'role'         => $_POST['role'] ?? 'visiteur' 
             ];
 
-            try {
-                $userModel->create($data);
-                header('Location: index.php?success=compte_cree');
-            } catch (Exception $e) {
-                header('Location: index.php?error=email_deja_pris');
+            // 3. Créer le compte et récupérer l'ID généré
+            $newUserId = $userModel->create($data);
+
+            if ($newUserId) {
+                // 4. CONNEXION AUTOMATIQUE
+                $_SESSION['user_id'] = $newUserId;
+                $_SESSION['user_prenom'] = $data['prenom'];
+                $_SESSION['user_nom'] = $data['nom'];
+                $_SESSION['user_role'] = $data['role'];
+
+                // Redirection vers l'accueil (le bouton profil changera tout seul)
+                header('Location: index.php?success=welcome');
+                exit();
             }
         }
     }

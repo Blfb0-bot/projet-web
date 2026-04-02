@@ -23,8 +23,10 @@
                             <td><?= htmlspecialchars((string)($student['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
                             <td>
                                 <?php if ($eid > 0): ?><!--si l'ID de l'etudiant est valide -->
-                                    <button onclick="ouvrir('popup-modifier-etudiant-<?= $eid ?>')">modifier</button>
-                                    <button onclick="ouvrir('popup-supprimer-etudiant-<?= $eid ?>')">supprimer</button>
+                                    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'etudiant'|| $_SESSION['user_role'] === 'admin'): ?>
+                                        <button onclick="ouvrir('popup-modifier-etudiant-<?= $eid ?>')">modifier</button>
+                                        <button onclick="ouvrir('popup-supprimer-etudiant-<?= $eid ?>')">supprimer</button>
+                                    <?php endif; ?>
                                 <?php endif; ?>
                             </td>
                         </tr>
