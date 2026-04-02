@@ -8,8 +8,8 @@ final class OffersController{
         $cssExtra = '<link rel="stylesheet" href="/public/styles/offre.css">';
         $pageTitle = 'Offres — Web for All';
         $searchTerm = $GET['search'] ?? null;
-        $model = new OfferModel();
         require_once ROOT . '/app/models/OfferModel.php';
+        $model = new OfferModel();
         if ($searchTerm){
             $offers = $model->searchByTitleOrCompany($searchTerm);
         }else{
