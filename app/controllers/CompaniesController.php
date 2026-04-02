@@ -117,8 +117,8 @@ class CompaniesController {
         }
         require_once ROOT . '/app/config/Database.php';
         require_once ROOT . '/app/models/CompanyModel.php';
-        $idEntrepriseRaw = $_POST['id_entreprise'] ?? '';
-        $idEntreprise = is_numeric($idEntrepriseRaw) ? (int)$idEntrepriseRaw : null;
+        $idEntreprise = $_POST['id_entreprise'] ?? '';
+        $idEtudiant = $_POST['id_etudiant'] ?? '';
         $noteRaw = $_POST['note'] ?? '';
         $note = is_numeric($noteRaw) ? (int)$noteRaw : null;
         $commentaire = trim((string)($_POST['commentaire'] ?? ''));
@@ -128,7 +128,7 @@ class CompaniesController {
             exit;
         }
         $model = new CompanyModel.php();
-        $model->evaluer([
+        $model->creerEvaluation([
             'id_entreprise' => $idEntreprise,
             'id_etudiant' => $_SESSION['user_id'],
             'note' => $note,
