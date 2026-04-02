@@ -7,7 +7,7 @@ final class OffersController{
         $formBase = '/index.php?controller=offers&action=';
         $cssExtra = '<link rel="stylesheet" href="/public/styles/offre.css">';
         $pageTitle = 'Offres — Web for All';
-        $searchTerm = $GET['search'] ?? null;
+        $searchTerm = $_GET['search'] ?? '';
         require_once ROOT . '/app/models/OfferModel.php';
         $model = new OfferModel();
         if ($searchTerm){
