@@ -107,6 +107,35 @@ class CompaniesController {
         $stmt = $pdo->prepare('DELETE FROM entreprise WHERE id = :id');
         $stmt->execute([':id' => $id]);
         header('Location: ' . self::REDIRECT_LIST);
-    }   
+    }
+    public function evaluer(): void{
+        require_once ROOT . '/app/controllers/UserController.php';
+        verifierRole(['etudiant']);
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: ' . self::REDIRECT_LIST);
+            exit;
+        }
+        require_once ROOT . '/app/config/Database.php';
+        require_once ROOT . '/app/models/CompanyModel.php';
+        $idEntrepriseRaw = $_POST['id_entreprise'] ?? '';
+        $idEntreprise = is_numeric($idEntrepriseRaw) ? (int)$idEntrepriseRaw : null;
+        $noteRaw = $_POST['note'] ?? '';
+        $note = is_numeric($noteRaw) ? (int)$noteRaw : null;
+        $commentaire = trim((string)($_POST['commentaire'] ?? ''));
+
+        if ($idEntreprise === null || $note === null || $commentaire === '') {
+            header('Location: ' . self::REDIRECT_LIST . '&error=missing_fields');
+            exit;
+        }
+        $model = new CompanyModel.php();
+        $model->evaluer([
+            'id_entreprise' => $idEntreprise,
+            'id_etudiant' => $_SESSION['user_id'],
+            'note' => $note,
+            'commentaire' => $commentaire
+        ]);
+        header('Location: ' . self::REDIRECT_LIST. '&success=evaluated');
+        exit;
+    }
 }
 ?>
