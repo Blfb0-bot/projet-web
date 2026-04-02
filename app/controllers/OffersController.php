@@ -13,8 +13,8 @@ final class OffersController{
         require_once ROOT . '/app/views/layout/layout.php';
     }
     public function create(): void{
-        require_once ROOT . '/app/controller/UserController.php';
-        verifierRole(['pilote', 'admin']);
+    require_once ROOT . '/app/controllers/UserController.php';
+    verifierRole(['pilote', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: /index.php?controller=offers&action=index' );
             exit;
@@ -70,7 +70,7 @@ final class OffersController{
         exit;
     }
     public function update(): void{
-        require_once ROOT . '/app/controller/UserController.php';
+        require_once ROOT . '/app/controllers/UserController.php';
         verifierRole(['pilote', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
@@ -114,7 +114,7 @@ final class OffersController{
         exit;
     }
     public function delete(): void{
-        require_once ROOT . '/app/controller/UserController.php';
+        require_once ROOT . '/app/controllers/UserController.php';
         verifierRole(['pilote', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);

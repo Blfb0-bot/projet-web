@@ -3,7 +3,7 @@ declare(strict_types=1);
 class StudentsController {
     private const REDIRECT_LIST = '/index.php?controller=students&action=index';
     public function index(): void{
-        require_once ROOT . '/app/controller/UserController.php';
+        require_once ROOT . '/app/controllers/UserController.php';
         verifierRole(['admin','etudiant', 'pilote']);
         $cssExtra = '<link rel="stylesheet" href="/public/styles/etudiant.css">';
         $pageTitle = 'Etudiants — Web for All';
