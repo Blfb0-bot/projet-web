@@ -2,6 +2,7 @@
 <section id="presentation-pilote">
     <h1>Nos Pilotes</h1>
 </section>
+
 <section id="nos-pilote">
     <div class="pilote">
         <div class="table-pilote">
@@ -34,19 +35,19 @@
                 </tbody>
             </table>
 
-            <?php foreach (($pilots ?? []) as $pilot): ?>
-                <?php $pid = (int)($pilot['id'] ?? 0); ?>
-                <?php if ($pid > 0): ?>
-                    <div class="overlay" id="popup-modifier-pilote-<?= $pid ?>" style="display:none;">
+            <?php foreach (($pilots ?? []) as $p): ?>
+                <?php $ppid = (int)($p['id'] ?? 0); ?>
+                <?php if ($ppid > 0): ?>
+                    <div class="overlay" id="popup-modifier-pilote-<?= $ppid ?>" style="display:none;">
                         <div class="popup">
-                            <h2>Modifier <?= htmlspecialchars($pilot['prenom']) ?></h2>
-                            <form action="/pilots/update" method="post">
-                                <input type="hidden" name="id" value="<?= $pid ?>">
-                                <input type="text" name="edit-prenom" value="<?= htmlspecialchars($pilot['prenom']) ?>" required>
-                                <input type="text" name="edit-nom" value="<?= htmlspecialchars($pilot['nom']) ?>" required>
+                            <h2>Modifier <?= htmlspecialchars($p['prenom']) ?></h2>
+                            <form action="index.php?controller=pilots&action=update" method="post">
+                                <input type="hidden" name="id" value="<?= $ppid ?>">
+                                <input type="text" name="edit-prenom" value="<?= htmlspecialchars($p['prenom']) ?>" required>
+                                <input type="text" name="edit-nom" value="<?= htmlspecialchars($p['nom']) ?>" required>
                                 <button type="submit">Enregistrer</button>
                             </form>
-                            <button onclick="fermer('popup-modifier-pilote-<?= $pid ?>')">Fermer</button>
+                            <button onclick="fermer('popup-modifier-pilote-<?= $ppid ?>')">Fermer</button>
                         </div>
                     </div>
                 <?php endif; ?>
