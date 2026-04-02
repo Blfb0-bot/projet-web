@@ -163,15 +163,16 @@
             window.addEventListener('load', function() {
                 const userIsConnected = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
                 const aEteFermee = sessionStorage.getItem('popupManuellementFermee');
-                const cookiesDejaAcceptes = localStorage.getItem('cookiesAcceptes');
                 console.log("Connecté:", userIsConnected, "Déjà fermée:", aEteFermee);
-                if(cookiesDejaAcceptes !== 'true') {
-                    ouvrir('popup-cookies');
-                }
                 if (!userIsConnected && aEteFermee !== 'true') {
                     ouvrir('popup-profil'); 
                 }
-                
+                const cookiesAcceptees = localStorage.getItem('cookiesAcceptees');
+                if (cookiesAcceptees !== 'true') {
+                    ouvrir('popup-cookies');
+                }else{
+                    console.log("Cookies déjà acceptés, pas besoin d'afficher le popup.");
+                }                
             });
         })();
     </script>
