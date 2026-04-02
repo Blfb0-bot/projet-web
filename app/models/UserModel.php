@@ -108,4 +108,8 @@ final class UserModel{
 
         return $stmt->execute();
     }
+    private $db;
+    public function __construct($db){
+        $this->db = $db;
+    }
 }
