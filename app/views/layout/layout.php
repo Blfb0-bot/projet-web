@@ -98,10 +98,9 @@
                         <button onclick="switchOnglet('onglet-password')" id="btn-password" class="onglet-btn">Mot de passe</button>
                         <button onclick="switchOnglet('onglet-delete')" id="btn-delete"   class="onglet-btn danger-tab">Supprimer</button>
                     </div>
-
                     <!-- Onglet : Modifier profil -->
                     <div id="onglet-edit" class="onglet-content">
-                        <form action="index.php?controller=auth&action=profil" method="post">
+                        <form action="index.php?controller=auth&action=update" method="post">
                             <input type="hidden" name="action_type" value="modifier">
                             <label>Prénom</label><br/>
                             <input type="text" name="prenom" value="<?= htmlspecialchars($_SESSION['user_prenom'] ?? '') ?>" required><br/>
@@ -112,10 +111,9 @@
                             <input type="submit" value="Enregistrer">
                         </form>
                     </div>
-
                     <!-- Onglet : Mot de passe -->
                     <div id="onglet-password" class="onglet-content" style="display:none;">
-                        <form action="index.php?controller=auth&action=profil" method="post">
+                        <form action="index.php?controller=auth&action=updatePassword" method="post">
                             <input type="hidden" name="action_type" value="password">
                             <label>Mot de passe actuel</label><br/>
                             <input type="password" name="password_actuel" required><br/>
@@ -130,11 +128,10 @@
                             <input type="submit" value="Mettre à jour">
                         </form>
                     </div>
-
                     <!-- Onglet : Supprimer compte -->
                     <div id="onglet-delete" class="onglet-content" style="display:none;">
                         <p style="color:red; font-weight:bold;">⚠ Action irréversible — toutes vos données seront supprimées.</p>
-                        <form action="index.php?controller=auth&action=profil" method="post">
+                        <form action="index.php?controller=auth&action=delete" method="post">
                             <input type="hidden" name="action_type" value="supprimer">
                             <label>Tapez <strong>SUPPRIMER</strong> pour confirmer</label><br/>
                             <input type="text" name="confirm_suppression" id="confirm-del" oninput="checkConfirm()" placeholder="SUPPRIMER"><br/><br/>
@@ -142,10 +139,8 @@
                                 style="background:red; color:white; opacity:0.4; cursor:not-allowed;">
                         </form>
                     </div>
-
                     <br/>
                     <a href="/index.php?controller=auth&action=logout">Déconnexion</a><br/>
-
                 <?php else : ?>
                     <!-- Connexion / Inscription (inchangé) -->
                     <div class="switch-container">
@@ -183,7 +178,6 @@
                         </form>
                     </div>
                 <?php endif ?>
-
                 <br/>
                 <button onclick="fermer('popup-profil')">Fermer</button>
             </div>
