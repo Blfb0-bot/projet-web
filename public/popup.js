@@ -58,7 +58,6 @@ function switchOnglet(id) {
     const map = { 'onglet-edit': 'btn-edit', 'onglet-password': 'btn-password', 'onglet-delete': 'btn-delete' };
     document.getElementById(map[id]).classList.add('actif-tab');
 }
-
 function checkStrength(v) {
     let score = [v.length >= 8, /[A-Z]/.test(v), /[0-9]/.test(v), /[^A-Za-z0-9]/.test(v)].filter(Boolean).length;
     const niveaux = [
@@ -72,7 +71,6 @@ function checkStrength(v) {
     document.getElementById('pw-bar').style.background = niveaux[score].c;
     document.getElementById('pw-label').textContent    = niveaux[score].l;
 }
-
 function checkConfirm() {
     const ok  = document.getElementById('confirm-del').value === 'SUPPRIMER';
     const btn = document.getElementById('btn-del-submit');

@@ -98,7 +98,7 @@
                 </div>
             </div>
             <!-- Popup pour l'évaluation d'entreprise-->
-             <div class="overlay" id="popup-evaluer-entreprise<?= $cid ?>">
+             <div class="overlay" id="popup-evaluer-entreprise-<?= $cid ?>">
                 <div class="popup">
                     <h2>Evaluer  cette offre</h2>
                     <form action="index.php?controller=companies&action=evaluer" method="post">
