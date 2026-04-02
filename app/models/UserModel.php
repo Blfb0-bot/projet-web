@@ -94,22 +94,4 @@ final class UserModel{
         $stmt->execute([':id' => $id]);
         return $stmt->fetch();
     }
-    public function updatePassword($userId, $newPassword){
-        // Hash the new password
-        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-
-        $sql = "UPDATE utilisateur 
-                SET mot_de_passe = :mot_de_passe 
-                WHERE id = :id";
-
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':mot_de_passe', $hashedPassword, PDO::PARAM_STR);
-        $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
-
-        return $stmt->execute();
-    }
-    private $db;
-    public function __construct($db){
-        $this->db = $db;
-    }
 }
