@@ -3,13 +3,15 @@ declare(strict_types=1);
 class PilotsController {
     private const REDIRECT_LIST = '/index.php?controller=pilots&action=index';
     public function index(): void {
+        require_once ROOT . '/app/controllers/UserController.php';
+        verifierRole(['admin', 'pilote']);
+        $cssExtra = '<link rel="stylesheet" href="/public/styles/pilote.css">';
+        $pageTitle = 'Pilotes — Web for All';
+        $searchTerm = $GET['search'] ?? null;
+        $formBase = 'index.php?controller=pilots&action=';
         require_once ROOT . '/app/models/UserModel.php';
         $model = new UserModel();
-
-        // 1. On récupère la recherche depuis l'URL (?search=...)
         $searchTerm = $_GET['search'] ?? '';
-
-        // 2. On choisit la méthode du modèle
         if ($searchTerm !== '') {
             // IMPORTANT: On utilise le pluriel $pilots pour correspondre à la vue
             $pilots = $model->searchByRoleAndName('pilote', $searchTerm);
