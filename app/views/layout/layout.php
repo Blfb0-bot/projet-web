@@ -57,11 +57,11 @@
         <div class="overlay" id="popup-mention-legale">
             <div class="popup">
                 <h2>Bienvenue sur les mentions legales</h2>
-                <p>Ce projet a été développé par une équipe d'étudiants de CESI Arras. Pour toute question, rendez-vous dans l'onglet <strong>Contactez-nous</strong></p>
-                <p>Ce site est hébergé sur un serveur Apache local</p>
-                <p>L'ensemble des contenus présents sur ce site sont la propriété de leurs auteurs. Toute reproduction sans autorisation, même partielle, est interdite.</p>
-                <p>Les données personelles traité par Web4all (nom , mail , CV...) ne peuvent etre consultè uniquement par un administrateur</p>
-                <p>Les contenus publiés sont fournis par les utilisateurs. L'équipe Web4all ne peut être tenue responsable d'éventuelles inexactitudes et se réserve le droit de supprimer tout contenu inapproprié.</p>
+                <p>Ce projet a été développé par une équipe d'étudiants de CESI Arras. Pour toute question, rendez-vous dans l'onglet <strong>Contactez-nous</strong></p><br/>
+                <p>Ce site est hébergé sur un serveur Apache local</p><br/>
+                <p>L'ensemble des contenus présents sur ce site sont la propriété de leurs auteurs. Toute reproduction sans autorisation, même partielle, est interdite.</p><br/>
+                <p>Les données personelles traité par Web4all (nom , mail , CV...) ne peuvent etre consultè uniquement par un administrateur</p><br/>
+                <p>Les contenus publiés sont fournis par les utilisateurs. L'équipe Web4all ne peut être tenue responsable d'éventuelles inexactitudes et se réserve le droit de supprimer tout contenu inapproprié.</p><br/>
                 <button onclick="fermer('popup-mention-legale')">Fermer</button>
             </div>
         </div>
