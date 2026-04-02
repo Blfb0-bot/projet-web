@@ -7,6 +7,7 @@ class PilotsController {
         verifierRole(['admin', 'pilote']);
         $cssExtra = '<link rel="stylesheet" href="/public/styles/pilote.css">';
         $pageTitle = 'Pilotes — Web for All';
+        $formBase = 'index.php?controller=pilots&action=';
         $page = ROOT . '/app/views/pages/pilots.php';
         require_once ROOT . '/app/models/UserModel.php';
         $pilots = (new UserModel())->getByRole('pilote');
