@@ -54,7 +54,7 @@ final class UserModel{
         $sql = "
             UPDATE utilisateur SET
                 prenom = :prenom,
-                nom = :nom,
+                nom = :nom
             WHERE id = :id
         ";
         $stmt = $pdo->prepare($sql);
