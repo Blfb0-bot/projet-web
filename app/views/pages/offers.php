@@ -147,7 +147,9 @@
         ?>
         <div class="offres">
             <div class="debut-contenu-offre">
-                <div class="type" onclick="ouvrir('popup-postuler-offre')">offre de stage</div>
+                <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'etudiant'): ?>
+                    <div class="type"><a class="apply-btn" onclick="ouvrir('popup-apply-<?= $oid ?>')">offre de stage</a></div>
+                <?php endif: ?>
                 <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
                 <div><a class="wish-list" href="#">aimer</a></div>
                 <?php if ($oid > 0): ?>
@@ -212,6 +214,27 @@
                     <button type="submit">Oui, supprimer</button>
                 </form>
                 <button type="button" onclick="fermer('popup-supprimer-offre-<?= $oid ?>')">Fermer</button>
+            </div>
+        </div>
+        <div class="overlay" id="popup-apply-<?= $oid ?>">
+            <div class="popup">
+                <h2>Postuler — <?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h2>
+                <?php if (isset($_GET['error']) && $_GET['error'] === 'already_applied'): ?>
+                    <p class="form-error">Vous avez déjà postulé à cette offre.</p>
+                <?php elseif (isset($_GET['error']) && $_GET['error'] === 'invalid_cv'): ?>
+                    <p class="form-error">Format de CV invalide (PDF ou Word uniquement).</p>
+                <?php elseif (isset($_GET['error']) && $_GET['error'] === 'cv_too_large'): ?>
+                    <p class="form-error">CV trop lourd (5 Mo maximum).</p>
+                <?php endif; ?>
+                <form action="/index.php?controller=applications&action=create" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id_offre" value="<?= $oid ?>">
+                    <label for="lm-<?= $oid ?>">Lettre de motivation</label><br>
+                    <textarea id="lm-<?= $oid ?>" name="lettre_motivation" rows="8" required placeholder="Madame, Monsieur, ..."></textarea><br>
+                    <label for="cv-<?= $oid ?>">CV (PDF ou Word, 5 Mo max)</label><br>
+                    <input type="file" id="cv-<?= $oid ?>" name="cv" accept=".pdf,.doc,.docx"><br><br>
+                    <input type="submit" value="Envoyer ma candidature">
+                </form>
+                <button type="button" onclick="fermer('popup-apply-<?= $oid ?>')">Fermer</button>
             </div>
         </div>
         <?php endif; ?>

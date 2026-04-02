@@ -35,6 +35,7 @@ $routes = [
     'students'  => 'StudentsController',
     'auth'      => 'AuthController',
     'user'     => 'UserController',
+    'applications' => 'ApplicationsController',
 ];
 
 // --- Lecture des paramètres ---
