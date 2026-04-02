@@ -38,6 +38,7 @@
                 </tbody>
             </table>
             <?php foreach (($students ?? []) as $student): ?>
+                <?php $eeid = (int)($student['id'] ?? 0); ?>
                 <?php if ($eeid > 0): ?>
                     <div class="overlay" id="popup-modifier-etudiant-<?= $eeid ?>">
                         <div class="popup">
