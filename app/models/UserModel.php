@@ -79,5 +79,14 @@ final class UserModel{
         $stmt = $pdo->prepare('DELETE FROM utilisateur WHERE id = :id');
         $stmt->execute([':id' => $id]);
     }
+    public function verifyPassword($userId, $password){
+        $user = $this->getUserById($userId);
+
+        if (!$user) {
+            return false;
+        }
+
+        return password_verify($password, $user['password']);
+    }
 }
 
