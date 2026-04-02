@@ -3,6 +3,8 @@ declare(strict_types=1);
 class PilotsController {
     private const REDIRECT_LIST = '/index.php?controller=pilots&action=index';
     public function index(): void{
+        require_once ROOT . '/app/controller/UserController.php';
+        verifierRole(['admin', 'pilote']);
         $cssExtra = '<link rel="stylesheet" href="/public/styles/pilote.css">';
         $pageTitle = 'Pilotes — Web for All';
         $page = ROOT . '/app/views/pages/pilots.php';
@@ -11,6 +13,8 @@ class PilotsController {
         require_once ROOT . '/app/views/layout/layout.php';
     }
     public function create(): void{
+        require_once ROOT . '/app/controller/UserController.php';
+        verifierRole(['pilote', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;
@@ -44,6 +48,8 @@ class PilotsController {
         exit;
     }
     public function update(): void{
+        require_once ROOT . '/app/controller/UserController.php';
+        verifierRole(['pilote', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;
@@ -76,6 +82,8 @@ class PilotsController {
         exit;
     }
     public function delete(): void{
+        require_once ROOT . '/app/controller/UserController.php';
+        verifierRole(['pilote', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
             exit;

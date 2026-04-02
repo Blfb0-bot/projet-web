@@ -8,7 +8,7 @@ CREATE TABLE utilisateur (
   prenom       VARCHAR(100) NOT NULL,
   email        VARCHAR(255) NOT NULL UNIQUE,
   mot_de_passe VARCHAR(255) NOT NULL,
-  role         ENUM('admin','pilote','etudiant') NOT NULL DEFAULT 'etudiant',
+  role         ENUM('admin','pilote','etudiant','visiteur') NOT NULL DEFAULT 'visiteur',
   id_pilote    INT UNSIGNED NULL,
   created_at   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (id_pilote) REFERENCES utilisateur(id) ON DELETE SET NULL
