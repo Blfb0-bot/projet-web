@@ -6,6 +6,9 @@ error_reporting(E_ALL); // Affiche les erreurs pour le développement
 session_start();
 define('ROOT', __DIR__);
 
+if (!isset($_SESSION['user_role'])) {
+    $_SESSION['user_role'] = 'anonyme';
+}
 // --- Sécurité CSRF ---
 if (empty($_SESSION['csrf_token'])) {
     try {
