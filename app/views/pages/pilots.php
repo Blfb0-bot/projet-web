@@ -2,7 +2,6 @@
 <section id="presentation-pilote">
     <h1>Nos Pilotes</h1>
 </section>
-
 <section id="nos-pilote">
     <div class="pilote">
         <div class="table-pilote">
@@ -34,7 +33,6 @@
                     <?php endif; ?>
                 </tbody>
             </table>
-
             <?php foreach (($pilots ?? []) as $p): ?>
                 <?php $ppid = (int)($p['id'] ?? 0); ?>
                 <?php if ($ppid > 0): ?>
