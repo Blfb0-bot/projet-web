@@ -90,7 +90,7 @@ final class UserModel{
     }
     public function getUserById($id){
         $pdo = Database::getPdo();
-        $sql = "SELECT * FROM users WHERE id = :id LIMIT 1";
+        $sql = "SELECT * FROM utilisateur WHERE id = :id LIMIT 1";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':id' => $id]);
         return $stmt->fetch();
