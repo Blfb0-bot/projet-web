@@ -5,13 +5,13 @@ final class Database{
     private static ?PDO $instance = null;
     public static function getPdo(): PDO {
         if (self::$instance === null) {
-            // ON FORCE LES VALEURS ICI POUR LE TEST
-            $host = '127.0.0.1'; 
+            $host = '127.0.0.1'; // On n'utilise PLUS self::env ici
             $db   = 'projet_web';
             $user = 'root';
             $pass = 'Beuvry/0710';
-            
-            $dsn = "mysql:host=$host;port=3306;dbname=$db;charset=utf8mb4";
+            $port = '3306';
+
+            $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
             
             try {
                 self::$instance = new PDO($dsn, $user, $pass, [
