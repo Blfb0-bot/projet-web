@@ -3,6 +3,14 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL); // Affiche les erreurs pour le développement
 
+ini_set('session.cookie_httponly', '1'); // Empêche le vol de session par JS
+ini_set('session.use_only_cookies', '1'); // Interdit de passer l'ID de session dans l'URL
+ini_set('session.cookie_samesite', 'Strict'); // Protection contre le CSRF
+
+// Active le flag Secure uniquement si HTTPS est détecté
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    ini_set('session.cookie_secure', '1');
+}
 session_start();
 define('ROOT', __DIR__);
 

@@ -4,6 +4,11 @@ Options -Indexes
 # Activer la réécriture d'URL
 RewriteEngine On
 
+# Si la connexion n'est pas HTTPS
+RewriteCond %{HTTPS} off
+# On redirige vers la même URL en HTTPS
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 # Définir la base de réécriture (souvent '/' ou le nom du dossier projet)
 # RewriteBase /
 

@@ -51,7 +51,7 @@ final class AuthController {
             // On vérifie si l'utilisateur existe ET si le mot de passe est correct
             if ($user && password_verify($password, $user['mot_de_passe'])) {
                 // Régénérer l'ID de session pour la sécurité
-                session_regenerate_id();
+                session_regenerate_id(true);
                 
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_prenom'] = $user['prenom'];

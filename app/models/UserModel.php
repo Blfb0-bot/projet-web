@@ -42,6 +42,7 @@ final class UserModel{
     }
     public function create(array $data): int {
         $pdo = Database::getPdo();
+        $hashedPassword = password_hash($data['mot_de_passe'], PASSWORD_BCRYPT);
         $sql = "
             INSERT INTO utilisateur (prenom, nom, email, role, mot_de_passe, id_pilote, created_at)
             VALUES (:prenom, :nom, :email, :role, :mdp, :id_pilote, NOW())
@@ -51,8 +52,8 @@ final class UserModel{
             ':prenom'    => $data['prenom'],
             ':nom'       => $data['nom'],
             ':email'     => $data['email'],
-            ':role'      => $data['role'] ?? 'etudiant', // Rôle par défaut
-            ':mdp'       => $data['mot_de_passe'],       // Le mot de passe haché
+            ':role'      => $data['role'] ?? 'visiteur', // Rôle par défaut
+            ':mdp'       => $hashedPassword,       // Le mot de passe haché
             ':id_pilote' => $data['id_pilote'] ?? null,
         ]);
         return (int)$pdo->lastInsertId();
