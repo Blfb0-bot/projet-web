@@ -3,7 +3,6 @@ declare(strict_types=1);
 require_once ROOT . '/app/config/Database.php';
 
 final class ApplicationModel {
-
     public function create(array $data): int {
         $pdo = Database::getPdo();
         $stmt = $pdo->prepare("
@@ -18,7 +17,6 @@ final class ApplicationModel {
         ]);
         return (int)$pdo->lastInsertId();
     }
-
     public function alreadyApplied(int $idOffre, int $idEtudiant): bool {
         $pdo = Database::getPdo();
         $stmt = $pdo->prepare("
@@ -28,7 +26,6 @@ final class ApplicationModel {
         $stmt->execute([':o' => $idOffre, ':e' => $idEtudiant]);
         return (int)$stmt->fetchColumn() > 0;
     }
-
     public function getByStudent(int $idEtudiant): array {
         $pdo = Database::getPdo();
         $stmt = $pdo->prepare("
@@ -49,7 +46,6 @@ final class ApplicationModel {
         $stmt->execute([':id' => $idEtudiant]);
         return $stmt->fetchAll();
     }
-
     public function getByPilot(int $idPilote): array {
         $pdo = Database::getPdo();
         $stmt = $pdo->prepare("
@@ -73,5 +69,11 @@ final class ApplicationModel {
         ");
         $stmt->execute([':id' => $idPilote]);
         return $stmt->fetchAll();
+    }
+    public function getById(int $id): array|false {
+        $pdo  = Database::getPdo();
+        $stmt = $pdo->prepare("SELECT * FROM candidature WHERE id = :id LIMIT 1");
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch();
     }
 }
