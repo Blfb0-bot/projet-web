@@ -7,14 +7,20 @@ final class OffersController{
         $formBase = '/index.php?controller=offers&action=';
         $cssExtra = '<link rel="stylesheet" href="/public/styles/offre.css">';
         $pageTitle = 'Offres — Web for All';
-        $page = ROOT . '/app/views/pages/offers.php';
+        $searchTerm = $GET['search'] ?? null;
+        $model = new OfferModel();
         require_once ROOT . '/app/models/OfferModel.php';
-        $offers = (new OfferModel())->getAll();
+        if ($searchTerm){
+            $offers = $model->searchByTitleOrCompany($searchTerm);
+        }else{
+            $offers = $model->getAll();
+        }
+        $page = ROOT . '/app/views/pages/offers.php';
         require_once ROOT . '/app/views/layout/layout.php';
     }
     public function create(): void{
-    require_once ROOT . '/app/controllers/UserController.php';
-    verifierRole(['pilote', 'admin']);
+        require_once ROOT . '/app/controllers/UserController.php';
+        verifierRole(['pilote', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: /index.php?controller=offers&action=index' );
             exit;

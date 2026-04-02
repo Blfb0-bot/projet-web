@@ -63,4 +63,14 @@ final class CompanyModel{
         $stmt = $pdo->prepare('DELETE FROM entreprise WHERE id = :id');
         $stmt->execute([':id' => $id]);
     }
+    public function searchByName(string $searchTerm): array {
+        $pdo = Database::getPdo();
+        $stmt = $pdo->prepare("
+            SELECT id, nom, description, email, telephone, created_at
+            FROM entreprise
+            WHERE nom LIKE :search
+        ");
+        $stmt->execute([':search' => "%$searchTerm%"]);
+        return $stmt->fetchAll();
+    }
 }
