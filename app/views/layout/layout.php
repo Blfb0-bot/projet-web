@@ -159,20 +159,26 @@
     </main>
     <script>
         (function() {
-            // On attend que tout soit chargé
             window.addEventListener('load', function() {
                 const userIsConnected = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
                 const aEteFermee = sessionStorage.getItem('popupManuellementFermee');
-                console.log("Connecté:", userIsConnected, "Déjà fermée:", aEteFermee);
-                if (!userIsConnected && aEteFermee !== 'true') {
-                    ouvrir('popup-profil'); 
-                }
                 const cookiesAcceptees = localStorage.getItem('cookiesAcceptees');
+
+                console.log("Connecté:", userIsConnected, "Cookies:", cookiesAcceptees);
+
+                // 1. PRIORITÉ : On vérifie les cookies d'abord
                 if (cookiesAcceptees !== 'true') {
+                    console.log("Ouverture cookies (prioritaire)");
                     ouvrir('popup-cookies');
-                }else{
-                    console.log("Cookies déjà acceptés, pas besoin d'afficher le popup.");
-                }                
+                } 
+                // 2. Si les cookies sont OK, on vérifie si on doit afficher le profil
+                else if (!userIsConnected && aEteFermee !== 'true') {
+                    console.log("Ouverture profil (cookies déjà OK)");
+                    ouvrir('popup-profil');
+                } 
+                else {
+                    console.log("Rien à afficher : cookies OK et utilisateur connecté ou popup déjà fermée.");
+                }
             });
         })();
     </script>
