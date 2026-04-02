@@ -44,6 +44,9 @@
             <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pilote'|| $_SESSION['user_role'] === 'admin'): ?>
                 <a id="pilote" href="/index.php?controller=pilots&action=index">pilote</a>
             <?php endif; ?>
+            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'|| $_SESSION['user_role'] === 'pilote' || $_SESSION['user_role'] === 'etudiant'): ?>
+                <a id="application" href="/index.php?controller=applications&action=index">Candidature</a>
+            <?php endif; ?>
         </nav>
         <footer id="pied-de-page">
             <a id="mention-legale" href="#" onclick="ouvrir('popup-mention-legale')">@2026-mentions legales</a>
