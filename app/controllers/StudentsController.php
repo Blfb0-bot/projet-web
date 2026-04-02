@@ -13,7 +13,7 @@ class StudentsController {
         require_once ROOT . '/app/views/layout/layout.php';
     }
     public function create(): void{
-        require_once ROOT . '/app/controller/UserController.php';
+        require_once ROOT . '/app/controllers/UserController.php';
         verifierRole(['etudiant', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
@@ -50,7 +50,7 @@ class StudentsController {
         exit;
     }
     public function update(): void{
-        require_once ROOT . '/app/controller/UserController.php';
+        require_once ROOT . '/app/controllers/UserController.php';
         verifierRole(['etudiant', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
@@ -81,7 +81,7 @@ class StudentsController {
         exit;
     }
     public function delete(): void{
-        require_once ROOT . '/app/controller/UserController.php';
+        require_once ROOT . '/app/controllers/UserController.php';
         verifierRole(['etudiant', 'admin']);
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: ' . self::REDIRECT_LIST);
