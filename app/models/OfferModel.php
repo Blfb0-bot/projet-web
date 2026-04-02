@@ -152,7 +152,7 @@ final class OfferModel{
         $search = "%" . $term . "%";
         // On cherche dans le titre de l'offre OU dans le nom de l'entreprise
         $sql = "
-            SELECT o.*, e.nom_entreprise 
+            SELECT o.*, e.nom AS entreprise_nom
             FROM offre o
             LEFT JOIN entreprise e ON o.id_entreprise = e.id
             WHERE (o.titre LIKE :term OR e.nom LIKE :term)
