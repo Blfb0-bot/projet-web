@@ -92,7 +92,6 @@
                         </label>
                         <span>Inscription</span>
                     </div>
-
                     <div class="formulaire-profil actif" id="connexion">
                         <form action="index.php?controller=auth&action=login" method="post">
                             <h2>Connexion</h2>
@@ -103,7 +102,6 @@
                             <input type="submit" value="Se connecter">
                         </form>
                     </div>
-
                     <div class="formulaire-profil" id="inscription">
                         <form action="index.php?controller=users&action=register" method="post">
                             <h2>Inscription</h2>
@@ -130,5 +128,16 @@
         }
         ?>
     </main>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // On récupère l'état de connexion depuis PHP
+        const userIsConnected = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
+        
+        // Si l'utilisateur n'est pas connecté, on force l'ouverture
+        if (!userIsConnected) {
+            ouvrir('popup-profil');
+        }
+    });
+</script>
 </body>
 </html>

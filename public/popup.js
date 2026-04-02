@@ -1,8 +1,10 @@
 function ouvrir(id) {
-    console.log("Tentative d'ouverture de : " + id); // Pour vérifier dans la console
-    const elem = document.getElementById(id);
-    if (elem) {
-        elem.classList.add("actif");
+    const popup = document.getElementById(id);
+    if (popup) {
+        popup.classList.add("actif");
+        console.log("Ouverture de la popup : " + id);
+    } else {
+        console.error("ID non trouvé : " + id);
     }
 }
 function fermer(id) {
@@ -26,14 +28,6 @@ function basculerAuth() {
         formConnexion.classList.add("actif");
     }
 }
-// Ouvrir la popup automatiquement au chargement si pas connecté
-window.onload = function() {
-    // Si l'utilisateur n'est pas connecté, le JS ajoute la classe 'actif' dynamiquement
-    const isConnected = <?= isset($_SESSION['user_id']) ? 'true' : 'false' ?>;
-    if (!isConnected) {
-        ouvrir('popup-profil'); 
-    }
-};
 document.addEventListener('DOMContentLoaded', function () {
     const params = new URLSearchParams(window.location.search);
     const error = params.get('error');
