@@ -41,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 function accepterCookies() {
-    localStorage.setItem('cookiesAcceptes', 'true');
+    localStorage.setItem('cookiesAcceptees', 'true'); // Vérifie bien l'orthographe ici
     fermer('popup-cookies');
+    // Optionnel : recharger la page pour afficher le popup profil immédiatement après
+    location.reload(); 
 }
