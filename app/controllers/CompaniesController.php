@@ -116,7 +116,7 @@ class CompaniesController {
             exit;
         }
         require_once ROOT . '/app/config/Database.php';
-        require_once ROOT . '/app/models/EvaluationModel.php';
+        require_once ROOT . '/app/models/CompanyModel.php';
         $idEntrepriseRaw = $_POST['id_entreprise'] ?? '';
         $idEntreprise = is_numeric($idEntrepriseRaw) ? (int)$idEntrepriseRaw : null;
         $noteRaw = $_POST['note'] ?? '';
@@ -127,8 +127,8 @@ class CompaniesController {
             header('Location: ' . self::REDIRECT_LIST . '&error=missing_fields');
             exit;
         }
-        $model = new EvaluationModel();
-        $model->create([
+        $model = new CompanyModel.php();
+        $model->evaluer([
             'id_entreprise' => $idEntreprise,
             'id_etudiant' => $_SESSION['user_id'],
             'note' => $note,
