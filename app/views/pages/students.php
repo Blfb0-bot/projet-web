@@ -30,39 +30,41 @@
                                 <?php endif; ?>
                             </td>
                         </tr>
-                            <?php if ($eid > 0): ?>
-                                <div class="overlay" id="popup-modifier-etudiant-<?= $eid ?>">
-                                    <div class="popup">
-                                        <h2>Modifier l'etudiant</h2>
-                                        <form action="<?= htmlspecialchars($formBase . 'update', ENT_QUOTES, 'UTF-8') ?>" method="post">
-                                            <input type="hidden" name="id" value="<?= $eid ?>">
-                                            <label for="edit-prenom">Prenom</label><br/>
-                                            <input type="text" id="edit-prenom" name="edit-prenom" required maxlength="100" value="<?= htmlspecialchars((string)($student['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
-                                            <label for="edit-nom">Nom</label><br/>
-                                            <input type="text" id="edit-nom" name="edit-nom" required maxlength="100" value="<?= htmlspecialchars((string)($student['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
-                                            <label for="edit-email">Email</label><br/>
-                                            <input type="email" id="edit-email" name="edit-email" required maxlength="255" value="<?= htmlspecialchars((string)($student['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/><br/>
-                                            <input type="submit" value="Enregistrer">
-                                            <button onclick="fermer('popup-modifier-etudiant-<?= $eid ?>')">Annuler</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="overlay" id="popup-supprimer-etudiant-<?= $eid ?>">
-                                    <div class="popup">
-                                        <h2>Supprimer l'etudiant</h2>
-                                        <!-- Formulaire de suppression de l'etudiant -->
-                                        <form action="<?= htmlspecialchars($formBase . 'delete', ENT_QUOTES, 'UTF-8') ?>" method="post">
-                                            <input type="hidden" name="id" value="<?= $eid ?>">
-                                            <p>Êtes-vous sûr de vouloir supprimer cet etudiant ?</p>
-                                            <button type="submit">oui, supprimer</button>
-                                            <button onclick="fermer('popup-supprimer-etudiant-<?= $eid ?>')">Annuler</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            <?php endif ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <?php foreach (($students ?? []) as $student): ?>
+                <?php if ($eid > 0): ?>
+                    <div class="overlay" id="popup-modifier-etudiant-<?= $eid ?>">
+                        <div class="popup">
+                            <h2>Modifier l'etudiant</h2>
+                            <form action="<?= htmlspecialchars($formBase . 'update', ENT_QUOTES, 'UTF-8') ?>" method="post">
+                                <input type="hidden" name="id" value="<?= $eid ?>">
+                                <label for="edit-prenom">Prenom</label><br/>
+                                <input type="text" id="edit-prenom" name="edit-prenom" required maxlength="100" value="<?= htmlspecialchars((string)($student['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
+                                <label for="edit-nom">Nom</label><br/>
+                                <input type="text" id="edit-nom" name="edit-nom" required maxlength="100" value="<?= htmlspecialchars((string)($student['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
+                                <label for="edit-email">Email</label><br/>
+                                <input type="email" id="edit-email" name="edit-email" required maxlength="255" value="<?= htmlspecialchars((string)($student['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/><br/>
+                                <input type="submit" value="Enregistrer">
+                                <button onclick="fermer('popup-modifier-etudiant-<?= $eid ?>')">Annuler</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="overlay" id="popup-supprimer-etudiant-<?= $eid ?>">
+                        <div class="popup">
+                            <h2>Supprimer l'etudiant</h2>
+                            <!-- Formulaire de suppression de l'etudiant -->
+                            <form action="<?= htmlspecialchars($formBase . 'delete', ENT_QUOTES, 'UTF-8') ?>" method="post">
+                                <input type="hidden" name="id" value="<?= $eid ?>">
+                                <p>Êtes-vous sûr de vouloir supprimer cet etudiant ?</p>
+                                <button type="submit">oui, supprimer</button>
+                                <button onclick="fermer('popup-supprimer-etudiant-<?= $eid ?>')">Annuler</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php endif ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
