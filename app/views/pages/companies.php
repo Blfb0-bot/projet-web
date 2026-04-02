@@ -112,7 +112,7 @@
                         <textarea id="commentaire" name="commentaire" rows="4" cols="40" placeholder="Votre commentaire..."></textarea><br/><br/>
                         <input type="submit" value="Envoyer l'évaluation">
                     </form>
-                    <button onclick="fermer('popup-evaluer-entreprise<?= $cid ?>')">Fermer</button>
+                    <button onclick="fermer('popup-evaluer-entreprise-<?= $cid ?>')">Fermer</button>
                 </div>
             </div>
         <?php endif; ?>

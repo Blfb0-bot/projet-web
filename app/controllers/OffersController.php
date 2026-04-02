@@ -15,6 +15,7 @@ final class OffersController{
         }else{
             $offers = $model->getAll();
         }
+        $stats = $model->getStats();
         $page = ROOT . '/app/views/pages/offers.php';
         require_once ROOT . '/app/views/layout/layout.php';
     }
