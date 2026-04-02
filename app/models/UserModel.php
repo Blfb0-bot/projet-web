@@ -20,17 +20,25 @@ final class UserModel{
         $user = $stmt->fetch();
         return $user ?: null;
     }
-    public function findIdByPrenomAndNom(string $prenom, string $nom): ?int{
-        $prenom = trim($prenom);
-        $nom = trim($nom);
-        if ($prenom === '' || $nom === '') {
-            return null;
-        }
+    public function searchByRoleAndName(string $role, string $term): array {
         $pdo = Database::getPdo();
-        $stmt = $pdo->prepare('SELECT id FROM utilisateur WHERE prenom = :p AND nom = :n LIMIT 1');
-        $stmt->execute([':p' => $prenom, ':n' => $nom]);
-        $row = $stmt->fetch();
-        return $row !== false ? (int)$row['id'] : null;
+        $search = '%' . $term . '%';
+
+        $stmt = $pdo->prepare("
+            SELECT * FROM utilisateur 
+            WHERE role = :role 
+            AND (nom LIKE :t1 OR prenom LIKE :t2 OR email LIKE :t3)
+            ORDER BY created_at DESC
+        ");
+        
+        $stmt->execute([
+            ':role' => $role,
+            ':t1'   => $search,
+            ':t2'   => $search,
+            ':t3'   => $search
+        ]);
+        
+        return $stmt->fetchAll();
     }
     public function create(array $data): int {
         $pdo = Database::getPdo();
