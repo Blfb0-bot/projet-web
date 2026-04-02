@@ -133,17 +133,30 @@
                 <button onclick="fermer('popup-profil')">Fermer</button>
             </div>
         </div>
+        <div class="overlay" id="popup-cookies">
+            <div class="popup">
+                <h2>🍪 Politique des cookies</h2>
+                <p>Nous utilisons des cookies pour sécuriser votre connexion et améliorer votre navigation en HTTPS.</p>
+                <br/>
+                <p>En poursuivant, vous acceptez l'utilisation de ces traceurs.</p>
+                <br/>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button onclick="accepterCookies()" style="background-color: #2ecc71; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Accepter</button>
+                    <button onclick="fermer('popup-cookies')" style="background-color: #e74c3c; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Refuser</button>
+                </div>
+            </div>
+        </div>
     </div>
     <!--Notre page-->
     <main id="page">
-    <?php
-    if (isset($page) && file_exists($page)) {
-        include $page;
-    } else {
-        echo '<p>Page introuvable</p>';
-    }
-    ?>
-</main>
+        <?php
+        if (isset($page) && file_exists($page)) {
+            include $page;
+        } else {
+            echo '<p>Page introuvable</p>';
+        }
+        ?>
+    </main>
     <script>
         (function() {
             // On attend que tout soit chargé
@@ -155,6 +168,9 @@
 
                 if (!userIsConnected && aEteFermee !== 'true') {
                     ouvrir('popup-profil');
+                }
+                if (typeof verifierPopups === "function") {
+                    verifierPopups(userIsConnected);
                 }
             });
         })();

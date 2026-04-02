@@ -40,3 +40,19 @@ document.addEventListener('DOMContentLoaded', function () {
         ouvrir('popup-creer-offre');
     }
 });
+function accepterCookies() {
+    localStorage.setItem('cookiesAcceptes', 'true');
+    fermer('popup-cookies');
+}
+
+// Cette fonction gère l'affichage prioritaire des cookies sur le profil
+function verifierPopups(userIsConnected) {
+    const cookiesDejaAcceptes = localStorage.getItem('cookiesAcceptes');
+    const aEteFermee = sessionStorage.getItem('popupManuellementFermee');
+
+    if (cookiesDejaAcceptes !== 'true') {
+        ouvrir('popup-cookies');
+    } else if (!userIsConnected && aEteFermee !== 'true') {
+        ouvrir('popup-profil');
+    }
+}
