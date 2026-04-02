@@ -19,7 +19,6 @@ class UserController {
             }
         }
     }
-
 }
 function verifierRole(array $rolesAutorises) {
     // 1. Si pas de session ou pas de rôle, on dégage
@@ -27,7 +26,6 @@ function verifierRole(array $rolesAutorises) {
         header('Location: index.php?controller=auth&action=login&error=auth_required');
         exit();
     }
-
     // 2. Si le rôle de l'utilisateur n'est PAS dans la liste des rôles autorisés
     if (!in_array($_SESSION['user_role'], $rolesAutorises)) {
         header('Location: index.php?error=access_denied');

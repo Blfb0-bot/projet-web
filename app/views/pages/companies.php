@@ -104,8 +104,8 @@
                 <div class="popup">
                     <h2>Evaluer  cette offre</h2>
                     <form action="index.php?controller=companies&action=evaluer" method="post">
-                        <input type="hidden" name="id_entreprise" value="<?= htmlspecialchars($_GET['id_entreprise'] ?? '') ?>">
-                        <input type="hidden" name="id_etudiant" value="<?= htmlspecialchars($_GET['id_etudiant'] ?? '') ?>">
+                        <input type="hidden" name="id_entreprise" value="<?= $cid ?>">
+                        <input type="hidden" name="id_etudiant" value="<?= $_SESSION['user_id'] ?>">
                         <label for="note">Note (1 à 5)</label><br/>
                         <input type="number" id="note" name="note" min="1" max="5" required><br/>
                         <label for="commentaire">Commentaire</label><br/>
