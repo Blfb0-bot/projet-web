@@ -36,8 +36,6 @@ if (!preg_match('/^[a-zA-Z0-9_]+$/', $controllerKey)) {
     echo 'Nom de contrôleur invalide';
     exit;
 }
-var_dump($controllerKey); 
-var_dump(array_keys($routes));
 // --- Vérification de l'existence dans les routes ---
 if (!isset($routes[$controllerKey])) {
     http_response_code(404);

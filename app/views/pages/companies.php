@@ -3,7 +3,9 @@
     <h1>Nos entreprises</h1>
 </section>
 <section id="outils-entreprise">
-    <button id="creation-offre" onclick="ouvrir('popup-creer-entreprise')">créer une entreprise</button>
+    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] ==='pilote' || $_SESSION['user_role'] === 'admin'): ?>
+        <button id="creation-offre" onclick="ouvrir('popup-creer-entreprise')">créer une entreprise</button>
+    <?php endif; ?>
 </section>
 <!--Popup création d'une entreprise-->
 <div class="overlay" id="popup-creer-entreprise">
@@ -53,8 +55,10 @@
             <div class="fin-contenu-entreprise">
                 <?php if ($cid > 0): ?> <!--si l'ID de l'entreprise est valide -->
                 <div class="modification-entreprise">
-                    <button onclick="ouvrir('popup-modifier-entreprise-<?= $cid ?>')">modifier</button>
-                    <button onclick="ouvrir('popup-supprimer-entreprise-<?= $cid ?>')">supprimer</button>
+                    <?php if (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'pilote' || $_SESSION['user_role'] === 'admin')): ?>
+                        <button onclick="ouvrir('popup-modifier-entreprise-<?= $cid ?>')">modifier</button>
+                        <button onclick="ouvrir('popup-supprimer-entreprise-<?= $cid ?>')">supprimer</button>
+                    <?php endif; ?>
                     <p>evaluer</p>
                 </div>
                 <?php endif; ?>

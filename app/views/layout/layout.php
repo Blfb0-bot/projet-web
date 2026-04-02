@@ -36,8 +36,12 @@
             <a id="offre" href="/index.php?controller=offers&action=index">offres</a>
             <!--index.php?controller=contact-->
             <a id="entreprise" href="/index.php?controller=companies&action=index">entreprise</a>
-            <a id="etudiant" href="/index.php?controller=students&action=index">etudiant</a>
-            <a id="pilote" href="/index.php?controller=pilots&action=index">pilote</a>
+            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'etudiant' || $_SESSION['user_role'] === 'pilote'|| $_SESSION['user_role'] === 'admin'): ?>
+                <a id="etudiant" href="/index.php?controller=students&action=index">etudiant</a>
+            <?php endif; ?>
+            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pilote'|| $_SESSION['user_role'] === 'admin'): ?>
+                <a id="pilote" href="/index.php?controller=pilots&action=index">pilote</a>
+            <?php endif; ?>
         </nav>
         <footer id="pied-de-page">
             <a id="mention-legale" href="#" onclick="ouvrir('popup-mention-legale')">@2026-mentions legales</a>
@@ -107,6 +111,12 @@
                             <h2>Inscription</h2>
                             <input type="text" name="nom" placeholder="Nom" required><br/>
                             <input type="text" name="prenom" placeholder="Prénom" required><br/>
+                            <select name="role" required>
+                                <option value="">Je suis: </option>
+                                <option value="etudiant">Étudiant</option>
+                                <option value="pilote">Pilote</option>
+                                <option value="visiteur">simple visiteur</option>
+                            </select>
                             <input type="email" name="email" placeholder="Email" required><br/>
                             <input type="password" name="mot_de_passe" placeholder="Mot de passe" required><br/><br/>
                             <input type="submit" value="Créer mon compte">

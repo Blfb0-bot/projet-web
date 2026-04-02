@@ -3,7 +3,9 @@
     <h1>Nos Offres</h1>
 </section>
 <section id="outils-offre">
-    <button id="creation-offre" onclick="ouvrir('popup-creer-offre')">créer une offre</button>
+    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pilote'|| $_SESSION['user_role'] === 'admin'): ?>
+        <button id="creation-offre" onclick="ouvrir('popup-creer-offre')">créer une offre</button>
+    <?php endif; ?>
 </section>
 <div class="overlay" id="popup-creer-offre">
     <div class="popup">
@@ -54,8 +56,10 @@
                 <div><a class="évaluer" href="#">évaluer</a></div>
                 <?php if ($oid > 0): ?>
                 <div class="modification-offre">
-                    <button type="button" onclick="ouvrir('popup-modifier-offre-<?= $oid ?>')">modifier</button>
-                    <button type="button" onclick="ouvrir('popup-supprimer-offre-<?= $oid ?>')">supprimer</button>
+                    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pilote'|| $_SESSION['user_role'] === 'admin'): ?>
+                        <button type="button" onclick="ouvrir('popup-modifier-offre-<?= $oid ?>')">modifier</button>
+                        <button type="button" onclick="ouvrir('popup-supprimer-offre-<?= $oid ?>')">supprimer</button>
+                    <?php endif; ?>
                 </div>
                 <?php endif; ?>
             </div>
