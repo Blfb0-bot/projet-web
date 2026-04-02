@@ -152,7 +152,7 @@ final class OfferModel{
         $search = "%" . $term . "%";
 
         $sql = "
-            SELECT o.*, e.nom AS nom_entreprise 
+            SELECT o.*, e.nom AS entreprise_nom 
             FROM offre o
             LEFT JOIN entreprise e ON o.id_entreprise = e.id
             WHERE (o.titre LIKE :term_titre OR e.nom LIKE :term_ent)
