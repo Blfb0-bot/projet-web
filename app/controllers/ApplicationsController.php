@@ -90,4 +90,34 @@ final class ApplicationsController {
         header('Location: /index.php?controller=offers&action=index&success=applied');
         exit;
     }
+    public function cv(): void {
+        require_once ROOT . '/app/controllers/UserController.php';
+        verifierRole(['etudiant', 'pilote', 'admin']);
+        require_once ROOT . '/app/models/ApplicationModel.php';
+        $model = new ApplicationModel();
+        $id     = (int)($_GET['id'] ?? 0);
+        $userId = (int)$_SESSION['user_id'];
+        $role   = $_SESSION['user_role'];
+        $app = $model->getById($id);
+        if (!$app) {
+            http_response_code(404);
+            exit('Fichier introuvable.');
+        }
+        // Vérification d'accès : étudiant ne voit que son propre CV
+        if ($role === 'etudiant' && (int)$app['id_etudiant'] !== $userId) {
+            http_response_code(403);
+            exit('Accès refusé.');
+        }
+        $filePath = ROOT . $app['cv_path'];
+        if (!file_exists($filePath)) {
+            http_response_code(404);
+            exit('Fichier introuvable.');
+        }
+        $mime = mime_content_type($filePath);
+        header('Content-Type: ' . $mime);
+        header('Content-Disposition: inline; filename="' . basename($filePath) . '"');
+        header('Content-Length: ' . filesize($filePath));
+        readfile($filePath);
+        exit;
+    }
 }

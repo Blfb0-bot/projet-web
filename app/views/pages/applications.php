@@ -38,7 +38,7 @@ $isPilot = isset($_SESSION['user_role']) && in_array($_SESSION['user_role'], ['p
                     <div class="app-cv">
                         <h4>CV</h4>
                         <?php if ($app['cv_path']): ?>
-                            <a class="btn-cv" href="<?= htmlspecialchars($app['cv_path'], ENT_QUOTES, 'UTF-8') ?>" target="_blank">Voir le CV</a>
+                            <a class="btn-cv" href="/index.php?controller=applications&action=cv&id=<?= $app['id'] ?>" target="_blank">Voir le CV</a>
                         <?php else: ?>
                             <p class="no-cv">Aucun CV fourni</p>
                         <?php endif; ?>
