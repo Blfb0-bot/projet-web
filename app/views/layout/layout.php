@@ -19,9 +19,9 @@
         <div id="recherche">
             <form action="index.php" method="get">
                 <input type="hidden" name="controller" value="<?= htmlspecialchars($_GET['controller'] ?? 'accueil') ?>">
-                <input type="hidden" name="action" value="<?= htmlspecialchars($_GET['action'] ?? 'index') ?>">
-                <input type="search" name="search" placeholder="recherche..." aria-label="recherche sur le site" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
-            </form>
+                <input type="hidden" name="action" value="index">
+                <input type="search" name="search" placeholder="recherche..." value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+                <button type="submit" style="display:none"></button> </form>
         </div>
         <div id="profil">
             <img onclick="ouvrir('popup-profil')" src="../public/images/PROFIL.png" alt="PROFIL.png">
@@ -132,14 +132,14 @@
     </div>
     <!--Notre page-->
     <main id="page">
-        <?php
-        if (isset($page) && file_exists($page)) {
-            include $page;
-        } else {
-            echo '<p>Page introuvable</p>';
-        }
-        ?>
-    </main>
+    <?php
+    if (isset($page) && file_exists($page)) {
+        include $page;
+    } else {
+        echo '<p>Page introuvable</p>';
+    }
+    ?>
+</main>
     <script>
         (function() {
             // On attend que tout soit chargé
