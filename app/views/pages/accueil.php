@@ -2,7 +2,7 @@
 <section id="presentation">
     <h1 id="grand-titre">Bienvenue sur WEB for all: Votre plateforme dédiée à la recherche de stages</h1>
 </section>
-<section id="test">
+<section id="contenu">
 </br>
     <p>Trouver un stage peut être un véritable défi pour les étudiants. Entre la multitude d’offres, les critères variés et les démarches administratives, il est parfois difficile de s’y retrouver. StageLink a été conçu pour rendre cette étape plus simple, plus rapide et plus efficace.</p>
     <br/>
