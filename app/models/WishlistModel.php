@@ -10,7 +10,7 @@ class WishlistModel {
     public function getByEtudiant(int $etudiant_id): array {
         $stmt = $this->pdo->prepare("
             SELECT o.* FROM offres o
-            JOIN wishlist w ON w.offre_id = o.id
+            JOIN wishlist w ON w.id_offre = o.id
             WHERE w.etudiant_id = :etudiant_id
             ORDER BY w.date_ajout DESC
         ");
@@ -19,15 +19,15 @@ class WishlistModel {
     }
 
     // SF24 — Ajouter une offre à la wish-list
-    public function ajouter(int $id_etudiant, int $offre_id): bool {
+    public function ajouter(int $id_etudiant, int $id_offre): bool {
         try {
             $stmt = $this->pdo->prepare("
-                INSERT INTO wishlist (id_etudiant, offre_id)
-                VALUES (:id_etudiant, :offre_id)
+                INSERT INTO wishlist (id_etudiant, id_offre)
+                VALUES (:id_etudiant, :id_offre)
             ");
             return $stmt->execute([
                 ':id_etudiant' => $id_etudiant,
-                ':offre_id'    => $offre_id,
+                ':id_offre'    => $id_offre,
             ]);
         } catch (PDOException $e) {
             // UNIQUE KEY empêche les doublons
@@ -35,25 +35,25 @@ class WishlistModel {
         }
     }
     // SF25 — Retirer une offre de la wish-list
-    public function retirer(int $id_etudiant, int $offre_id): bool {
+    public function retirer(int $id_etudiant, int $id_offre): bool {
         $stmt = $this->pdo->prepare("
             DELETE FROM wishlist
-            WHERE etudiant_id = :etudiant_id AND offre_id = :offre_id
+            WHERE etudiant_id = :etudiant_id AND id_offre = :id_offre
         ");
         return $stmt->execute([
             ':etudiant_id' => $etudiant_id,
-            ':offre_id'    => $offre_id,
+            ':id_offre'    => $id_offre,
         ]);
     }
     // Utilitaire — vérifier si une offre est déjà dans la wish-list
-    public function existe(int $id_etudiant, int $offre_id): bool {
+    public function existe(int $id_etudiant, int $id_offre): bool {
         $stmt = $this->pdo->prepare("
             SELECT COUNT(*) FROM wishlist
-            WHERE id_etudiant = :id_etudiant AND offre_id = :offre_id
+            WHERE id_etudiant = :id_etudiant AND id_offre = :id_offre
         ");
         $stmt->execute([
             ':id_etudiant' => $id_etudiant,
-            ':offre_id'    => $offre_id,
+            ':id_offre'    => $id_offre,
         ]);
         return (int) $stmt->fetchColumn() > 0;
     }
