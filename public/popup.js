@@ -96,7 +96,8 @@ function checkConfirm() {
 
     function goTo(n) {
         cur = n;
-        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        const cardWidth = track.parentElement.offsetWidth;
+        track.style.transform = 'translateX(-' + (cur * cardWidth) + 'px)';
         document.querySelectorAll('.carousel-dot').forEach((d, i) =>
             d.className = 'carousel-dot' + (i === cur ? ' active' : ''));
         document.getElementById('prevBtn').disabled = cur === 0;
@@ -105,4 +106,6 @@ function checkConfirm() {
 
     document.getElementById('prevBtn').onclick = () => { if (cur > 0) goTo(cur - 1); };
     document.getElementById('nextBtn').onclick = () => { if (cur < total - 1) goTo(cur + 1); };
+
+    window.addEventListener('resize', () => goTo(cur));
 })();
