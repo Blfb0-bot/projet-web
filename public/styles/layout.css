@@ -172,6 +172,9 @@
     background-color: rgba(73, 20, 109, 0.5);
     border: 1px solid rgba(73, 20, 109, 0.5);
 }
+.popup, input{
+    border-radius: 20px;
+}
 /*contenue formulaire popup*/
 .popup .formulaire-profil {
   display: none;
