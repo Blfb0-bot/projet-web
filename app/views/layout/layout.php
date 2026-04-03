@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--sans ça, les mobiles affichent la version pc-->
+    <meta name="csrf_token" content="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
     <title>WEB FOR ALL</title>
     <link rel="stylesheet" href="../public/styles/layout.css">
     <script src="../public/popup.js"></script>
@@ -90,11 +91,26 @@
         <div class="overlay" id="popup-profil">
             <div class="popup">
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <h2>Mon Compte</h2>
-                    <p>Bonjour, <?= htmlspecialchars($_SESSION['user_prenom'] . ' ' . $_SESSION['user_nom']) ?></p>
-                    <p>Rôle : <?= htmlspecialchars($_SESSION['user_role']) ?></p>
+                    <h2>Bonjour, <?= htmlspecialchars($_SESSION['user_prenom']) ?></h2>
+                    <p>Rôle : <?= htmlspecialchars($_SESSION['user_role']) ?></p></br>
+                    <h4>❤️ Ma Wish-list</h4>
+                    <div id="wishlist-container">
+                        <?php if (empty($offres)): ?>
+                            <p>Ta wish-list est vide.<a href="index.php?controller=offers&action=index">Voir les offres</a></p>
+                        <?php else: ?>
+                            <?php foreach ($offres as $offre): ?>
+                                <?php $oid = (int)($offre['id'] ?? 0); ?>
+                                <div class="offre-card" id="offre-<?= $oid ?>">
+                                    <strong><?= htmlspecialchars($offre['titre'], ENT_QUOTES, 'UTF-8') ?></strong>
+                                    <span style="color:#6b7280;font-size:13px;">
+                                        <?= htmlspecialchars($offre['entreprise'], ENT_QUOTES, 'UTF-8') ?>
+                                    </span>
+                                    <button onclick="retirerWishlist(<?= $oid ?>)">❌ Retirer</button>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
                     <hr>
-
                     <!-- Onglets -->
                     <div style="display:flex; gap:0; margin:1rem 0 0; border-bottom:1px solid #ccc;">
                         <button onclick="switchOnglet('onglet-edit')"   id="btn-edit"     class="onglet-btn actif-tab">Modifier</button>

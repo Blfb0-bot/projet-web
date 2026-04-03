@@ -1,3 +1,4 @@
+formData.append('csrf_token', document.querySelector('meta[name="csrf_token"]').content);
 function ouvrir(id) {
     const popup = document.getElementById(id);
     if (popup) {
@@ -109,3 +110,61 @@ function checkConfirm() {
 
     window.addEventListener('resize', () => goTo(cur));
 })();
+// SF24 — Ajouter
+async function ajouterWishlist(offre_id) {
+    const formData = new FormData();
+    formData.append('offre_id', offre_id);
+    formData.append('csrf_token', csrfToken);
+
+    try {
+        const res  = await fetch('index.php?controller=wishlist&action=ajouter', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+
+        if (data.success) {
+            // Désactive le bouton visuellement
+            const btn = document.querySelector(`[data-offre="${offre_id}"]`);
+            if (btn) {
+                btn.textContent = '❤️ Dans ma wish-list';
+                btn.disabled = true;
+            }
+        } else {
+            alert('⚠️ ' + data.error);
+        }
+    } catch (e) {
+        alert('Erreur réseau, réessaie.');
+    }
+}
+// SF25 — Retirer une offre de la wish-list
+async function retirerWishlist(offre_id) {
+    if (!confirm('Retirer cette offre de ta wish-list ?')) return;
+
+    const formData = new FormData();
+    formData.append('offre_id', offre_id);
+    formData.append('csrf_token', csrfToken);
+
+    try {
+        const res  = await fetch('index.php?controller=wishlist&action=retirer', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+
+        if (data.success) {
+            // Supprime la carte sans recharger la page
+            document.getElementById(`offre-${offre_id}`)?.remove();
+
+            // Si la wishlist est vide, affiche un message
+            const container = document.getElementById('wishlist-container');
+            if (container && container.children.length === 0) {
+                container.innerHTML = '<p>Ta wish-list est vide. <a href="index.php?controller=offers&action=index">Voir les offres</a></p>';
+            }
+        } else {
+            alert('⚠️ ' + data.error);
+        }
+    } catch (e) {
+        alert('Erreur réseau, réessaie.');
+    }
+}
