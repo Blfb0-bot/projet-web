@@ -40,6 +40,8 @@
                         <div class="popup">
                             <h2>Modifier <?= htmlspecialchars($p['prenom']) ?></h2>
                             <form action="index.php?controller=pilots&action=update" method="post">
+                                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+                                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
                                 <input type="hidden" name="id" value="<?= $ppid ?>">
                                 <input type="text" name="edit-prenom" value="<?= htmlspecialchars($p['prenom']) ?>" required>
                                 <input type="text" name="edit-nom" value="<?= htmlspecialchars($p['nom']) ?>" required>
@@ -52,6 +54,8 @@
                         <div class="popup">
                             <h2>Supprimer <?= htmlspecialchars($p['prenom']) ?></h2>
                             <form action="index.php?controller=pilots&action=delete" method="post">
+                                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+                                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
                                 <input type="hidden" name="id" value="<?= $ppid ?>">
                                 <p>Êtes-vous sûr de vouloir supprimer ce pilote ?</p>
                                 <button type="submit">Oui, supprimer</button>

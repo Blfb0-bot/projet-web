@@ -44,6 +44,7 @@
                         <div class="popup">
                             <h2>Modifier l'etudiant</h2>
                             <form action="<?= htmlspecialchars($formBase . 'update', ENT_QUOTES, 'UTF-8') ?>" method="post">
+                                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
                                 <input type="hidden" name="id" value="<?= $eeid ?>">
                                 <label for="edit-prenom">Prenom</label><br/>
                                 <input type="text" id="edit-prenom" name="edit-prenom" required maxlength="100" value="<?= htmlspecialchars((string)($student['prenom'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
@@ -61,6 +62,7 @@
                             <h2>Supprimer l'etudiant</h2>
                             <!-- Formulaire de suppression de l'etudiant -->
                             <form action="<?= htmlspecialchars($formBase . 'delete', ENT_QUOTES, 'UTF-8') ?>" method="post">
+                                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
                                 <input type="hidden" name="id" value="<?= $eeid ?>">
                                 <p>Êtes-vous sûr de vouloir supprimer cet etudiant ?</p>
                                 <button type="submit">oui, supprimer</button>
