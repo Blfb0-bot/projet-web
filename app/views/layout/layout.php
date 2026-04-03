@@ -1,3 +1,30 @@
+<?php
+// Charger la wishlist pour tous les étudiants connectés
+$offres = [];
+$message = null;
+
+if (isset($_SESSION['user_id']) && $_SESSION['user_role'] === 'etudiant') {
+    require_once ROOT . '/app/models/WishlistModel.php';
+    $wishlistModel = new WishlistModel();
+    $offres = $wishlistModel->getByEtudiant((int) $_SESSION['user_id']);
+
+    if (isset($_GET['success'])) {
+        $message = match($_GET['success']) {
+            'ajoute' => '✅ Offre ajoutée à ta wish-list !',
+            'retire' => '✅ Offre retirée de ta wish-list.',
+            default  => null
+        };
+    }
+    if (isset($_GET['error'])) {
+        $message = match($_GET['error']) {
+            'deja_present' => '⚠️ Déjà dans ta wish-list.',
+            'invalide'     => '⚠️ Offre invalide.',
+            'csrf'         => '⚠️ Token de sécurité invalide.',
+            default        => '⚠️ Une erreur est survenue.'
+        };
+    }
+}
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -94,6 +121,9 @@
                     <h2>Bonjour, <?= htmlspecialchars($_SESSION['user_prenom']) ?></h2>
                     <p>Rôle : <?= htmlspecialchars($_SESSION['user_role']) ?></p></br>
                     <h4>❤️ Ma Wish-list</h4>
+                    <?php if ($message): ?>
+                        <p class="message"><?= htmlspecialchars($message) ?></p>
+                    <?php endif; ?>
                     <div id="wishlist-container">
                         <?php if (empty($offres)): ?>
                             <p>Ta wish-list est vide.<a href="index.php?controller=offers&action=index">  Voir les offres</a></p>
@@ -102,8 +132,9 @@
                                 <?php foreach ($offres as $offre): ?>
                                     <div class="offre-card">
                                         <h3><?= htmlspecialchars($offre['titre']) ?></h3>
-                                        <p><?= htmlspecialchars($offre['entreprise']) ?> — <?= htmlspecialchars($offre['localisation']) ?></p>
                                         <p><?= htmlspecialchars($offre['description']) ?></p>
+                                        <p>Du <?= htmlspecialchars($offre['date_debut'] ?? '') ?> au <?= htmlspecialchars($offre['date_fin'] ?? '') ?></p>
+                                        <p><?= htmlspecialchars($offre['remuneration'] ?? '0') ?> €/mois</p>
                                         <!-- SF25 — Formulaire pour retirer l'offre (sans JS) -->
                                         <form action="index.php?controller=wishlist&action=retirer" method="POST" >
                                             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>"><!-- Sécurité CSRF -->

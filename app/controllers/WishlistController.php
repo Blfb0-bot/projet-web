@@ -38,7 +38,7 @@ class WishlistController {
 
         // Vérification CSRF
         if (($_POST['csrf_token'] ?? '') !== $_SESSION['csrf_token']) {
-            header('Location: index.php?controller=wishlist&action=index&error=csrf');
+            header('Location: index.php?controller=offers&action=index&error=csrf');
             exit;
         }
 
@@ -51,16 +51,16 @@ class WishlistController {
 
         // Vérification doublon
         if ($this->model->existe((int) $_SESSION['user_id'], $offre_id)) {
-            header('Location: index.php?controller=wishlist&action=index&error=deja_present');
+            header('Location: index.php?controller=offers&action=index&error=deja_present');
             exit;
         }
 
         $ok = $this->model->ajouter((int) $_SESSION['user_id'], $offre_id);
 
         if ($ok) {
-            header('Location: index.php?controller=wishlist&action=index&success=ajoute');
+            header('Location: index.php?controller=offers&action=index&success=ajoute');
         } else {
-            header('Location: index.php?controller=wishlist&action=index&error=serveur');
+            header('Location: index.php?controller=offers&action=index&error=serveur');
         }
         exit;
     }
@@ -70,19 +70,19 @@ class WishlistController {
         verifierRole(['etudiant']);
         // Vérification CSRF
         if (($_POST['csrf_token'] ?? '') !== $_SESSION['csrf_token']) {
-            header('Location: index.php?controller=wishlist&action=index&error=csrf');
+            header('Location: index.php?controller=offers&action=index&error=csrf');
             exit;
         }
         $offre_id = intval($_POST['offre_id'] ?? 0);
         if (!$offre_id) {
-            header('Location: index.php?controller=wishlist&action=index&error=invalide');
+            header('Location: index.php?controller=offers&action=index&error=invalide');
             exit;
         }
         $ok = $this->model->retirer((int) $_SESSION['user_id'], $offre_id);
         if ($ok) {
-            header('Location: index.php?controller=wishlist&action=index&success=retire');
+            header('Location: index.php?controller=offers&action=index&success=retire');
         } else {
-            header('Location: index.php?controller=wishlist&action=index&error=serveur');
+            header('Location: index.php?controller=offers&action=index&error=serveur');
         }
         exit;
     }
