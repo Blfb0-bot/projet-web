@@ -19,14 +19,14 @@ class WishlistModel {
     }
 
     // SF24 — Ajouter une offre à la wish-list
-    public function ajouter(int $etudiant_id, int $offre_id): bool {
+    public function ajouter(int $id_etudiant, int $offre_id): bool {
         try {
             $stmt = $this->pdo->prepare("
-                INSERT INTO wishlist (etudiant_id, offre_id)
-                VALUES (:etudiant_id, :offre_id)
+                INSERT INTO wishlist (id_etudiant, offre_id)
+                VALUES (:id_etudiant, :offre_id)
             ");
             return $stmt->execute([
-                ':etudiant_id' => $etudiant_id,
+                ':id_etudiant' => $id_etudiant,
                 ':offre_id'    => $offre_id,
             ]);
         } catch (PDOException $e) {
@@ -35,7 +35,7 @@ class WishlistModel {
         }
     }
     // SF25 — Retirer une offre de la wish-list
-    public function retirer(int $etudiant_id, int $offre_id): bool {
+    public function retirer(int $id_etudiant, int $offre_id): bool {
         $stmt = $this->pdo->prepare("
             DELETE FROM wishlist
             WHERE etudiant_id = :etudiant_id AND offre_id = :offre_id
@@ -46,13 +46,13 @@ class WishlistModel {
         ]);
     }
     // Utilitaire — vérifier si une offre est déjà dans la wish-list
-    public function existe(int $etudiant_id, int $offre_id): bool {
+    public function existe(int $id_etudiant, int $offre_id): bool {
         $stmt = $this->pdo->prepare("
             SELECT COUNT(*) FROM wishlist
-            WHERE etudiant_id = :etudiant_id AND offre_id = :offre_id
+            WHERE id_etudiant = :id_etudiant AND offre_id = :offre_id
         ");
         $stmt->execute([
-            ':etudiant_id' => $etudiant_id,
+            ':id_etudiant' => $id_etudiant,
             ':offre_id'    => $offre_id,
         ]);
         return (int) $stmt->fetchColumn() > 0;
