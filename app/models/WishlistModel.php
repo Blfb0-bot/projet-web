@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 require_once ROOT . '/app/config/Database.php';
-
 class WishlistModel {
     private PDO $pdo;
     public function __construct() {
@@ -31,7 +30,8 @@ class WishlistModel {
                 ':offre_id'    => $offre_id,
             ]);
         } catch (PDOException $e) {
-            return false; // doublon bloqué par UNIQUE KEY
+            // UNIQUE KEY empêche les doublons
+            return false;
         }
     }
     // SF25 — Retirer une offre de la wish-list
