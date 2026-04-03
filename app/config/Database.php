@@ -5,11 +5,13 @@ final class Database{
     private static ?PDO $instance = null;
     public static function getPdo(): PDO {
         if (self::$instance === null) {
-            $host = '127.0.0.1'; // On n'utilise PLUS self::env ici
-            $db   = 'projet_web';
-            $user = 'root';
-            $pass = 'Beuvry/0710';
-            $port = '3306';
+            // Permet d'utiliser une DB dédiée en tests (via vars d'environnement).
+            // Par défaut, on garde les valeurs historiques du projet.
+            $host = (string)(self::env('DB_HOST', '127.0.0.1'));
+            $db   = (string)(self::env('DB_NAME', 'projet_web'));
+            $user = (string)(self::env('DB_USER', 'root'));
+            $pass = (string)(self::env('DB_PASS', 'Beuvry/0710'));
+            $port = (string)(self::env('DB_PORT', '3306'));
 
             $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
             

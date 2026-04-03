@@ -1,0 +1,22 @@
+{
+  "name": "projet-web/app",
+  "type": "project",
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "^9.6"
+  },
+  "autoload": {
+    "classmap": [
+      "app/"
+    ]
+  },
+  "autoload-dev": {
+    "classmap": [
+      "app/"
+    ]
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
+
