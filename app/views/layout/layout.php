@@ -94,6 +94,9 @@
                     <h2>Bonjour, <?= htmlspecialchars($_SESSION['user_prenom']) ?></h2>
                     <p>Rôle : <?= htmlspecialchars($_SESSION['user_role']) ?></p></br>
                     <h4>❤️ Ma Wish-list</h4>
+                    <?php if ($message): ?>
+                        <p class="message"><?= htmlspecialchars($message) ?></p>
+                    <?php endif; ?>
                     <div id="wishlist-container">
                         <?php if (empty($offres)): ?>
                             <p>Ta wish-list est vide.<a href="index.php?controller=offers&action=index">  Voir les offres</a></p>
