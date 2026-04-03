@@ -58,8 +58,8 @@ class WishlistController {
         $ok = $this->model->ajouter((int) $_SESSION['user_id'], $offre_id);
 
         if ($ok) {
+            header('Location: index.php?controller=offers&action=index&success=ajoute');
         } else {
-            header('Location: index.php?controller=wishlist&action=index&error=serveur');
             header('Location: index.php?controller=offers&action=index&error=serveur');
         }
         exit;
