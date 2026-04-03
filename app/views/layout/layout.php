@@ -96,18 +96,23 @@
                     <h4>❤️ Ma Wish-list</h4>
                     <div id="wishlist-container">
                         <?php if (empty($offres)): ?>
-                            <p>Ta wish-list est vide.<a href="index.php?controller=offers&action=index">Voir les offres</a></p>
+                            <p>Ta wish-list est vide.<a href="index.php?controller=offers&action=index">  Voir les offres</a></p>
                         <?php else: ?>
-                            <?php foreach ($offres as $offre): ?>
-                                <?php $oid = (int)($offre['id'] ?? 0); ?>
-                                <div class="offre-card" id="offre-<?= $oid ?>">
-                                    <strong><?= htmlspecialchars($offre['titre'], ENT_QUOTES, 'UTF-8') ?></strong>
-                                    <span style="color:#6b7280;font-size:13px;">
-                                        <?= htmlspecialchars($offre['entreprise'], ENT_QUOTES, 'UTF-8') ?>
-                                    </span>
-                                    <button onclick="retirerWishlist(<?= $oid ?>)">❌ Retirer</button>
-                                </div>
-                            <?php endforeach; ?>
+                            <div id="wishlist-container">
+                                <?php foreach ($offres as $offre): ?>
+                                    <div class="offre-card">
+                                        <h3><?= htmlspecialchars($offre['titre']) ?></h3>
+                                        <p><?= htmlspecialchars($offre['entreprise']) ?> — <?= htmlspecialchars($offre['localisation']) ?></p>
+                                        <p><?= htmlspecialchars($offre['description']) ?></p>
+                                        <!-- SF25 — Formulaire pour retirer l'offre (sans JS) -->
+                                        <form action="index.php?controller=wishlist&action=retirer" method="POST" >
+                                            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>"><!-- Sécurité CSRF -->
+                                            <input type="hidden" name="offre_id" value="<?= (int) $offre['id'] ?>"><!-- ID de l'offre à retirer -->
+                                            <button type="submit">❌ Retirer de ma wish-list</button>
+                                        </form>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         <?php endif; ?>
                     </div>
                     <hr>

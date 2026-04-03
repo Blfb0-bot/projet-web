@@ -150,7 +150,11 @@
                     <div class="type"><a class="apply-btn" onclick="ouvrir('popup-apply-<?= $oid ?>')">offre de stage</a></div>
                 <?php endif; ?>
                 <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
-                <button data-offre="<?= $oid ?>" onclick="ajouterWishlist(<?= $oid ?>)">🤍 Ajouter à ma wish-list</button>
+                <form action="index.php?controller=wishlist&action=ajouter" method="post" >
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+                    <input type="hidden" name="offre_id" value="<?= $oid ?>">
+                    <button type="submit">🤍 Ajouter à ma wish-list</button>
+                </form>
                 <?php if ($oid > 0): ?>
                 <div class="modification-offre">
                     <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pilote'|| $_SESSION['user_role'] === 'admin'): ?>
