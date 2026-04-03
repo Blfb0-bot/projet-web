@@ -130,9 +130,8 @@
     transition: .4s;
     border-radius: 50%;
 }
-/* LE VERT QUAND ON CLIQUE */
 .switch input:checked + .slider {
-    background-color: #2ecc71 !important; /* Force le vert */
+    background-color: rgba(51, 2, 86, 0.705) !important;
 }
 .switch input:checked + .slider:before {
     transform: translateX(26px);
@@ -160,6 +159,18 @@
   border-radius: 8px;
   width: 500px;
   text-align: center;
+}
+.popup, button{
+    padding:5px 5px;
+    margin: 15px;
+    border: 3px solid rgb(73, 20, 109);
+    background-color: rgb(73, 20, 109);
+    border-radius: 20px;
+    color: rgba(255, 255, 255, 0.726);
+}
+.popup, button:hover{
+    background-color: rgba(73, 20, 109, 0.5);
+    border: 1px solid rgba(73, 20, 109, 0.5);
 }
 /*contenue formulaire popup*/
 .popup .formulaire-profil {
