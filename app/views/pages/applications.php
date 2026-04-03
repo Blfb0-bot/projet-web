@@ -6,7 +6,7 @@ $hasPilot = !empty($user['id_pilote']);
 ?>
 
 <section id="header-applications">
-    <h1><?= $isPilot ? 'Applications de mes élèves' : 'Mes applications' ?></h1>
+    <h1><?= $isPilot ? 'Candidature de mes élèves' : 'Mes Candidatures' ?></h1>
 </section>
 
 <?php if (!$isPilot): ?>
@@ -52,7 +52,7 @@ $hasPilot = !empty($user['id_pilote']);
 
 <section id="list-applications">
     <?php if (empty($applications)): ?>
-        <p class="empty-state">Aucune application trouvée.</p>
+        <p class="empty-state">Aucune Candidature trouvée.</p>
     <?php else: ?>
         <?php foreach ($applications as $app): ?>
             <div class="application-card">
