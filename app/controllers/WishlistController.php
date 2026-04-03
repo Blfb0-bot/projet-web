@@ -6,7 +6,7 @@ require_once ROOT . '/app/models/WishlistModel.php';
 class WishlistController {
     private WishlistModel $model;
     public function __construct() {
-        $this->model = new WishlistModel();}
+        $this->model = new WishlistModel();
         // SF23 — Afficher la wish-list
     }
     public function index(): void {
