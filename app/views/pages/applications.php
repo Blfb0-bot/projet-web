@@ -30,6 +30,7 @@ $hasPilot = !empty($user['id_pilote']);
     <?php endif; ?>
 
     <form action="/index.php?controller=applications&action=assignPilot" method="post" class="pilot-form">
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
         <label for="id_pilote"><?= $hasPilot ? 'Changer de pilote' : 'Choisir votre pilote' ?></label>
         <div class="pilot-list">
             <?php foreach ($pilotes as $p): ?>

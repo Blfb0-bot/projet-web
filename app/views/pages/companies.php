@@ -19,6 +19,7 @@
             <?php endif; ?>
         <?php endif; ?>
         <form action="<?= htmlspecialchars($formBase . 'create', ENT_QUOTES, 'UTF-8') ?>" method="post">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
             <label for ="create-nom">Nom de l'entreprise</label><br/>
             <input type="text" id="create-nom" name="create-nom" required maxlength="200" placeholder="Ex. SoftCorp"><br/>
             <label for="create-desc">Description de l'entreprise</label><br/>
@@ -72,6 +73,7 @@
                 <div class="popup">
                     <h2>Modifier l'entreprise</h2>
                     <form action="<?= htmlspecialchars($formBase . 'update', ENT_QUOTES, 'UTF-8') ?>" method="post">
+                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
                         <input type="hidden" name="id" value="<?= $cid ?>">
                         <label for="edit-nom-<?= $cid ?>">Nom de l'entreprise</label><br/>
                         <input type="text" id="edit-nom-<?= $cid ?>" name="edit-nom" required maxlength="200" value="<?= htmlspecialchars((string)($company['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"><br/>
@@ -93,6 +95,7 @@
                     <h2>Supprimer l'entreprise</h2>
                     <p><?=htmlspecialchars((string)($company['nom'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
                     <form action="<?= htmlspecialchars($formBase . 'delete', ENT_QUOTES, 'UTF-8') ?>" method="post">
+                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
                         <input type="hidden" name="id" value="<?= $cid ?>">
                         <button type="submit">Oui, supprimer</button>
                     </form>
@@ -104,6 +107,7 @@
                 <div class="popup">
                     <h2>Evaluer  cette offre</h2>
                     <form action="index.php?controller=companies&action=evaluer" method="post">
+                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
                         <input type="hidden" name="id_entreprise" value="<?= $cid ?>">
                         <input type="hidden" name="id_etudiant" value="<?= $_SESSION['user_id'] ?>">
                         <label for="note">Note (1 à 5)</label><br/>

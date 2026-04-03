@@ -113,6 +113,7 @@
             <?php endif; ?>
         <?php endif; ?>
         <form action="<?= htmlspecialchars($formBase . 'create', ENT_QUOTES, 'UTF-8') ?>" method="post">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
             <label for="create-entreprise">Nom de l'entreprise</label><br/>
             <input type="text" id="create-entreprise" name="create-entreprise_nom" required maxlength="200" placeholder="Ex. SoftCorp"><br/>
             <label for="create-titre">Titre de l'offre</label><br/>
@@ -152,6 +153,7 @@
                 <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
                 <form action="index.php?controller=wishlist&action=ajouter" method="post" >
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
                     <input type="hidden" name="offre_id" value="<?= $oid ?>">
                     <button type="submit">🤍 Ajouter à ma wish-list</button>
                 </form>
@@ -188,6 +190,7 @@
             <div class="popup">
                 <h2>Modifier l'offre</h2>
                 <form action="<?= htmlspecialchars($formBase . 'update', ENT_QUOTES, 'UTF-8') ?>" method="post">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
                     <input type="hidden" name="id" value="<?= $oid ?>">
                     <label for="edit-entreprise-<?= $oid ?>">Nom de l'entreprise</label><br/>
                     <input type="text" id="edit-entreprise-<?= $oid ?>" name="edit-entreprise_nom" required maxlength="200" value="<?= htmlspecialchars($entrepriseNom, ENT_QUOTES, 'UTF-8') ?>"><br/>
@@ -213,6 +216,7 @@
                 <h2>Supprimer cette offre ?</h2>
                 <p><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></p>
                 <form action="<?= htmlspecialchars($formBase . 'delete', ENT_QUOTES, 'UTF-8') ?>" method="post">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
                     <input type="hidden" name="id" value="<?= $oid ?>">
                     <button type="submit">Oui, supprimer</button>
                 </form>
@@ -230,6 +234,7 @@
                     <p class="form-error">CV trop lourd (5 Mo maximum).</p>
                 <?php endif; ?>
                 <form action="/index.php?controller=applications&action=create" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
                     <input type="hidden" name="id_offre" value="<?= $oid ?>">
                     <label for="lm-<?= $oid ?>">Lettre de motivation</label><br>
                     <textarea id="lm-<?= $oid ?>" name="lettre_motivation" rows="8" required placeholder="Madame, Monsieur, ..."></textarea><br>
