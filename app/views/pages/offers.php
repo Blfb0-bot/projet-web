@@ -7,7 +7,6 @@
     <div class="stats-carousel">
         <div class="card-track">
             <div class="card-inner" id="carouselTrack">
-
                 <?php
                 $repartition = $stats['repartition_duree'] ?? [];
                 $maxBar = max(array_column($repartition, 'nb_offres') ?: [1]);
@@ -151,7 +150,7 @@
                     <div class="type"><a class="apply-btn" onclick="ouvrir('popup-apply-<?= $oid ?>')">offre de stage</a></div>
                 <?php endif; ?>
                 <div class="title"><h3><?= htmlspecialchars((string)($offer['titre'] ?? ''), ENT_QUOTES, 'UTF-8') ?></h3></div>
-                <div><a class="wish-list" href="#">aimer</a></div>
+                <button data-offre="<?= $oid ?>" onclick="ajouterWishlist(<?= $oid ?>)">🤍 Ajouter à ma wish-list</button>
                 <?php if ($oid > 0): ?>
                 <div class="modification-offre">
                     <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pilote'|| $_SESSION['user_role'] === 'admin'): ?>

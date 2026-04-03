@@ -36,6 +36,7 @@ $routes = [
     'auth'      => 'AuthController',
     'user'     => 'UserController',
     'applications' => 'ApplicationsController',
+    'wishlist'     => 'WishlistController',
 ];
 
 // --- Lecture des paramètres ---
