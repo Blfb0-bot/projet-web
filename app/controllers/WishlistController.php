@@ -10,6 +10,7 @@ class WishlistController {
         // SF23 — Afficher la wish-list
     }
     public function index(): void {
+        require_once ROOT . '/app/controllers/UserController.php';
         verifierRole(['etudiant']);
         $offres = $this->model->getByEtudiant((int) $_SESSION['user_id']);
         // Message de succès ou d'erreur après une action
@@ -33,6 +34,7 @@ class WishlistController {
     }
     // SF24 — Ajouter une offre à la wish-list
     public function ajouter(): void {
+        require_once ROOT . '/app/controllers/UserController.php';
         verifierRole(['etudiant']);
 
         // Vérification CSRF
@@ -65,6 +67,7 @@ class WishlistController {
     }
     // SF25 — Retirer une offre de la wish-list
     public function retirer(): void {
+        require_once ROOT . '/app/controllers/UserController.php';
         verifierRole(['etudiant']);
         // Vérification CSRF
         if (($_POST['csrf_token'] ?? '') !== $_SESSION['csrf_token']) {
