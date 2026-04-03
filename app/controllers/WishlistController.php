@@ -29,8 +29,7 @@ class WishlistController {
                 'csrf'         => '⚠️ Token de sécurité invalide.',
                 default        => '⚠️ Une erreur est survenue.'
             };
-        }
-        require ROOT . '/app/views/wishlist/index.php';
+         }
     }
     // SF24 — Ajouter une offre à la wish-list
     public function ajouter(): void {
