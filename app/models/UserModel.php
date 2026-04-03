@@ -94,4 +94,9 @@ final class UserModel{
         $stmt->execute([':id' => $id]);
         return $stmt->fetch();
     }
+    public function updatePilot(int $idEtudiant, int $idPilote): void {
+        $pdo  = Database::getPdo();
+        $stmt = $pdo->prepare("UPDATE utilisateur SET id_pilote = :pilote WHERE id = :id");
+        $stmt->execute([':pilote' => $idPilote, ':id' => $idEtudiant]);
+    }
 }
