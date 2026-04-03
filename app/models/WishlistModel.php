@@ -1,23 +1,23 @@
 <?php
 declare(strict_types=1);
 require_once ROOT . '/app/config/Database.php';
+
 class WishlistModel {
     private PDO $pdo;
     public function __construct() {
         $this->pdo = Database::getPdo();
     }
     // SF23 — Récupérer toutes les offres de la wish-list de l'étudiant
-    public function getByEtudiant(int $etudiant_id): array {
+    public function getByEtudiant(int $id_etudiant): array {
         $stmt = $this->pdo->prepare("
-            SELECT o.* FROM offres o
+            SELECT o.* FROM offre o
             JOIN wishlist w ON w.id_offre = o.id
-            WHERE w.etudiant_id = :etudiant_id
-            ORDER BY w.date_ajout DESC
+            WHERE w.id_etudiant = :id_etudiant
+            ORDER BY o.created_at DESC
         ");
-        $stmt->execute([':etudiant_id' => $etudiant_id]);
+        $stmt->execute([':id_etudiant' => $id_etudiant]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
     // SF24 — Ajouter une offre à la wish-list
     public function ajouter(int $id_etudiant, int $id_offre): bool {
         try {
@@ -30,7 +30,7 @@ class WishlistModel {
                 ':id_offre'    => $id_offre,
             ]);
         } catch (PDOException $e) {
-            // UNIQUE KEY empêche les doublons
+            // PRIMARY KEY composite empêche les doublons
             return false;
         }
     }
@@ -38,10 +38,10 @@ class WishlistModel {
     public function retirer(int $id_etudiant, int $id_offre): bool {
         $stmt = $this->pdo->prepare("
             DELETE FROM wishlist
-            WHERE etudiant_id = :etudiant_id AND id_offre = :id_offre
+            WHERE id_etudiant = :id_etudiant AND id_offre = :id_offre
         ");
         return $stmt->execute([
-            ':etudiant_id' => $etudiant_id,
+            ':id_etudiant' => $id_etudiant,
             ':id_offre'    => $id_offre,
         ]);
     }
