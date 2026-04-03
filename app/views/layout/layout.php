@@ -225,7 +225,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_role'] === 'etudiant') {
                                 <option value="etudiant">Étudiant</option>
                                 <option value="pilote">Pilote</option>
                                 <option value="visiteur">Visiteur</option>
-                                <option value="admin">Admin</option>
                             </select><br/>
                             <input type="email"    name="email"        placeholder="Email"    required><br/>
                             <input type="password" name="mot_de_passe" placeholder="Mot de passe" required><br/><br/>

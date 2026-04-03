@@ -132,34 +132,28 @@
     padding: 0 20px;
     text-align: left;
 }
-
 #statistiques-offre h2 {
     margin-bottom: 20px;
 }
-
 .stats-carousel {
     width: 100%;
 }
-
 .card-track {
     overflow: hidden;
     position: relative;
     width: 100%;
 }
-
 .card-inner {
     display: flex;
     transition: transform 0.4s cubic-bezier(.4, 0, .2, 1);
     width: 100%;
 }
-
 .stat-card {
     min-width: 100%;
     width: 100%;
     flex-shrink: 0;
     box-sizing: border-box;
 }
-
 .card-body {
     border: 2px solid rgb(73, 20, 109);
     background-color: rgba(204, 198, 211, 0.53);
@@ -172,7 +166,6 @@
     gap: 1rem;
     box-sizing: border-box;
 }
-
 .card-label {
     font-size: 11px;
     font-weight: 500;
@@ -180,7 +173,6 @@
     color: rgb(73, 20, 109);
     text-transform: uppercase;
 }
-
 .card-title {
     font-size: 16px;
     font-weight: 600;
@@ -195,14 +187,12 @@
     gap: 10px;
     margin-bottom: 6px;
 }
-
 .bar-label {
     font-size: 13px;
     color: rgb(73, 20, 109);
     width: 65px;
     flex-shrink: 0;
 }
-
 .bar-bg {
     flex: 1;
     height: 10px;
@@ -210,13 +200,11 @@
     border-radius: 5px;
     overflow: hidden;
 }
-
 .bar-fill {
     height: 100%;
     border-radius: 5px;
     background: rgb(73, 20, 109);
 }
-
 .sub-num {
     font-size: 13px;
     color: rgb(73, 20, 109);
@@ -231,14 +219,12 @@
     padding: 8px 0;
     border-bottom: 1px solid rgba(73, 20, 109, 0.2);
 }
-
 .wish-rank {
     font-size: 13px;
     font-weight: 600;
     color: rgba(73, 20, 109, 0.5);
     width: 22px;
 }
-
 .wish-title {
     font-size: 14px;
     color: rgb(30, 10, 50);
@@ -247,7 +233,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 .wish-count {
     font-size: 13px;
     font-weight: 600;
@@ -264,14 +249,12 @@
     color: rgb(73, 20, 109);
     line-height: 1;
 }
-
 .grid2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
     width: 100%;
 }
-
 .metric-mini {
     background: rgba(73, 20, 109, 0.08);
     border: 1px solid rgba(73, 20, 109, 0.2);
@@ -279,13 +262,11 @@
     padding: .75rem 1rem;
     text-align: center;
 }
-
 .metric-mini .val {
     font-size: 22px;
     font-weight: 700;
     color: rgb(73, 20, 109);
 }
-
 .metric-mini .lbl {
     font-size: 12px;
     color: rgb(73, 20, 109);
@@ -293,19 +274,17 @@
     margin-top: 2px;
 }
 
-/* Navigation */
+/* Navigation carrousel */
 .carousel-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 14px;
 }
-
 .carousel-dots {
     display: flex;
     gap: 8px;
 }
-
 .carousel-dot {
     width: 8px;
     height: 8px;
@@ -316,11 +295,9 @@
     cursor: pointer;
     transition: background .2s;
 }
-
 .carousel-dot.active {
     background: rgb(73, 20, 109);
 }
-
 .carousel-btn {
     background: transparent;
     border: 2px solid rgb(73, 20, 109);
@@ -331,12 +308,10 @@
     cursor: pointer;
     transition: background .2s, color .2s;
 }
-
 .carousel-btn:hover {
     background: rgb(73, 20, 109);
     color: rgba(255, 255, 255, 0.9);
 }
-
 .carousel-btn:disabled {
     opacity: .3;
     cursor: default;
