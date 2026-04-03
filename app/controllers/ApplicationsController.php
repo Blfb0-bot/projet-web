@@ -8,15 +8,19 @@ final class ApplicationsController {
         verifierRole(['etudiant', 'pilote', 'admin']);
 
         require_once ROOT . '/app/models/ApplicationModel.php';
-        $model = new ApplicationModel();
+        require_once ROOT . '/app/models/UserModel.php'; // ajouter
+        $model     = new ApplicationModel();
+        $userModel = new UserModel();                    // ajouter
 
         $role   = $_SESSION['user_role'];
         $userId = (int)$_SESSION['user_id'];
 
         if ($role === 'etudiant') {
             $applications = $model->getByStudent($userId);
+            $pilotes      = $userModel->getByRole('pilote'); // ajouter
         } else {
             $applications = $model->getByPilot($userId);
+            $pilotes      = [];
         }
 
         $cssExtra  = '<link rel="stylesheet" href="/public/styles/application.css">';
@@ -118,6 +122,31 @@ final class ApplicationsController {
         header('Content-Disposition: inline; filename="' . basename($filePath) . '"');
         header('Content-Length: ' . filesize($filePath));
         readfile($filePath);
+        exit;
+    }
+    public function assignPilot(): void {
+        require_once ROOT . '/app/controllers/UserController.php';
+        verifierRole(['etudiant']);
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: /index.php?controller=applications&action=index');
+            exit;
+        }
+
+        $idPilote   = (int)($_POST['id_pilote'] ?? 0);
+        $idEtudiant = (int)$_SESSION['user_id'];
+
+        if ($idPilote <= 0) {
+            header('Location: /index.php?controller=applications&action=index&error=invalid_pilot');
+            exit;
+        }
+
+        require_once ROOT . '/app/models/UserModel.php';
+        (new UserModel())->updatePilot($idEtudiant, $idPilote);
+
+        $_SESSION['user_pilote'] = $idPilote;
+
+        header('Location: /index.php?controller=applications&action=index&success=pilot_assigned');
         exit;
     }
 }
